@@ -6,7 +6,7 @@ use Flight;
 
 class ObjectParams
 {
-    public function create()
+    public static function create()
     {
         /*
         if (!empty($_POST['Object'])) {

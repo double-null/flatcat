@@ -47,7 +47,7 @@
                             <span class="l l3"></span>
                             <span class="l l4"></span>
                             <span class="l l5"></span>
-                        </div> Modular Admin
+                        </div>
                     </div>
                 </div>
                 <nav class="menu">
@@ -56,26 +56,19 @@
                             <a href="/"><i class="fa fa-home"></i> Главная </a>
                         </li>
                         <li>
-                            <a href="/admin/slider/"><i class="fa fa-file"></i> Обьекты <i class="fa arrow"></i></a>
-                            <ul class="sidebar-nav collapse">
-                                <li><a href="/admin/pages/add/"> Добавить обьект </a></li>
-                                <li><a href="/admin/pages/"> Список обьектов </a></li>
-                            </ul>
-                        </li>
-                        <li>
                             <a href="#">
                                 <i class="fa fa-th-large"></i> Категории <i class="fa arrow"></i>
                             </a>
                             <ul class="sidebar-nav collapse">
-                                <li>
-                                    <a href="/admin/category/listing/"> Список категорий </a>
-                                </li>
-                                <li>
-                                    <a href="/admin/category/add/"> Добавить категорию </a>
-                                </li>
-                                <li>
-                                    <a href="/admin/category/add_description/"> Добавить описание </a>
-                                </li>
+                                <li><a href="/admin/categories/"> Список категорий </a></li>
+                                <li><a href="/admin/category/create/"> Добавить категорию </a></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="/admin/slider/"><i class="fa fa-file"></i> Обьекты <i class="fa arrow"></i></a>
+                            <ul class="sidebar-nav collapse">
+                                <li><a href="/admin/product/add/"> Добавить обьект </a></li>
+                                <li><a href="/admin/products/"> Список обьектов </a></li>
                             </ul>
                         </li>
                     </ul>
