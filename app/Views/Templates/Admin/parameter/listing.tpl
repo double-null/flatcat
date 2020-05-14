@@ -5,10 +5,10 @@
     <div class="row">
         <div class="col-md-6">
             <h3 class="title">
-                <span> Список описаний для категории </span>
+                <span> Список параметров обьектов категорий </span>
                 <a href="/admin/category_desc/create/{$categoryID}/" class="btn btn-primary btn-sm rounded-s"> Добавить </a>
             </h3>
-            <p class="title-description"> Описания категорий на разных языках </p>
+            <p class="title-description"></p>
         </div>
     </div>
 
@@ -24,15 +24,15 @@
                                         <div><span>ID</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>Язык</span></div>
+                                        <div><span>Категория</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>Название</span></div>
+                                        <div><span>Метка</span></div>
                                     </div>
                                     <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
                                 </div>
                             </li>
-                            {foreach $descriptions as $desc}
+                            {foreach $params as $param}
                                 <li class="item">
                                     <div class="item-row">
                                         <div class="item-col item-col-sales">

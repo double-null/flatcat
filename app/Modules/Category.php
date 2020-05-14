@@ -25,7 +25,11 @@ class Category
     public static function show($id)
     {
         $category = Flight::db()->get('categories', '*', ['id' => $id]);
+        $cat_params = Flight::db()->select('parameters', '*', ['category' => $id]);
+        $descriptions = Flight::db()->select('categories_desc', '*', ['category' => $id]);
         Flight::view()->assign('category', $category);
+        Flight::view()->assign('cat_params', $cat_params);
+        Flight::view()->assign('descriptions', $descriptions);
         Flight::view()->display('category/show.tpl');
     }
 }

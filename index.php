@@ -37,6 +37,10 @@ Flight::route('/admin/category_desc/create/@cat/', function($cat){
     App\Modules\CatDesc::create();
 });
 
+Flight::route('/admin/parameters/', ['App\Modules\Parameter', 'listing']);
+
+Flight::route('/admin/parameter/create/', ['App\Modules\Parameter', 'create']);
+
 Flight::route('/admin/product/create/', ['App\Modules\Product', 'create']);
 
 Flight::route('/admin/object_params/create/', ['App\Modules\ObjectParams', 'create']);
