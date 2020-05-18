@@ -71,6 +71,7 @@
                             <ul class="sidebar-nav collapse">
                                 <li><a href="/admin/parameters/"> Список параметров </a></li>
                                 <li><a href="/admin/parameter/create/"> Добавить параметр </a></li>
+                                <li><a href="/admin/param_desc/"> Описания параметров </a></li>
                             </ul>
                         </li>
                         <li>

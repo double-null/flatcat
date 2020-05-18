@@ -118,18 +118,23 @@
                                                 <div class="item-actions-block">
                                                     <ul class="item-actions-list">
                                                         <li>
-                                                            <a title="Удалить" class="remove" href="#" data-id="{$category.id}" data-toggle="modal" data-target="#confirm-modal">
+                                                            <a title="Удалить" class="remove" href="#" data-id="{$param.id}" data-toggle="modal" data-target="#confirm-modal">
                                                                 <i class="fa fa-trash-o" aria-hidden="true"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a title="Просмотр" class="descriptions" href="/admin/category/show/{$category.id}/">
+                                                            <a title="Просмотр" class="descriptions" href="/admin/category/show/{$param.id}/">
                                                                 <i class="fa fa-eye" aria-hidden="true"></i>
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a title="Редактирование" class="descriptions" href="/admin/category/edit/{$category.id}/">
+                                                            <a title="Редактирование" class="descriptions" href="/admin/category/edit/{$param.id}/">
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a class="descriptions" href="/admin/param_desc/listing/{$param.id}/" title="Описания параметра">
+                                                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
