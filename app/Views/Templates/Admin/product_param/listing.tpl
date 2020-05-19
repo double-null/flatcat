@@ -55,26 +55,6 @@
                                                                 <i class="fa fa-trash-o "></i>
                                                             </a>
                                                         </li>
-                                                        <li>
-                                                            <a title="Просмотр" href="/admin/product/show/{$product.id}/">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Редактирование" href="/admin/product/edit/{$product.id}/">
-                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Описания обьекта" class="descriptions" href="/admin/product_desc/{$product.id}/">
-                                                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Характеристики"  href="/admin/product_parameters/listing/{$product.id}/">
-                                                                <i class="fa fa-cogs" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
