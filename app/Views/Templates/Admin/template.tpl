@@ -77,7 +77,7 @@
                         <li>
                             <a href="/admin/slider/"><i class="fa fa-file"></i> Обьекты <i class="fa arrow"></i></a>
                             <ul class="sidebar-nav collapse">
-                                <li><a href="/admin/product/add/"> Добавить обьект </a></li>
+                                <li><a href="/admin/product/create/"> Добавить обьект </a></li>
                                 <li><a href="/admin/products/"> Список обьектов </a></li>
                             </ul>
                         </li>

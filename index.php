@@ -54,7 +54,9 @@ Flight::route('/admin/param_desc/create/@id/', function($id){
 });
 
 
-Flight::route('/admin/product/create/', ['App\Modules\Product', 'create']);
+Flight::route('/admin/product/create/', ['App\Modules\ProductModule', 'create']);
+
+Flight::route('/admin/products/', ['App\Modules\ProductModule', 'listing']);
 
 Flight::route('/admin/object_params/create/', ['App\Modules\ObjectParams', 'create']);
 
