@@ -14,22 +14,12 @@
             <section>
                 <form method="post">
                     {if !empty($error)}<span style="color: #FF4444;">{$error}</span>{/if}
+                    {foreach $params as $param}
                     <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Метка (ENG): </label>
-                        <div class="col-sm-10"><input type="text" class="form-control boxed" name="Product[mark]"></div>
+                        <label class="col-sm-2 form-control-label text-xs-right"> {$param.name} </label>
+                        <div class="col-sm-10"><input type="text" class="form-control boxed" name="Params[{$param.param}]"></div>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Категория: </label>
-                        <div class="col-sm-10">
-                            <select class="c-select form-control boxed" name="Product[category]">
-                                <option></option>
-                                {foreach $categories as $category}
-                                    <option value="{$category.id}">{$category.name}</option>
-                                {/foreach}
-                            </select>
-                        </div>
-                    </div>
-                    <input type="hidden" name="Object[category]" value="1">
+                    {/foreach}
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary right">Добавить</button>
                     </div>

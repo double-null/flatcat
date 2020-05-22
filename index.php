@@ -60,7 +60,7 @@ Flight::route('/admin/products/', ['App\Modules\ProductModule', 'listing']);
 
 Flight::route('/admin/product_parameters/create/@id/', function($id){
     App\Modules\ProductParamModule::$id = (int)$id;
-    App\Modules\ProducParamtModule::create();
+    App\Modules\ProductParamModule::create();
 });
 
 Flight::route('/admin/product_parameters/listing/@id/', function($id) {

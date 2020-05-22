@@ -5,7 +5,7 @@
     <div class="title-block">
         <h3 class="title">
             <span>Список обьектов</span>
-            <a href="/admin/product/create/" class="btn btn-primary btn-sm rounded-s">
+            <a href="/admin/product_parameters/create/{$productID}/" class="btn btn-primary btn-sm rounded-s">
                 Добавить
             </a>
         </h3>
