@@ -33,9 +33,21 @@ class ProductModule
         Flight::view()->display('product/create.tpl');
     }
 
+    public static function view()
+    {
+        echo 1;
+    }
+
     public static function listing()
     {
         $products = Product::getAllWithCategory();
+        Flight::view()->assign('products', $products);
+        Flight::view()->display('product/listing.tpl');
+    }
+
+    public static function listingByCategory($category)
+    {
+        $products = Product::getAllByCategoryName($category);
         Flight::view()->assign('products', $products);
         Flight::view()->display('product/listing.tpl');
     }

@@ -20,6 +20,10 @@
                         <div class="col-sm-10"><input type="text" class="form-control boxed" name="Product[mark]"></div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right"> Цена: </label>
+                        <div class="col-sm-10"><input type="text" class="form-control boxed" name="Product[price]"></div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 form-control-label text-xs-right"> Категория: </label>
                         <div class="col-sm-10">
                             <select class="c-select form-control boxed" name="Product[category]">

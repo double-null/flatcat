@@ -4,7 +4,7 @@ ini_set('display_errors', 1);
 require_once './vendor/autoload.php';
 
 Flight::register('view', 'Smarty', array(), function($smarty){
-    $smarty->template_dir = './app/Views/Templates/Flatcats/';
+    $smarty->template_dir = './app/Views/Templates/Flatcat/';
     $smarty->compile_dir = './app/Views/Compiled/';
     //$smarty->config_dir = './config/';
     //$smarty->cache_dir = './cache/';
@@ -12,9 +12,19 @@ Flight::register('view', 'Smarty', array(), function($smarty){
 
 Flight::register('db', 'Medoo\Medoo', [database()]);
 
-Flight::route('/', function (){
-    $c = Flight::db()->select('categories', '*');
+App\Modules\Application::start();
+
+Flight::route('/', ['App\Modules\Page', 'main']);
+
+Flight::route('/category/@name/', function ($name) {
+    \App\Modules\ProductModule::listingByCategory($name);
 });
+
+Flight::route('/product/@name/', function ($name) {
+    \App\Controllers\ProductController::show($name);
+});
+
+Flight::route('/admin/category/create/', ['App\Modules\Category', 'create']);
 
 Flight::route('/admin/*', function (){
     Flight::view()->template_dir = './app/Views/Templates/Admin/';
@@ -54,7 +64,7 @@ Flight::route('/admin/param_desc/create/@id/', function($id){
 });
 
 
-Flight::route('/admin/product/create/', ['App\Modules\ProductModule', 'create']);
+Flight::route('/admin/product/create/', ['App\Controllers\ProductController', 'create']);
 
 Flight::route('/admin/products/', ['App\Modules\ProductModule', 'listing']);
 
