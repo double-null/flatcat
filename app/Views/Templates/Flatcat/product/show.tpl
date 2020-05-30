@@ -81,7 +81,34 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8"></div>
+            <div class="col-md-8">
+                <div class="tabs">
+                    <div class="tab">
+                        <input type="radio" id="tab1" name="tab-group" checked>
+                        <label for="tab1" class="tab-title">Фотографии</label>
+                        <section class="tab-content">
+                            <div class="fotorama" data-nav="thumbs" >
+                                <img src="https://s.fotorama.io/1.jpg">
+                                <img src="https://s.fotorama.io/2.jpg">
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab">
+                        <input type="radio" id="tab2" name="tab-group">
+                        <label for="tab2" class="tab-title">На карте</label>
+                        <section class="tab-content">
+                            <div class="product-map">
+                                <iframe src="https://yandex.ua/map-widget/v1/?um=constructor%3Ade27c21e50175e1d66ca08457d3f0f4c16866971354a907b2c5b706cf262f24f&amp;source=constructor" width="562" height="450" frameborder="0"></iframe>
+                            </div>
+                        </section>
+                    </div>
+                    <div class="tab">
+                        <input type="radio" id="tab3" name="tab-group">
+                        <label for="tab3" class="tab-title">Панорама</label>
+                        <section class="tab-content">Три</section>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 {/block}

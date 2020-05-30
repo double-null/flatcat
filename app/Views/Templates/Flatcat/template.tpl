@@ -6,8 +6,10 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link rel="stylesheet" href="/themes/Flatcat/css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="/themes/Flatcat/css/fotorama.css">
         <link rel="stylesheet" href="/themes/Flatcat/css/style.css">
         <script src="/themes/Flatcat/js/jquery-3.4.1.min.js"></script>
+        <script src="/themes/Flatcat/js/fotorama.js"></script>
         <script src="/themes/Flatcat/js/custom.js"></script>
     </head>
 <body>
