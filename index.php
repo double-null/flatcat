@@ -31,7 +31,7 @@ Flight::route('/admin/*', function (){
 
 Flight::route('/admin/enter/', ['App\Controllers\UserController', 'auth']);
 
-Flight::route('/admin/category/create/', ['App\Modules\Category', 'create']);
+Flight::route('/admin/user/create/', ['App\Controllers\UserController', 'create']);
 
 Flight::route('/admin/category/create/', ['App\Modules\Category', 'create']);
 

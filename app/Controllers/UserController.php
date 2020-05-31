@@ -16,9 +16,24 @@ class UserController
                 $_SESSION['user'] = $userAuth;
                 Flight::redirect('/admin/category/create/');
             } else {
-                Flight::view('auth_error', 1);
+                Flight::view()->assign('auth_error', 1);
             }
         }
         Flight::view()->display('enter.tpl');
+    }
+
+    public static function create()
+    {
+        if (!empty($_POST['User'])) {
+            User::$data = $_POST['User'];
+            User::validate();
+            if (!User::$error) {
+                User::save();
+                Flight::redirect('/admin/users/');
+            } else {
+                Flight::view()->assign('errors', User::$error);
+            }
+        }
+        Flight::view()->display('user/create.tpl');
     }
 }

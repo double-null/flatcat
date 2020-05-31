@@ -60,8 +60,8 @@
                                 <i class="fa fa-user"></i> Агенты <i class="fa arrow"></i>
                             </a>
                             <ul class="sidebar-nav collapse">
-                                <li><a href="/admin/categories/"> Список категорий </a></li>
-                                <li><a href="/admin/category/create/"> Добавить категорию </a></li>
+                                <li><a href="/admin/users/"> Список агентов </a></li>
+                                <li><a href="/admin/user/create/"> Добавить агента </a></li>
                             </ul>
                         </li>
                         <li>
