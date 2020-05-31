@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 ini_set('display_errors', 1);
 require_once './vendor/autoload.php';
 
@@ -24,12 +24,14 @@ Flight::route('/product/@name/', function ($name) {
     \App\Controllers\ProductController::show($name);
 });
 
-Flight::route('/admin/category/create/', ['App\Modules\Category', 'create']);
-
 Flight::route('/admin/*', function (){
     Flight::view()->template_dir = './app/Views/Templates/Admin/';
     return true;
 });
+
+Flight::route('/admin/enter/', ['App\Controllers\UserController', 'auth']);
+
+Flight::route('/admin/category/create/', ['App\Modules\Category', 'create']);
 
 Flight::route('/admin/category/create/', ['App\Modules\Category', 'create']);
 
