@@ -18,6 +18,11 @@ class User
         ]);
     }
 
+    public static function getAll()
+    {
+        return Flight::db()->select('users', '*');
+    }
+
     public static function exist()
     {
         return Flight::db()->has('users', ['name' => self::$data['name']]);

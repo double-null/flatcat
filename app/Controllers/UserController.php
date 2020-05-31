@@ -36,4 +36,10 @@ class UserController
         }
         Flight::view()->display('user/create.tpl');
     }
+
+    public static function listing()
+    {
+        Flight::view()->assign('users', User::getAll());
+        Flight::view()->display('user/listing.tpl');
+    }
 }
