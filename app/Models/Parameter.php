@@ -10,19 +10,14 @@ class Parameter
     {
         return Flight::db()->select('parameters',
             [
-                '[>]parameters_desc(p_d)' => ['id' => 'parameter'],
                 '[>]products' => ['category' => 'category'],
             ],
             [
                 'parameters.id', 'parameters.mark(param)',
-                'name' => Flight::db()->raw('IFNULL(<p_d.name>,<parameters.mark>)'),
+                'parameters.name',
             ],
             [
                 'products.id' => $product,
-                'OR' => [
-                    'p_d.lang' => $lang,
-                    'p_d.name' => NULL,
-                ]
             ]
         );
     }

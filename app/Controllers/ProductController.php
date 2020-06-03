@@ -11,9 +11,9 @@ class ProductController
     public static function create()
     {
         if (!empty($_POST['Product'])) {
-            $data = $_POST['Product'];
-            if (self::validate($data)) {
-                Product::save($data);
+            Product::$data = $_POST['Product'];
+            if (Product::validate()) {
+                Product::save();
                 Flight::redirect('/admin/products/');
             } else {
                 Flight::view()->assign('error', self::$error);

@@ -16,8 +16,16 @@
                     {if !empty($success)}<span style="color: #4BCF99;">Обьект добавлен успешно</span>{/if}
                     {if !empty($error)}<span style="color: #FF4444;">{$error}</span>{/if}
                     <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Метка (ENG): </label>
+                        <label class="col-sm-2 form-control-label text-xs-right"> Метка: </label>
                         <div class="col-sm-10"><input type="text" class="form-control boxed" name="Product[mark]"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right"> Название: </label>
+                        <div class="col-sm-10"><input type="text" class="form-control boxed" name="Product[name]"></div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right"> Описание: </label>
+                        <div class="col-sm-10"><input type="text" class="form-control boxed" name="Product[short_desc]"></div>
                     </div>
                     <div class="form-group row">
                         <label class="col-sm-2 form-control-label text-xs-right"> Цена: </label>
@@ -34,7 +42,6 @@
                             </select>
                         </div>
                     </div>
-                    <input type="hidden" name="Object[category]" value="1">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary right">Добавить</button>
                     </div>

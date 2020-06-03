@@ -4,10 +4,16 @@
 
     <div class="title-block">
         <h3 class="title">
-            <span>Список обьектов</span>
-            <a href="/admin/product_parameters/create/{$productID}/" class="btn btn-primary btn-sm rounded-s">
-                Добавить
-            </a>
+            <span>Характеристики обьекта</span>
+            {if empty($params)}
+                <a href="/admin/product_parameters/create/{$productID}/" class="btn btn-primary btn-sm rounded-s">
+                    Добавить
+                </a>
+            {else}
+                <a href="/admin/product_parameters/mod/{$productID}/" class="btn btn-primary btn-sm rounded-s">
+                    Редактировать
+                </a>
+            {/if}
         </h3>
         <p class="title-description">  </p>
     </div>
@@ -24,41 +30,19 @@
                                         <div><span>ID</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>Обьект</span></div>
+                                        <div><span> Параметр </span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>Категория</span></div>
+                                        <div><span> Значение </span></div>
                                     </div>
-                                    <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
                                 </div>
                             </li>
-                            {foreach $products as $product}
+                            {foreach $params as $param}
                                 <li class="item">
                                     <div class="item-row">
-                                        <div class="item-col item-col-sales"><div>{$product.id}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$product.mark}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$product.category}</div></div>
-                                        <div class="item-col fixed item-col-actions-dropdown">
-                                            <div class="item-actions-dropdown">
-                                                <a class="item-actions-toggle-btn">
-                                                <span class="inactive">
-                                                    <i class="fa fa-cog"></i>
-                                                </span>
-                                                    <span class="active">
-                                                    <i class="fa fa-chevron-circle-right"></i>
-                                                </span>
-                                                </a>
-                                                <div class="item-actions-block">
-                                                    <ul class="item-actions-list">
-                                                        <li>
-                                                            <a title="Удалить" class="remove" href="#" data-id="{$product.id}" data-toggle="modal" data-target="#confirm-modal">
-                                                                <i class="fa fa-trash-o "></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <div class="item-col item-col-sales"><div>{$param.id}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$param.name}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$param.value}</div></div>
                                     </div>
                                 </li>
                             {/foreach}

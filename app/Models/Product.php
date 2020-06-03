@@ -6,6 +6,10 @@ use Flight;
 
 class Product
 {
+    public static $data;
+
+    public static $error;
+
     public static function getOneByMark($mark)
     {
         var_dump($mark);
@@ -33,9 +37,16 @@ class Product
         );
     }
 
-    public static function save($data)
+    public static function save()
     {
-        Flight::db()->insert('products', $data);
+        self::$data['user'] = Flight::get('user_id');
+        self::$data['created'] = time();
+        Flight::db()->insert('products', self::$data);
     }
 
+    public static function validate()
+    {
+        var_dump(self::$data);
+        return (!self::$error);
+    }
 }
