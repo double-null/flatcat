@@ -87,6 +87,15 @@ Flight::route('/admin/product_parameters/listing/@id/', function($id) {
     App\Controllers\ProductParamController::listing($id);
 });
 
+/* PRODUCT IMAGES */
+Flight::route('/admin/product_images/listing/@id/', function($id) {
+    App\Controllers\ProductImageController::listing($id);
+});
+
+Flight::route('/admin/product_images/create/@id/', function($id) {
+    App\Controllers\ProductImageController::create($id);
+});
+
 Flight::route('/admin/object_params/create/', ['App\Modules\ObjectParams', 'create']);
 
 Flight::start();

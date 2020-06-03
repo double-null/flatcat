@@ -71,6 +71,11 @@
                                                             </a>
                                                         </li>
                                                         <li>
+                                                            <a title="Изображения обьекта"  href="/admin/product_images/listing/{$product.id}/">
+                                                                <i class="fa fa-picture-o" aria-hidden="true"></i>
+                                                            </a>
+                                                        </li>
+                                                        <li>
                                                             <a title="Характеристики"  href="/admin/product_parameters/listing/{$product.id}/">
                                                                 <i class="fa fa-cogs" aria-hidden="true"></i>
                                                             </a>
