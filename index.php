@@ -96,6 +96,16 @@ Flight::route('/admin/product_images/create/@id/', function($id) {
     App\Controllers\ProductImageController::create($id);
 });
 
+/* PRODUCT ETC */
+Flight::route('/admin/product_etc/listing/@id/', function($id) {
+    App\Controllers\ProductImageController::listing($id);
+});
+
+Flight::route('/admin/product_etc/create/@id/', function($id) {
+    App\Controllers\ProductImageController::create($id);
+});
+
+
 Flight::route('/admin/object_params/create/', ['App\Modules\ObjectParams', 'create']);
 
 Flight::start();

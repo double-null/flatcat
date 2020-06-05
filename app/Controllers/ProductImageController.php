@@ -10,6 +10,7 @@ class ProductImageController
     public static function listing($id)
     {
         Flight::view()->assign('productID', $id);
+        Flight::view()->assign('photos', ProductPhoto::getAllForProduct($id));
         Flight::view()->display('product_image/listing.tpl');
     }
 

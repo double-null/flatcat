@@ -30,19 +30,19 @@
                                         <div><span> ID </span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span> Параметр </span></div>
+                                        <div><span> Изображение </span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span> Значение </span></div>
+                                        <div><span> Имя </span></div>
                                     </div>
                                 </div>
                             </li>
-                            {foreach $params as $param}
+                            {foreach $photos as $photo}
                                 <li class="item">
                                     <div class="item-row">
-                                        <div class="item-col item-col-sales"><div>{$param.id}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$param.name}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$param.value}</div></div>
+                                        <div class="item-col"><div>{$photo.id}</div></div>
+                                        <div class="item-col"><img height="50px" src="/images/objects/{$photo.name}" /></div>
+                                        <div class="item-col"><div>{$photo.name}</div></div>
                                     </div>
                                 </li>
                             {/foreach}

@@ -12,4 +12,11 @@ class ProductPhoto
     {
         Flight::db()->insert('product_photos', self::$data);
     }
+
+    public static function getAllForProduct($product)
+    {
+        return Flight::db()->select('product_photos', '*', [
+            'product' => $product
+        ]);
+    }
 }
