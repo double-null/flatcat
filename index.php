@@ -17,7 +17,7 @@ App\Modules\Application::start();
 Flight::route('/', ['App\Modules\Page', 'main']);
 
 Flight::route('/category/@name/', function ($name) {
-    \App\Modules\ProductModule::listingByCategory($name);
+    \App\Controllers\ProductController::listingForCategory($name);
 });
 
 Flight::route('/product/@name/', function ($name) {
@@ -98,11 +98,11 @@ Flight::route('/admin/product_images/create/@id/', function($id) {
 
 /* PRODUCT ETC */
 Flight::route('/admin/product_etc/listing/@id/', function($id) {
-    App\Controllers\ProductImageController::listing($id);
+    App\Controllers\ProductEtcController::listing($id);
 });
 
 Flight::route('/admin/product_etc/create/@id/', function($id) {
-    App\Controllers\ProductImageController::create($id);
+    App\Controllers\ProductEtcController::create($id);
 });
 
 

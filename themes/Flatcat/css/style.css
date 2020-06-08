@@ -1,3 +1,5 @@
+html, body, ul {margin: 0; padding: 0;}
+
 a{text-decoration: none}
 
 img{border: 0;}
@@ -12,6 +14,7 @@ img{border: 0;}
 
 .header-general{
     height: 60px;
+    align-items: center;
 }
 
 .ticket-action{
@@ -27,17 +30,52 @@ img{border: 0;}
     padding: 0;
 }
 .header-menu ul li{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     flex-grow: 1;
     background: #dd0018 none repeat scroll 0 0;
+    margin-left: 1px;
     text-align: center;
     height: 30px;
     cursor: pointer;
     color: white;
 }
 
-.header-menu ul li a{
-    color: white;
+.header-menu ul li a{color: white;}
+
+.breadcrumbs li + li {
+    background: rgba(0, 0, 0, 0) url("../images/arr.png") no-repeat scroll left center;
+    margin-left: 15px;
+    padding-left: 18px;
 }
+
+.breadcrumbs li {
+    color: #354a4f;
+    float: left;
+    font: 12px/20px helveticaneue,Tahoma;
+    list-style: outside none none;
+}
+
+footer{
+    background: #f1f4f5 none repeat scroll 0 0;
+    margin-top: 75px;
+    padding: 30px 0;
+    position: absolute;
+    z-index: 20;
+}
+
+#city {
+    background: rgba(0, 0, 0, 0) url("../images/city.png") no-repeat scroll right bottom;
+    height: 40px;
+    margin-right: -500px;
+    position: absolute;
+    right: 50%;
+    top: -40px;
+    width: 180px;
+}
+
+#rights{text-align: center;}
 
 /* Buttons */
 
@@ -123,6 +161,7 @@ img{border: 0;}
     right: -14px;
 }
 
+#content{min-height: 600px;}
 
 .product-map *{width: 100%;}
 

@@ -44,8 +44,24 @@
     </div>
 </header>
 
-{block name="content"}{/block}
+<div class="container" id="breadcrumbs">
+    <div class="row">
+        <div class="col-12">
+            <ul class="breadcrumbs">
+                {block name="breadcrumbs"}{/block}
+            </ul>
+        </div>
+    </div>
+</div>
 
+<div id="content"> {block name="content"}{/block}</div>
+
+<footer class="container-fluid">
+    <div id="city"></div>
+    <div id="rights" class="row">
+        <div class="col-md-12">© 2006—2020 Компания "Имя" Все права защищены.</div>
+    </div>
+</footer>
 
 </body>
 </html>

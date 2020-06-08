@@ -45,13 +45,6 @@ class ProductModule
         Flight::view()->display('product/listing.tpl');
     }
 
-    public static function listingByCategory($category)
-    {
-        $products = Product::getAllByCategoryName($category);
-        Flight::view()->assign('products', $products);
-        Flight::view()->display('product/listing.tpl');
-    }
-
     public static function validate($data)
     {
         if (empty($data['mark'])) {

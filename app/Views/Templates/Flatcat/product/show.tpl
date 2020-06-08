@@ -1,15 +1,21 @@
 {extends file="template.tpl"}
 
+{block name="breadcrumbs"}
+    <li><a href="/">Главная</a></li>
+    <li><a href="/category/{$product.category_mark}/">{$product.category}</a></li>
+    <li>{$product.name}</li>
+{/block}
+
 {block name="content"}
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h2 class="object-name">Суздальский район, село Горицы, Преображенская улица</h2>
-                <div class="object-short-desc">4-комнатный коттедж (170.00 кв.м.) с участком 34.00 соток</div>
-                <div class="object-info">Код объекта: 16721 Добавлен: 27.05.2020 </div>
+                <h2 class="object-name">{$product.name}</h2>
+                <div class="object-short-desc">{$product.short_desc}</div>
+                <div class="object-info">Код объекта: {$product.id} Добавлен: {$product.created|date_format:"d.m.Y"} </div>
             </div>
             <div class="col-md-4">
-                <h1 class="object-price">17 990 000</h1>
+                <h1 class="object-price">{$product.price|number_format:2}</h1>
             </div>
         </div>
         <div class="row">
@@ -37,30 +43,12 @@
                             </div>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-6">Тип</div>
-                        <div class="col-6">Коттедж</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">Адрес</div>
-                        <div class="col-6">Суздальский район, село Горицы, Преображенская улица</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">Площадь</div>
-                        <div class="col-6">170.00/100.00/30.00 кв. м.</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">Кол-во комнат</div>
-                        <div class="col-6">4</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">Материал</div>
-                        <div class="col-6">Блочный</div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">Площадь участка</div>
-                        <div class="col-6">34.00</div>
-                    </div>
+                    {foreach $product_params as $param}
+                        <div class="row">
+                            <div class="col-6">{$param.name}</div>
+                            <div class="col-6">{$param.value}</div>
+                        </div>
+                    {/foreach}
                 </div>
                 <div class="object-description">
                     <div class="row">
@@ -71,13 +59,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-12">Продаю коттедж в состоянии - заезжай и живи в селе Горицы, Суздальского района.
-                            (рядом Зелени, Богослово, Сновицы, Масленка, Новоалександрово), 8 км от г .Владимир
-                            Отличный коттедж в идеальном состоянии с качественным ремонтом.
-                            Кухня-гостинная с панорамными окнами, три комнаты, два сан. узла.
-                            На участке гараж на два автомобиля, баня, летний дом.
-                            Ухоженный участок с садовыми насаждениями и множеством цветов.
-                            Код объекта: 16721</div>
+                        <div class="col-12">{$product.description}</div>
                     </div>
                 </div>
             </div>
@@ -87,9 +69,12 @@
                         <input type="radio" id="tab1" name="tab-group" checked>
                         <label for="tab1" class="tab-title">Фотографии</label>
                         <section class="tab-content">
-                            <div class="fotorama" data-nav="thumbs" >
-                                <img src="https://s.fotorama.io/1.jpg">
-                                <img src="https://s.fotorama.io/2.jpg">
+                            <div class="product-images">
+                                <div class="fotorama" data-nav="thumbs" data-height="400">
+                                    {foreach $product_photos as $photo}
+                                        <img class="img-fluid" src="/images/objects/{$photo.name}">
+                                    {/foreach}
+                                </div>
                             </div>
                         </section>
                     </div>
@@ -98,14 +83,16 @@
                         <label for="tab2" class="tab-title">На карте</label>
                         <section class="tab-content">
                             <div class="product-map">
-                                <iframe src="https://yandex.ua/map-widget/v1/?um=constructor%3Ade27c21e50175e1d66ca08457d3f0f4c16866971354a907b2c5b706cf262f24f&amp;source=constructor" width="562" height="450" frameborder="0"></iframe>
+                                {$product.map}
                             </div>
                         </section>
                     </div>
                     <div class="tab">
                         <input type="radio" id="tab3" name="tab-group">
                         <label for="tab3" class="tab-title">Панорама</label>
-                        <section class="tab-content">Три</section>
+                        <section class="tab-content">
+                            <div class="product-map">{$product.panorama}</div>
+                        </section>
                     </div>
                 </div>
             </div>

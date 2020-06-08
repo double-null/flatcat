@@ -12,7 +12,20 @@ class Product
 
     public static function getOneByMark($mark)
     {
-        var_dump($mark);
+        return Flight::db()->get('products',
+            [
+                '[>]categories(c)' => ['category' => 'id'],
+                '[>]product_etc(pe)' => ['id' => 'product'],
+            ],
+            [
+                'products.id', 'products.name', 'products.short_desc',
+                'products.price', 'products.created', 'pe.map', 'pe.panorama',
+                'pe.description', 'c.name(category)', 'c.mark(category_mark)',
+            ],
+            [
+                'products.mark' => $mark,
+            ]
+        );
     }
 
     public static function getAllWithCategory()

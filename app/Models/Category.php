@@ -24,4 +24,9 @@ class Category
             ]
         );
     }
+
+    public static function getOneByMark($mark)
+    {
+        return Flight::db()->get('categories', '*', ['mark' => $mark]);
+    }
 }
