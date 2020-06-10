@@ -11,16 +11,14 @@
         {foreach $products as $product}
             <div class="col-md-4">
                 <div style="width: 100%; position: relative;">
-                    <a href="/product/{$product.mark}/">
-                        <div id="object-photos">
-                            <img class="img-fluid" src="https://vladis.ru/uploads/nb/med/419.jpg">
+                    <a class="object-link" href="/product/{$product.mark}/">
+                        <div class="object-photos">
+                            <img class="img-fluid" src="/images/objects/{$product.photos[0]}">
                         </div>
                         <span class="obj-hover-img">
-                            <span class="obj-hover-img-5"></span>
-                            <span class="obj-hover-img-5"></span>
-                            <span class="obj-hover-img-5"></span>
-                            <span class="obj-hover-img-5"></span>
-                            <span class="obj-hover-img-5"></span>
+                            {foreach $product['photos'] as $photo}
+                                <span class="obj-hover-img-5" data-photo="{$photo}"></span>
+                            {/foreach}
                         </span>
                     </a>
                 </div>

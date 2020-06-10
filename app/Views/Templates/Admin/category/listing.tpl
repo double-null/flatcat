@@ -62,11 +62,6 @@
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </a>
                                                         </li>
-                                                        <li>
-                                                            <a title="Описания категории" class="descriptions" href="/admin/category_desc/{$category.id}/">
-                                                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>

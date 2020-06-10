@@ -20,7 +20,7 @@ class ProductController
                 Flight::view()->assign('error', self::$error);
             }
         }
-        $categories = Category::getAllByLang(1);
+        $categories = Category::getAll();
         Flight::view()->assign('categories', $categories);
         Flight::view()->display('product/create.tpl');
     }
@@ -39,7 +39,7 @@ class ProductController
         $product = Product::getOneByMark($product_mark);
         $product_photos = ProductPhoto::getAllForProduct($product['id']);
         $product_params = ProductParam::getAllByProduct($product['id']);
-        $categories = Category::getAllByLang(1);
+        $categories = Category::getAll();
         Flight::view()->assign('categories', $categories);
         Flight::view()->assign('product', $product);
         Flight::view()->assign('product_photos', $product_photos);

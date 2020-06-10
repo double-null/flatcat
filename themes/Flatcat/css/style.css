@@ -92,7 +92,7 @@ footer{
 }
 
 /* */
-#object-photos {
+.object-photos {
     height: 223px;
     overflow: hidden;
     position: relative;

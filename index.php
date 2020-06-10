@@ -37,9 +37,9 @@ Flight::route('/admin/users/', ['App\Controllers\UserController', 'listing']);
 
 Flight::route('/admin/user/create/', ['App\Controllers\UserController', 'create']);
 
-Flight::route('/admin/category/create/', ['App\Modules\Category', 'create']);
+Flight::route('/admin/category/create/', ['App\Controllers\CategoryController', 'create']);
 
-Flight::route('/admin/categories/', ['App\Modules\Category', 'listing']);
+Flight::route('/admin/categories/', ['App\Controllers\CategoryController', 'listing']);
 
 Flight::route('/admin/category/show/@id/', function($id){App\Modules\Category::show($id);});
 

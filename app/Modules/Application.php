@@ -9,7 +9,7 @@ class Application
 {
     public static function start()
     {
-        $categories = Category::getAllByLang(1);
+        $categories = Category::getAll();
         Flight::view()->assign('categories', $categories);
     }
 }

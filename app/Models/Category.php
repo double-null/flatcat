@@ -6,23 +6,16 @@ use Flight;
 
 class Category
 {
-    public static function getAllByLang($lang)
+    public static $data;
+
+    public static function save()
     {
-        return Flight::db()->select('categories',
-            [
-                '[>]categories_desc(cd)' => ['id' => 'category']
-            ],
-            [
-                'categories.id', 'categories.mark',
-                'cd.name',
-            ],
-            [
-                'OR' => [
-                    'cd.lang' => $lang,
-                    'cd.id' => NULL,
-                ]
-            ]
-        );
+        Flight::db()->insert('categories', self::$data);
+    }
+
+    public static function getAll()
+    {
+        return Flight::db()->select('categories', '*');
     }
 
     public static function getOneByMark($mark)

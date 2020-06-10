@@ -12,11 +12,15 @@
         <div class="card-block">
             <section class="col col-md-9">
                 <form method="post">
-                    {if !empty($success)}<span style="color: #4BCF99;">{$success}</span>{/if}
+                    {if !empty($success)}<span style="color: #4BCF99;">Категория успешно добавлена</span>{/if}
                     {if !empty($error)}<span style="color: #FF4444;">{$error}</span>{/if}
                     <div class="form-group">
-                        <label class="control-label">Метка (ENG):</label>
+                        <label class="control-label"> Метка (ENG): </label>
                         <input type="text" class="form-control boxed" name="Category[mark]">
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label"> Название: </label>
+                        <input type="text" class="form-control boxed" name="Category[name]">
                     </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary right">Добавить</button>

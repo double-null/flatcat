@@ -14,13 +14,12 @@ class Product
     {
         return Flight::db()->get('products',
             [
-                '[>]categories(c)' => ['category' => 'id'],
                 '[>]product_etc(pe)' => ['id' => 'product'],
             ],
             [
                 'products.id', 'products.name', 'products.short_desc',
                 'products.price', 'products.created', 'pe.map', 'pe.panorama',
-                'pe.description', 'c.name(category)', 'c.mark(category_mark)',
+                'pe.description',
             ],
             [
                 'products.mark' => $mark,
@@ -38,16 +37,27 @@ class Product
 
     public static function getAllByCategoryName($name)
     {
-        return Flight::db()->select('products',
+        $products =  Flight::db()->select('products',
             ['[>]categories(c)' => ['category' => 'id']],
             [
-                'products.mark', 'products.name', 'products.short_desc',
-                'products.price', 'products.created'
+                'products.id' => [
+                    'products.mark', 'products.name', 'products.short_desc',
+                    'products.price', 'products.created',
+                ],
             ],
+            ['c.mark' => $name,]
+        );
+        $photos = Flight::db()->select('product_photos',
+            ['name', 'product'],
             [
-                'c.mark' => $name,
+                'product' => array_keys($products),
+                'ORDER' => ['product' => 'ASC'],
             ]
         );
+        foreach ($photos as $photo) {
+            $products[$photo['product']]['photos'][] = $photo['name'];
+        }
+       return $products;
     }
 
     public static function save()
