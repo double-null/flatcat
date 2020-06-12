@@ -74,16 +74,6 @@
                             </ul>
                         </li>
                         <li>
-                            <a href="#">
-                                <i class="fa fa-th-large"></i> Параметры обьектов <i class="fa arrow"></i>
-                            </a>
-                            <ul class="sidebar-nav collapse">
-                                <li><a href="/admin/parameters/"> Список параметров </a></li>
-                                <li><a href="/admin/parameter/create/"> Добавить параметр </a></li>
-                                <li><a href="/admin/param_desc/"> Описания параметров </a></li>
-                            </ul>
-                        </li>
-                        <li>
                             <a href="/admin/slider/"><i class="fa fa-file"></i> Обьекты <i class="fa arrow"></i></a>
                             <ul class="sidebar-nav collapse">
                                 <li><a href="/admin/product/create/"> Добавить обьект </a></li>

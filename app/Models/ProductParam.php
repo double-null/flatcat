@@ -10,23 +10,23 @@ class ProductParam
 
     public static $productID;
 
-    public static function save($data)
+    public static function save()
     {
         $existingParams = Flight::db()->select('product_params', 'param', [
             'AND' => [
-                'product' => $data['productID'],
-                'param' => array_keys($data['params']),
+                'product' => self::$productID,
+                'param' => array_keys(self::$data),
             ]
         ]);
-        foreach ($data['params'] as $param => $value) {
+        foreach (self::$data as $param => $value) {
             if (in_array($param, $existingParams)) {
                 Flight::db()->update('product_params', ['value' => $value], [
-                    'product' => $data['productID'],
+                    'product' => self::$productID,
                     'param' => $param,
                 ]);
             } else {
                 Flight::db()->insert('product_params', [
-                    'product' => $data['productID'],
+                    'product' => self::$productID,
                     'param' => $param,
                     'value' => $value,
                 ]);

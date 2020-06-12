@@ -55,20 +55,9 @@ Flight::route('/admin/category_desc/create/@cat/', function($cat){
 
 Flight::route('/admin/parameters/', ['App\Modules\Parameter', 'listing']);
 
-Flight::route('/admin/parameter/create/', ['App\Modules\Parameter', 'create']);
-
-Flight::route('/admin/param_desc/create/', ['App\Modules\ParamDesc', 'create']);
-
-Flight::route('/admin/param_desc/listing/@id/', function($id) {
-    App\Modules\ParamDesc::$id = (int)$id;
-    App\Modules\ParamDesc::listing();
-});
-
-Flight::route('/admin/param_desc/create/@id/', function($id){
-    App\Modules\ParamDesc::$id = (int)$id;
-    App\Modules\ParamDesc::create();
-});
-
+Flight::route('/admin/parameter/create/@id/',
+    function ($id) {App\Controllers\ParameterController::create($id);}
+);
 
 Flight::route('/admin/product/create/', ['App\Controllers\ProductController', 'create']);
 

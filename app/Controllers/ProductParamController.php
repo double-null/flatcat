@@ -19,9 +19,9 @@ class ProductParamController
         if (!empty($_POST['Params'])) {
             ProductParam::$data = $_POST['Params'];
             ProductParam::$productID = $id;
-            ProductParam::update();
+            ProductParam::save();
         }
-        Flight::view()->assign('params', ProductParam::getAllByProduct($id));
+        Flight::view()->assign('params', Parameter::getAllForProduct($id));
         Flight::view()->display('product_param/modify.tpl');
     }
 }

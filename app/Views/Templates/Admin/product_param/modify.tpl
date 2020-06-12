@@ -18,7 +18,7 @@
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label text-xs-right"> {$param.name} </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control boxed" name="Params[{$param.param}]" value="{$param.value}">
+                                <input type="text" class="form-control boxed" name="Params[{$param.id}]" value="{$param.value}">
                             </div>
                         </div>
                     {/foreach}

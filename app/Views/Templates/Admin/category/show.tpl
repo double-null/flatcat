@@ -4,77 +4,10 @@
 
     <div class="title-block">
         <h3 class="title">
-            Список описаний категории "{$category.mark}"
-            <span data-type="bar" class="sparkline bar"></span>
-        </h3>
-    </div>
-
-    <div class="card">
-        <div class="card-block">
-            <section id="content items-list-page">
-                <div class="table-responsive item-list">
-                    <div class="card items">
-                        <ul class="item-list striped">
-                            <li class="item item-list-header">
-                                <div class="item-row">
-                                    <div class="item-col item-col-header">
-                                        <div><span>ID</span></div>
-                                    </div>
-                                    <div class="item-col item-col-header">
-                                        <div><span>Язык</span></div>
-                                    </div>
-                                    <div class="item-col item-col-header">
-                                        <div><span>Название</span></div>
-                                    </div>
-                                    <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
-                                </div>
-                            </li>
-                            {foreach $descriptions as $desc}
-                                <li class="item">
-                                    <div class="item-row">
-                                        <div class="item-col item-col-sales">
-                                            <div>{$desc.id}</div>
-                                        </div>
-                                        <div class="item-col item-col-sales">
-                                            <div>{$desc.lang}</div>
-                                        </div>
-                                        <div class="item-col item-col-sales">
-                                            <div>{$desc.name}</div>
-                                        </div>
-                                        <div class="item-col fixed item-col-actions-dropdown">
-                                            <div class="item-actions-dropdown">
-                                                <a class="item-actions-toggle-btn">
-                                                <span class="inactive">
-                                                    <i class="fa fa-cog"></i>
-                                                </span>
-                                                    <span class="active">
-                                                    <i class="fa fa-chevron-circle-right"></i>
-                                                </span>
-                                                </a>
-                                                <div class="item-actions-block">
-                                                    <ul class="item-actions-list">
-                                                        <li>
-                                                            <a title="Удалить" class="remove" href="#" data-id="{$category.id}" data-toggle="modal" data-target="#confirm-modal">
-                                                                <i class="fa fa-trash-o "></i>
-                                                            </a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            {/foreach}
-                        </ul>
-                    </div>
-                </div>
-            </section>
-        </div>
-    </div>
-
-    <div class="title-block">
-        <h3 class="title">
-            Параметры обьектов категории "{$category.mark}"
+            Параметры обьектов категории "{$category.name}"
+            <a href="/admin/parameter/create/{$category.id}/" class="btn btn-primary btn-sm rounded-s">
+                Добавить
+            </a>
             <span data-type="bar" class="sparkline bar"></span>
         </h3>
     </div>
@@ -93,6 +26,9 @@
                                     <div class="item-col item-col-header">
                                         <div><span>Метка</span></div>
                                     </div>
+                                    <div class="item-col item-col-header">
+                                        <div><span> Название </span></div>
+                                    </div>
                                     <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
                                 </div>
                             </li>
@@ -104,6 +40,9 @@
                                         </div>
                                         <div class="item-col item-col-sales">
                                             <div>{$param.mark}</div>
+                                        </div>
+                                        <div class="item-col item-col-sales">
+                                            <div>{$param.name}</div>
                                         </div>
                                         <div class="item-col fixed item-col-actions-dropdown">
                                             <div class="item-actions-dropdown">
