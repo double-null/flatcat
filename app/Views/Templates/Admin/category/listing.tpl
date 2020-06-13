@@ -110,7 +110,7 @@
             var drop = $(this).data('drop');
             $.post({
                 url: '/admin/category/drop/',
-                data: {drop:drop},
+                data: {id:drop},
                 success: function(data){
                     if (data.status == 1) location.reload();
                 },

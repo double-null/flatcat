@@ -22,4 +22,9 @@ class Category
     {
         return Flight::db()->get('categories', '*', ['mark' => $mark]);
     }
+
+    public static function delete()
+    {
+        Flight::db()->delete('categories', self::$data);
+    }
 }

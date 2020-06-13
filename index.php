@@ -44,6 +44,8 @@ Flight::route('/admin/categories/', ['App\Controllers\CategoryController', 'list
 
 Flight::route('/admin/category/show/@id/', function($id){App\Modules\Category::show($id);});
 
+Flight::route('/admin/category/drop/', ['App\Controllers\CategoryController', 'drop']);
+
 Flight::route('/admin/category_desc/@cat/', function($cat){
     App\Modules\CatDesc::$category = (int)$cat;
     App\Modules\CatDesc::listing();

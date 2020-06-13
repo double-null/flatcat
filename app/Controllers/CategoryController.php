@@ -23,4 +23,11 @@ class CategoryController
         Flight::view()->assign('categories', $categories);
         Flight::view()->display('category/listing.tpl');
     }
+
+    public static function drop()
+    {
+        Category::$data['id'] = (int)$_POST['id'];
+        Category::delete();
+        echo json_encode(['status' => 1]);
+    }
 }
