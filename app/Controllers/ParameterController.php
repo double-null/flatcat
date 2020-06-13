@@ -18,4 +18,11 @@ class ParameterController
         }
         Flight::view()->display('parameter/create.tpl');
     }
+
+    public static function drop()
+    {
+        Parameter::$data['id'] = (int)$_POST['id'];
+        Parameter::delete();
+        echo json_encode(['status' => 1]);
+    }
 }

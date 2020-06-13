@@ -60,6 +60,8 @@ Flight::route('/admin/category_desc/create/@cat/', function($cat){
 
 Flight::route('/admin/parameters/', ['App\Modules\Parameter', 'listing']);
 
+Flight::route('/admin/parameter/drop/', ['App\Controllers\ParameterController', 'drop']);
+
 Flight::route('/admin/parameter/create/@id/',
     function ($id) {App\Controllers\ParameterController::create($id);}
 );

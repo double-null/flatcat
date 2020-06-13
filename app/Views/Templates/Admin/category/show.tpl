@@ -112,3 +112,25 @@
         </div><!-- /.modal-dialog -->
     </div><!-- /.modal -->
 {/block}
+
+{block name="scripts"}
+
+    <script type="text/javascript">
+        {literal}
+        $('.remove').click(function () {
+            $('#confirm-button').data('drop', $(this).data('id'));
+        });
+        $('#confirm-button').click(function () {
+            var drop = $(this).data('drop');
+            $.post({
+                url: '/admin/parameter/drop/',
+                data: {id:drop},
+                success: function(data){
+                    if (data.status == 1) location.reload();
+                },
+                dataType: 'json'
+            });
+        });
+        {/literal}
+    </script>
+{/block}

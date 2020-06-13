@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Core\Model;
 use Flight;
 
-class Parameter
+class Parameter extends Model
 {
-    public static $data;
+    public static $table = 'parameters';
 
     public static function getAllForProduct($product)
     {
