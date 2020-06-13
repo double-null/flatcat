@@ -51,7 +51,7 @@
                                                 <div class="item-actions-block">
                                                     <ul class="item-actions-list">
                                                         <li>
-                                                            <a title="Удалить" class="remove" href="#" data-id="{$product.id}" data-toggle="modal" data-target="#confirm-modal">
+                                                            <a title="Удалить" class="remove" href="#" data-id="{$user.id}" data-toggle="modal" data-target="#confirm-modal">
                                                                 <i class="fa fa-trash-o "></i>
                                                             </a>
                                                         </li>
@@ -68,4 +68,47 @@
             </section>
         </div>
     </div>
+{/block}
+{block name="modal"}
+    <div class="modal fade" id="confirm-modal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Подтверждаем удаление?</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm-button" type="button" class="btn btn-primary" data-dismiss="modal" data-status="1" data-drop="0">Да</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Нет</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+{/block}
+
+{block name="scripts"}
+
+    <script type="text/javascript">
+        {literal}
+        $('.remove').click(function () {
+            $('#confirm-button').data('drop', $(this).data('id'));
+        });
+        $('#confirm-button').click(function () {
+            var drop = $(this).data('drop');
+            $.post({
+                url: '/admin/user/drop/',
+                data: {id:drop},
+                success: function(data){
+                    if (data.status == 1) location.reload();
+                },
+                dataType: 'json'
+            });
+        });
+        {/literal}
+    </script>
 {/block}

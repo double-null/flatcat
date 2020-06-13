@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Core\Model;
 use Flight;
 
-class User
+class User extends Model
 {
-    public static $data;
+    public static $table = 'users';
 
     public static $error;
 

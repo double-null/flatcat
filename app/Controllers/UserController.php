@@ -42,4 +42,11 @@ class UserController
         Flight::view()->assign('users', User::getAll());
         Flight::view()->display('user/listing.tpl');
     }
+
+    public static function drop()
+    {
+        User::$data['id'] = (int)$_POST['id'];
+        User::delete();
+        echo json_encode(['status' => 1]);
+    }
 }

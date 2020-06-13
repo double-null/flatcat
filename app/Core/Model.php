@@ -8,8 +8,10 @@ class Model
 {
     public static $table;
 
+    public static $data;
+
     public static function delete()
     {
-        Flight::db()->delete(self::$table, self::$data);
+        Flight::db()->delete(static::$table, static::$data);
     }
 }
