@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Core\Model;
 use Flight;
 
-class Category
+class Category extends Model
 {
-    public static $data;
+    public static $table = 'categories';
 
     public static function save()
     {
@@ -21,10 +22,5 @@ class Category
     public static function getOneByMark($mark)
     {
         return Flight::db()->get('categories', '*', ['mark' => $mark]);
-    }
-
-    public static function delete()
-    {
-        Flight::db()->delete('categories', self::$data);
     }
 }
