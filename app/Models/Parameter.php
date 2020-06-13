@@ -17,7 +17,8 @@ class Parameter
             ],
             [
                 'parameters.id', 'parameters.mark(param)',
-                'parameters.name', 'product_params.value'
+                'parameters.name', 'parameters.type',
+                'parameters.options[JSON]', 'product_params.value',
             ],
             [
                 'products.id' => $product,

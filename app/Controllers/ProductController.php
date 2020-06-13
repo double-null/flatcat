@@ -25,6 +25,19 @@ class ProductController
         Flight::view()->display('product/create.tpl');
     }
 
+    public static function listing()
+    {
+        if (Flight::get('user_role') == 1) {
+            $products = Product::getAllWithCategory();
+        } elseif (Flight::get('user_role') == 2) {
+            $products = Product::getAllForUser(Flight::get('user_id'));
+        } else {
+            $products = null;
+        }
+        Flight::view()->assign('products', $products);
+        Flight::view()->display('product/listing.tpl');
+    }
+
     public static function listingForCategory($category)
     {
         $category = Category::getOneByMark($category);

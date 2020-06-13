@@ -35,6 +35,15 @@ class Product
         );
     }
 
+    public static function getAllForUser($user)
+    {
+        return Flight::db()->select('products',
+            ['[><]categories' => ['category' => 'id']],
+            ['products.id', 'products.mark', 'categories.mark(category)'],
+            ['user' => $user]
+        );
+    }
+
     public static function getAllByCategoryName($name)
     {
         $products =  Flight::db()->select('products',

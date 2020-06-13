@@ -18,7 +18,28 @@
                         <div class="form-group row">
                             <label class="col-sm-2 form-control-label text-xs-right"> {$param.name} </label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control boxed" name="Params[{$param.id}]" value="{$param.value}">
+                                {if $param.type == 3}
+                                    <select class="form-control boxed" name="Params[{$param.id}]">
+                                        {foreach $param.options as $key => $option}
+                                            <option value="{$key+1}" {if $key+1 == $param.value}selected{/if}>
+                                                {$option}
+                                            </option>
+                                        {/foreach}
+                                    </select>
+                                {elseif $param.type == 2}
+                                    <div>
+                                        <label>
+                                            <input type="radio" name="Params[{$param.id}]" class="radio" value="1" {if $param.value == 1}checked{/if}>
+                                            <span>Да</span>
+                                        </label>
+                                        <label>
+                                            <input type="radio" name="Params[{$param.id}]" class="radio" value="0" {if $param.value == 0}checked{/if}>
+                                            <span>Нет</span>
+                                        </label>
+                                    </div>
+                                {else}
+                                    <input type="text" class="form-control boxed" name="Params[{$param.id}]" value="{$param.value}">
+                                {/if}
                             </div>
                         </div>
                     {/foreach}

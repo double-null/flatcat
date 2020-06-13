@@ -25,7 +25,8 @@ Flight::route('/product/@name/', function ($name) {
 });
 
 Flight::route('/admin/*', function (){
-    Flight::set('user_id', $_SESSION['user']['id']);
+    Flight::set('user_id', (int)$_SESSION['user']['id']);
+    Flight::set('user_role', (int)$_SESSION['user']['role']);
     Flight::view()->template_dir = './app/Views/Templates/Admin/';
     Flight::view()->assign('user_info', $_SESSION['user']);
     return true;
@@ -61,7 +62,7 @@ Flight::route('/admin/parameter/create/@id/',
 
 Flight::route('/admin/product/create/', ['App\Controllers\ProductController', 'create']);
 
-Flight::route('/admin/products/', ['App\Modules\ProductModule', 'listing']);
+Flight::route('/admin/products/', ['App\Controllers\ProductController', 'listing']);
 
 Flight::route('/admin/product_parameters/create/@id/', function($id){
     App\Modules\ProductParamModule::$id = (int)$id;

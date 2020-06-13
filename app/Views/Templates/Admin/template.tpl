@@ -55,31 +55,37 @@
                         <li>
                             <a href="/"><i class="fa fa-home"></i> Главная </a>
                         </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-user"></i> Агенты <i class="fa arrow"></i>
-                            </a>
-                            <ul class="sidebar-nav collapse">
-                                <li><a href="/admin/users/"> Список агентов </a></li>
-                                <li><a href="/admin/user/create/"> Добавить агента </a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="#">
-                                <i class="fa fa-th-large"></i> Категории <i class="fa arrow"></i>
-                            </a>
-                            <ul class="sidebar-nav collapse">
-                                <li><a href="/admin/categories/"> Список категорий </a></li>
-                                <li><a href="/admin/category/create/"> Добавить категорию </a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="/admin/slider/"><i class="fa fa-file"></i> Обьекты <i class="fa arrow"></i></a>
-                            <ul class="sidebar-nav collapse">
-                                <li><a href="/admin/product/create/"> Добавить обьект </a></li>
-                                <li><a href="/admin/products/"> Список обьектов </a></li>
-                            </ul>
-                        </li>
+                        {if $user_info['role'] == 1}
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-user"></i> Агенты <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav collapse">
+                                    <li><a href="/admin/users/"> Список агентов </a></li>
+                                    <li><a href="/admin/user/create/"> Добавить агента </a></li>
+                                </ul>
+                            </li>
+                        {/if}
+                        {if $user_info['role'] == 1}
+                            <li>
+                                <a href="#">
+                                    <i class="fa fa-th-large"></i> Категории <i class="fa arrow"></i>
+                                </a>
+                                <ul class="sidebar-nav collapse">
+                                    <li><a href="/admin/categories/"> Список категорий </a></li>
+                                    <li><a href="/admin/category/create/"> Добавить категорию </a></li>
+                                </ul>
+                            </li>
+                        {/if}
+                        {if $user_info['role'] == 1 || $user_info['role'] == 2}
+                            <li>
+                                <a href="/admin/slider/"><i class="fa fa-file"></i> Обьекты <i class="fa arrow"></i></a>
+                                <ul class="sidebar-nav collapse">
+                                    <li><a href="/admin/product/create/"> Добавить обьект </a></li>
+                                    <li><a href="/admin/products/"> Список обьектов </a></li>
+                                </ul>
+                            </li>
+                        {/if}
                     </ul>
                 </nav>
             </div>
