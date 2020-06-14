@@ -5,15 +5,9 @@
     <div class="title-block">
         <h3 class="title">
             <span>Характеристики обьекта</span>
-            {if empty($params)}
-                <a href="/admin/product_parameters/create/{$productID}/" class="btn btn-primary btn-sm rounded-s">
-                    Добавить
-                </a>
-            {else}
-                <a href="/admin/product_parameters/mod/{$productID}/" class="btn btn-primary btn-sm rounded-s">
-                    Редактировать
-                </a>
-            {/if}
+            <a href="/admin/product_parameters/mod/{$productID}/" class="btn btn-primary btn-sm rounded-s">
+                {if empty($params)} Добавить  {else} Редактировать {/if}
+            </a>
         </h3>
         <p class="title-description">  </p>
     </div>
