@@ -2,11 +2,13 @@
 
 namespace App\Models;
 
+use App\Core\Model;
 use Flight;
 
-class Product
+class Product extends Model
 {
-    public static $data;
+
+    public static $table = 'products';
 
     public static $error;
 
@@ -14,12 +16,13 @@ class Product
     {
         return Flight::db()->get('products',
             [
+                '[>]categories(c)' => ['category' => 'id'],
                 '[>]product_etc(pe)' => ['id' => 'product'],
             ],
             [
                 'products.id', 'products.name', 'products.short_desc',
                 'products.price', 'products.created', 'pe.map', 'pe.panorama',
-                'pe.description',
+                'pe.description', 'c.name(category)', 'c.mark(category_mark)',
             ],
             [
                 'products.mark' => $mark,
