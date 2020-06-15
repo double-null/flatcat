@@ -52,7 +52,7 @@
                                                     <ul class="item-actions-list">
                                                         <li>
                                                             <a title="Удалить" class="remove" href="#" data-id="{$product.id}" data-toggle="modal" data-target="#confirm-modal">
-                                                                <i class="fa fa-trash-o "></i>
+                                                                <i class="fa fa-trash-o"></i>
                                                             </a>
                                                         </li>
                                                         <li>
@@ -76,7 +76,7 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a title="Карты и панорамы"  href="/admin/product_parameters/listing/{$product.id}/">
+                                                            <a title="Карты и панорамы"  href="/admin/product_etc/{$product.id}/">
                                                                 <i class="fa fa-file-code-o" aria-hidden="true"></i>
                                                             </a>
                                                         </li>

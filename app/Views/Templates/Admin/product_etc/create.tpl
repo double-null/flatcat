@@ -22,6 +22,10 @@
                         <label class="control-label"> Панорама: </label>
                         <textarea class="form-control boxed" name="Code[panorama]" id="" cols="30" rows="10"></textarea>
                     </div>
+                    <div class="form-group">
+                        <label class="control-label"> Описание: </label>
+                        <textarea class="form-control boxed" name="Code[description]" id="" cols="30" rows="10"></textarea>
+                    </div>
                     <input type="hidden" name="Code[product]" value="{$productID}">
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary right">Добавить</button>

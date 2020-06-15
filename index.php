@@ -93,7 +93,7 @@ Flight::route('/admin/product_images/create/@id/', function($id) {
 });
 
 /* PRODUCT ETC */
-Flight::route('/admin/product_etc/listing/@id/', function($id) {
+Flight::route('/admin/product_etc/@id/', function($id) {
     App\Controllers\ProductEtcController::listing($id);
 });
 

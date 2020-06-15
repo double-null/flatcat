@@ -2,19 +2,20 @@
 
 namespace App\Models;
 
+use App\Core\Model;
 use Flight;
 
-class ProductEtc
+class ProductEtc extends Model
 {
-    public static $data;
+    public static $table = 'product_etc';
 
     public static function save()
     {
-        Flight::db()->insert('product_etc', self::$data);
+        Flight::db()->insert(self::$table, self::$data);
     }
 
-    public static function getForProduct()
+    public static function getForProduct($product)
     {
-
+        Flight::db()->get(self::$table, '*', ['product' => $product]);
     }
 }

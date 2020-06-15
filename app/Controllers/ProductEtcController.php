@@ -7,8 +7,9 @@ use App\Models\ProductEtc;
 
 class ProductEtcController
 {
-    public static function listing()
+    public static function listing($id)
     {
+        Flight::view()->assign('productID', $id);
         Flight::view()->display('product_etc/listing.tpl');
     }
 
@@ -17,6 +18,7 @@ class ProductEtcController
         if (!empty($_POST['Code'])) {
             ProductEtc::$data = $_POST['Code'];
             ProductEtc::save();
+            Flight::redirect('/admin/product_etc/');
         }
         Flight::view()->assign('productID', $id);
         Flight::view()->display('product_etc/create.tpl');
