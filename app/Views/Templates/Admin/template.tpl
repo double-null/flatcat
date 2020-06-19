@@ -25,13 +25,16 @@
                             <span class="name"> {$user_info['name']} </span>
                         </a>
                         <div class="dropdown-menu profile-dropdown-menu" aria-labelledby="dropdownMenu1">
-                            <a class="dropdown-item" href="https://modularcode.io/modular-admin-html/forms.html#">
-                                <i class="fa fa-user icon"></i> Профиль </a>
-                            <a class="dropdown-item" href="https://modularcode.io/modular-admin-html/forms.html#">
-                                <i class="fa fa-gear icon"></i> Настройки </a>
-                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/admin/user_profile/">
+                                <i class="fa fa-user icon"></i> Профиль
+                            </a>
                             <a class="dropdown-item" href="#">
-                                <i class="fa fa-power-off icon"></i> Выход </a>
+                                <i class="fa fa-gear icon"></i> Настройки
+                            </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="/admin/logout/">
+                                <i class="fa fa-power-off icon"></i> Выход
+                            </a>
                         </div>
                     </li>
                 </ul>

@@ -40,6 +40,8 @@ Flight::route('/admin/user/create/', ['App\Controllers\UserController', 'create'
 
 Flight::route('/admin/user/drop/', ['App\Controllers\UserController', 'drop']);
 
+Flight::route('/admin/user_profile/', ['App\Controllers\UserProfileController', 'update']);
+
 Flight::route('/admin/category/create/', ['App\Controllers\CategoryController', 'create']);
 
 Flight::route('/admin/categories/', ['App\Controllers\CategoryController', 'listing']);
