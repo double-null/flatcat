@@ -16,6 +16,12 @@ App\Modules\Application::start();
 
 Flight::route('/', ['App\Modules\Page', 'main']);
 
+/******************** DELETE  *********************************/
+
+Flight::route('/test/', ['App\Controllers\APIController', 'fields']);
+
+/******************** DELETE  *********************************/
+
 Flight::route('/category/@name/', function ($name) {
     \App\Controllers\ProductController::listingForCategory($name);
 });
