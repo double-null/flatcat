@@ -18,6 +18,7 @@ class Model
     public static function insert()
     {
         Flight::db()->insert(static::$table, static::$data);
+        return Flight::db()->id();
     }
 
     public static function delete()

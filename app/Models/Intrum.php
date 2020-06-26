@@ -19,6 +19,13 @@ class Intrum
         return self::$response->data;
     }
 
+    public static function getCategories()
+    {
+        self::$url = 'http://iyidebabina.intrumnet.com:81/sharedapi/stock/types';
+        self::run();
+        return self::$response->data;
+    }
+
     public static function getProduct()
     {
         self::$url = 'http://iyidebabina.intrumnet.com:81/sharedapi/stock/filter';

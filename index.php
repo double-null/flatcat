@@ -20,6 +20,9 @@ Flight::route('/', ['App\Modules\Page', 'main']);
 
 Flight::route('/test/', ['App\Controllers\APIController', 'fields']);
 
+Flight::route('/test2/', ['App\Controllers\APIController', 'updateCategories']);
+
+
 /******************** DELETE  *********************************/
 
 Flight::route('/category/@name/', function ($name) {
