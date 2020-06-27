@@ -3,4 +3,4 @@ app/Views/Compiled/
 images/
 vendor/
 themes/Admin/
-
+app/Models/Intrum.php

@@ -127,10 +127,23 @@ footer{
     font-weight: bold;
 }
 
-/**/
+/* Agent Cards listing */
+
 .agent-card{
-    padding: 15px;
+    min-height: 200px;
+    margin-top: 20px;
+}
+
+.agent-card:hover{
     background: #f1f4f5 none repeat scroll 0 0;
+}
+
+.agent-card .row{
+    padding-top: 20px;
+}
+
+.agent-info div{
+    margin-top: 5px;
 }
 
 /**/

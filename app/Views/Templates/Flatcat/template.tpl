@@ -34,9 +34,10 @@
         <div class="row header-menu">
             <div class="col-md-12">
                 <ul>
-                {foreach $categories as $category}
-                    <li><a href="/category/{$category.mark}/">{$category.name}</a></li>
-                {/foreach}
+                    {foreach $categories as $category}
+                        <li><a href="/category/{$category.mark}/">{$category.name}</a></li>
+                    {/foreach}
+                    <li><a href="/agents/">Агенты</a></li>
                     <li>Отзывы</li>
                 </ul>
             </div>

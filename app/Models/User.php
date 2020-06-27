@@ -24,6 +24,14 @@ class User extends Model
         return Flight::db()->select('users', '*');
     }
 
+    public static function getAllWithProfile()
+    {
+        return Flight::db()->select(self::$table,
+            ['[><]user_profiles(p)' => ['id' => 'user']],
+            ['p.fullname', 'p.phone', 'p.position', 'p.photo', 'users.email']
+        );
+    }
+
     public static function exist()
     {
         return Flight::db()->has('users', ['name' => self::$data['name']]);

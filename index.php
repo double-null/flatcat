@@ -16,6 +16,8 @@ App\Modules\Application::start();
 
 Flight::route('/', ['App\Modules\Page', 'main']);
 
+Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
+
 /******************** DELETE  *********************************/
 
 Flight::route('/test/', ['App\Controllers\APIController', 'updateProduct']);

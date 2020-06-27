@@ -43,6 +43,12 @@ class UserController
         Flight::view()->display('user/listing.tpl');
     }
 
+    public static function openListing()
+    {
+        Flight::view()->assign('users', User::getAllWithProfile());
+        Flight::view()->display('user/listing.tpl');
+    }
+
     public static function drop()
     {
         User::$data['id'] = (int)$_POST['id'];
