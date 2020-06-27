@@ -18,10 +18,11 @@ Flight::route('/', ['App\Modules\Page', 'main']);
 
 /******************** DELETE  *********************************/
 
-Flight::route('/test/', ['App\Controllers\APIController', 'fields']);
+Flight::route('/test/', ['App\Controllers\APIController', 'updateProduct']);
 
 Flight::route('/test2/', ['App\Controllers\APIController', 'updateCategories']);
 
+Flight::route('/test3/', ['App\Controllers\APIController', 'updateFields']);
 
 /******************** DELETE  *********************************/
 

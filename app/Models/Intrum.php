@@ -26,14 +26,23 @@ class Intrum
         return self::$response->data;
     }
 
-    public static function getProduct()
+    public static function getAgents()
+    {
+        self::$url = 'http://iyidebabina.intrumnet.com:81/sharedapi/worker/filter';
+        self::run();
+        return self::$response->data;
+    }
+
+    public static function getProducts($category)
     {
         self::$url = 'http://iyidebabina.intrumnet.com:81/sharedapi/stock/filter';
 
-        self::$params = ['type'=>1];
+        self::$params = ['type' => $category];
 
         self::run();
 
+        return self::$response->data->list;
+        /*
         if (self::$response->status == 'success') {
             foreach (self::$response->data->list as $product) {
                 $out[] = [
@@ -51,6 +60,7 @@ class Intrum
             return $out;
         }
         else return false;
+        */
     }
 
     public static function run()

@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
+use App\Core\Model;
 use Flight;
 
-class ProductParam
+class ProductParam extends Model
 {
-    public static $data;
+    public static $table = 'product_params';
 
     public static $productID;
 

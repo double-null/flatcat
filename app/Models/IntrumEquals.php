@@ -16,4 +16,12 @@ class IntrumEquals extends Model
             'intrum_id' => $intrum,
         ]);
     }
+
+    public static function getObjectsByIntrum($intrum, $type)
+    {
+        return Flight::db()->select(self::$table, ['intrum_id' => ['object_id']], [
+            'type' => $type,
+            'intrum_id' => $intrum,
+        ]);
+    }
 }

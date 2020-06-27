@@ -6,7 +6,10 @@ use App\Models\Category;
 use App\Models\Intrum;
 use App\Models\IntrumEquals;
 use App\Models\Parameter;
-use function PHPSTORM_META\type;
+use App\Models\Product;
+use App\Models\ProductParam;
+use App\Models\User;
+use App\Models\UserProfile;
 
 class APIController
 {
@@ -38,8 +41,6 @@ class APIController
 
     public static function updateFields()
     {
-        echo "<pre>";
-        $object_type = 2;
         $fields = Intrum::getFields();
         $fields = json_decode(json_encode($fields),true);
         $types = [
@@ -51,24 +52,107 @@ class APIController
         ];
         foreach ($fields as $category => $parameters) {
             $category_id = IntrumEquals::getObjectByIntrum((int)$category, 1)['object_id'];
-
             foreach ($parameters['fields'] as $parameter) {
-                $type = $types[$parameter['datatype']] ?? 1;
-                $options = [];
-                if ($type == 3 || $type == 4) {
-                    foreach ($parameter['variants'] as $variant) {
-                        $options[] = $variant['value'];
+                $param_exist = IntrumEquals::getObjectByIntrum($parameter['id'], 2)['object_id'];
+                if (!$param_exist) {
+                    $type = $types[$parameter['datatype']] ?? 1;
+                    $options = [];
+                    if ($type == 3 || $type == 4) {
+                        foreach ($parameter['variants'] as $variant) {
+                            $options[] = $variant['value'];
+                        }
                     }
+                    Parameter::$data = [
+                        'category' => $category_id,
+                        'mark' => $parameter['id'],
+                        'name' => $parameter['name'],
+                        'type' => $type,
+                        'options' => json_encode($options),
+                    ];
+                    $param_id = Parameter::insert();
+                    IntrumEquals::$data = [
+                        'type' => 2,
+                        'object_id' => $param_id,
+                        'intrum_id' => $parameter['id'],
+                    ];
+                    IntrumEquals::insert();
+                }
+            }
+        }
+    }
+
+    public static function updateAgents()
+    {
+        $agents = json_decode(json_encode(Intrum::getAgents()),true);
+        foreach ($agents as $agent){
+            $user_exist = IntrumEquals::getObjectByIntrum($agent['id'], 3)['object_id'];
+            if (!$user_exist) {
+                User::$data = [
+                    'name' => $agent['name'],
+                    'email' => $agent['internalemail'][0]['email'],
+                    'password' => md5('1234'),
+                    'role' => 2,
+                    'created' => time(),
+                ];
+                $user_id = (int)User::insert();
+                UserProfile::$data = [
+                    'user' => $user_id,
+                    'photo' => $agent['avatars']['original'],
+                    'fullname' => $agent['surname'].' '.$agent['name'].' '.$agent['secondname'],
+                    'position' => $agent['post'],
+                    'phone' => $agent['mobilephone'][0]['phone'],
+                    'about' => $agent['about'],
+                ];
+                UserProfile::insert();
+                IntrumEquals::$data = [
+                    'type' => 3,
+                    'object_id' => $user_id,
+                    'intrum_id' => $agent['id'],
+                ];
+                IntrumEquals::insert();
+            }
+        }
+    }
+
+    public static function updateProduct()
+    {
+        echo "<pre>";
+        $category = 1;
+        $products = json_decode(json_encode(Intrum::getProducts($category)),true);
+
+        foreach ($products as $product) {
+            $price_ids = [810, 470, 562, 528];
+            $price = 0;
+            foreach ($product['fields'] as $field) {
+
+                $field_ids[] = $field['id'];
+                //Определение поля с ценой
+                if (in_array($field['id'], $price_ids)) {
+                    $price = $field['value'];
                 }
 
-                Parameter::$data = [
-                    'category' => $category_id,
-                    'mark' => $parameter['id'],
-                    'name' => $parameter['name'],
-                    'type' => $type,
-                    'options' => json_encode($options),
+            }
+
+            //Сохранение обьектов
+            Product::$data = [
+                'mark' => $product['id'],
+                'user' => IntrumEquals::getObjectByIntrum($product['author'], 3)["object_id"],
+                'name' => $product['name'],
+                'short_desc' => '',
+                'price' => $price,
+                'category' => $category,
+                'created' => strtotime($product['date_add']),
+            ];
+            $product_id = Product::insert();
+            //Сохранение полей обьекта
+            $eq = IntrumEquals::getObjectsByIntrum($field_ids, 2);
+            foreach ($product['fields'] as $field) {
+                ProductParam::$data = [
+                    'product' => $product_id,
+                    'param' => $eq[$field['id']]['object_id'],
+                    'value' => $field['value'],
                 ];
-                Parameter::insert();
+                ProductParam::insert();
             }
         }
     }
