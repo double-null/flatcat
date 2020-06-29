@@ -12,14 +12,20 @@
             <div class="col-md-4">
                 <div style="width: 100%; position: relative;">
                     <a class="object-link" href="/product/{$product.mark}/">
-                        <div class="object-photos">
-                            <img class="img-fluid" src="/images/objects/{$product.photos[0]}">
-                        </div>
-                        <span class="obj-hover-img">
-                            {foreach $product['photos'] as $photo}
-                                <span class="obj-hover-img-5" data-photo="{$photo}"></span>
-                            {/foreach}
-                        </span>
+                        {if !empty($product.photos)}
+                            <div class="object-photos">
+                                <img class="img-fluid" src="/images/objects/{$product.photos[0]}">
+                            </div>
+                            <span class="obj-hover-img">
+                                {foreach $product['photos'] as $photo}
+                                    <span class="obj-hover-img-5" data-photo="{$photo}"></span>
+                                {/foreach}
+                            </span>
+                        {else}
+                            <div class="object-photos">
+                                <img class="img-fluid" src="/images/default/no-photo.jpg">
+                            </div>
+                        {/if}
                     </a>
                 </div>
                 <div class="object-info row">
