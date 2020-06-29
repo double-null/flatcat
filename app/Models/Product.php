@@ -18,11 +18,13 @@ class Product extends Model
             [
                 '[>]categories(c)' => ['category' => 'id'],
                 '[>]product_etc(pe)' => ['id' => 'product'],
+                '[>]user_profiles(u)' => ['user' => 'user'],
             ],
             [
                 'products.id', 'products.name', 'products.short_desc',
                 'products.price', 'products.created', 'pe.map', 'pe.panorama',
                 'pe.description', 'c.name(category)', 'c.mark(category_mark)',
+                'user' => ['u.fullname', 'u.photo', 'u.position', 'u.phone'],
             ],
             [
                 'products.mark' => $mark,

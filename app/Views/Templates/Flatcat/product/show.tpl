@@ -23,12 +23,12 @@
                 <div class="agent-card">
                     <div class="row">
                         <div class="col-md-4">
-                            <img src="https://vladis.ru/uploads/agents_photo/thumb/uk6jxo1549874381.jpg" alt="" class="fluid-img">
+                            <img width="100%" src="/themes/Flatcat/images/unnamed.jpg" alt="" class="fluid-img">
                         </div>
                         <div class="col-md-8">
-                            <div class="agent-name"><a href="#">Корнеева Татьяна Александровна</a></div>
-                            <div class="agent-desc">Старший эксперт, Вторичная Октябрьский</div>
-                            <div class="agent-contact">+7 (905) 057-53-25</div>
+                            <div class="agent-name"><a href="#">{$product.user.fullname}</a></div>
+                            <div class="agent-desc"> {$product.user.position} </div>
+                            <div class="agent-contact"> {$product.user.phone} </div>
                             <div class="agent-order">
                                 <a class="green-btn">Заказать просмотр</a>
                             </div>
