@@ -174,7 +174,7 @@ footer{
     right: -14px;
 }
 
-#content{min-height: 600px;}
+#content{margin-top: 20px; min-height: 600px;}
 
 .product-map *{width: 100%;}
 
