@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
         {foreach $products as $product}
-            <div class="col-md-4">
+            <div class="col-md-4 object-item">
                 <div style="width: 100%; position: relative;">
                     <a class="object-link" href="/product/{$product.mark}/">
                         {if !empty($product.photos)}
