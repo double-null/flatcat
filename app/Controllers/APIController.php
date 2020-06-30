@@ -16,7 +16,11 @@ class APIController
 {
     public static function test()
     {
-        $products = Intrum::getProduct();
+        $categories = Category::getAll();
+        foreach ($categories as $category)
+        {
+            self::updateProduct($category['id']);
+        }
     }
 
     public static function updateCategories()
@@ -115,9 +119,9 @@ class APIController
         }
     }
 
-    public static function updateProduct()
+    public static function updateProduct($category)
     {
-        $category = 1;
+
         $products = json_decode(json_encode(Intrum::getProducts($category)),true);
 
         foreach ($products as $product) {

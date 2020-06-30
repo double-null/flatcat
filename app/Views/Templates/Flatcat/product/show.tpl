@@ -50,6 +50,7 @@
                         </div>
                     {/foreach}
                 </div>
+                {if !empty($product.description)}
                 <div class="object-description">
                     <div class="row">
                         <div class="col-12">
@@ -62,6 +63,7 @@
                         <div class="col-12">{$product.description}</div>
                     </div>
                 </div>
+                {/if}
             </div>
             <div class="col-md-8">
                 <div class="tabs">
@@ -72,12 +74,13 @@
                             <div class="product-images">
                                 <div class="fotorama" data-nav="thumbs" data-height="400">
                                     {foreach $product_photos as $photo}
-                                        <img class="img-fluid" src="/images/objects/{$photo.name}">
+                                        <img class="img-fluid" src="/images/objects/original/{$photo.name}">
                                     {/foreach}
                                 </div>
                             </div>
                         </section>
                     </div>
+                    {if !empty($product.map)}
                     <div class="tab">
                         <input type="radio" id="tab2" name="tab-group">
                         <label for="tab2" class="tab-title">На карте</label>
@@ -87,6 +90,8 @@
                             </div>
                         </section>
                     </div>
+                    {/if}
+                    {if !empty($product.panorama)}
                     <div class="tab">
                         <input type="radio" id="tab3" name="tab-group">
                         <label for="tab3" class="tab-title">Панорама</label>
@@ -94,6 +99,7 @@
                             <div class="product-map">{$product.panorama}</div>
                         </section>
                     </div>
+                    {/if}
                 </div>
             </div>
         </div>

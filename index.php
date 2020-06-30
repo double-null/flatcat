@@ -20,7 +20,7 @@ Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
 /******************** DELETE  *********************************/
 
-Flight::route('/test/', ['App\Controllers\APIController', 'updateProduct']);
+Flight::route('/test/', ['App\Controllers\APIController', 'test']);
 
 Flight::route('/test2/', ['App\Controllers\APIController', 'updateCategories']);
 

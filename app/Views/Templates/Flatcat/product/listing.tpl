@@ -32,7 +32,7 @@
                     <div class="obj-title col-12"><a href="/product/{$product.mark}/">{$product.name}</a></div>
                     <div class="obj-short-desc col-12">{$product.short_desc}</div>
                     <div class="obj-price col-6">от {$product.price|number_format:2:" ":","} GEL</div>
-                    <div class="obj-created col-6">{$product.created}</div>
+                    <div class="obj-created col-6">{$product.created|date_format:"d.m.Y"}</div>
                 </div>
             </div>
         {/foreach}
