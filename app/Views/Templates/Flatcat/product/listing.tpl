@@ -14,7 +14,7 @@
                     <a class="object-link" href="/product/{$product.mark}/">
                         {if !empty($product.photos)}
                             <div class="object-photos">
-                                <img class="img-fluid" src="/images/objects/{$product.photos[0]}">
+                                <img class="img-fluid" src="/images/objects/mini/{$product.photos[0]}">
                             </div>
                             <span class="obj-hover-img">
                                 {foreach $product['photos'] as $photo}
