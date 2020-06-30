@@ -8,6 +8,7 @@ use App\Models\IntrumEquals;
 use App\Models\Parameter;
 use App\Models\Product;
 use App\Models\ProductParam;
+use App\Models\ProductPhoto;
 use App\Models\User;
 use App\Models\UserProfile;
 
@@ -116,7 +117,6 @@ class APIController
 
     public static function updateProduct()
     {
-        echo "<pre>";
         $category = 1;
         $products = json_decode(json_encode(Intrum::getProducts($category)),true);
 
@@ -143,16 +143,37 @@ class APIController
                 'category' => $category,
                 'created' => strtotime($product['date_add']),
             ];
+
             $product_id = Product::insert();
+
             //Сохранение полей обьекта
             $eq = IntrumEquals::getObjectsByIntrum($field_ids, 2);
             foreach ($product['fields'] as $field) {
-                ProductParam::$data = [
-                    'product' => $product_id,
-                    'param' => $eq[$field['id']]['object_id'],
-                    'value' => $field['value'],
-                ];
-                ProductParam::insert();
+
+                if ($field['type'] == 'file') {
+                    $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
+                    $fn2 = 'https://iyidebabina.intrumnet.com/files/crm/product/resized200x200/'.$field['value'];
+                    $fi = explode('.', $field['value']);
+                    $file1 = file_get_contents($fn1);
+                    $file2 = file_get_contents($fn2);
+                    $name = md5($fi[0]).'.'.$fi[1];
+                    $new_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/original/'.$name;
+                    $new_mini_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/mini/'.$name;
+                    file_put_contents($new_file, $file1);
+                    file_put_contents($new_mini_file, $file2);
+                    ProductPhoto::$data = [
+                        'product' => $product_id,
+                        'name' => $name,
+                    ];
+                    ProductPhoto::insert();
+                } else {
+                    ProductParam::$data = [
+                        'product' => $product_id,
+                        'param' => $eq[$field['id']]['object_id'],
+                        'value' => $field['value'],
+                    ];
+                    ProductParam::insert();
+                }
             }
         }
     }

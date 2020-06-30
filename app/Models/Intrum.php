@@ -4,7 +4,7 @@ namespace App\Models;
 
 class Intrum
 {
-    public static $key = '';
+    public static $key = '9a4c467ad980332a9a2d71ce88dd307b';
 
     public static $url;
 

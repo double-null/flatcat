@@ -2,11 +2,14 @@
 
 namespace App\Models;
 
+use App\Core\Model;
 use Flight;
 
-class ProductPhoto
+class ProductPhoto extends Model
 {
     public static $data;
+
+    public static $table = 'product_photos';
 
     public static function save()
     {
