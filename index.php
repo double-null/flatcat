@@ -14,7 +14,9 @@ Flight::register('db', 'Medoo\Medoo', [database()]);
 
 App\Modules\Application::start();
 
-Flight::route('/', ['App\Modules\Page', 'main']);
+Flight::route('/', function () {
+    \App\Controllers\ProductController::listingForCategory(1);
+});
 
 Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
