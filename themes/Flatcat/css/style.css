@@ -4,9 +4,17 @@ a{text-decoration: none}
 
 img{border: 0;}
 
-.img-fluid{
-    width: 100%;
-}
+form{margin-top: 10px; padding: 5px 20px;}
+
+form div{margin-top: 10px;}
+
+label{font-weight: bold;}
+
+input[type='text']{border: 1px solid #506266; width: 220px;}
+
+.img-fluid{width: 100%;}
+
+.small{font-size: 12px;}
 
 .main-header{
     height: 120px;
@@ -211,3 +219,41 @@ footer{
 .tab :checked ~ .tab-content {
     display: block; /* Показываем активную вкладку */
 }
+
+/* MODAL */
+.popup-fade {display: none;}
+
+.popup-fade:before {
+    content: '';
+    background: #000;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.7;
+    z-index: 9999;
+}
+
+.popup {
+    position: fixed;
+    top: 20%;
+    left: 50%;
+    padding: 20px;
+    width: 480px;
+    margin-left: -200px;
+    background: #fff;
+    border: 1px solid #6abf2f;
+    border-radius: 4px;
+    z-index: 99999;
+    opacity: 1;
+}
+
+.popup-close {
+    font-size: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.popup-title{font-size: 24px; font-weight: bold;}

@@ -30,7 +30,7 @@
                             <div class="agent-desc"> {$product.user.position} </div>
                             <div class="agent-contact"> {$product.user.phone} </div>
                             <div class="agent-order">
-                                <a class="green-btn">Заказать просмотр</a>
+                                <a class="green-btn popup-open" data-id="2">Заказать просмотр</a>
                             </div>
                         </div>
                     </div>
@@ -104,4 +104,35 @@
             </div>
         </div>
     </div>
+
+    <div class="popup-fade" data-id="2">
+        <div class="popup">
+            <a class="popup-close" href="#">×</a>
+            <span class="popup-title">Забронировать онлайн</span>
+            <form method="post">
+                <div class="row">
+                    <label class="col-md-6">Контактное лице <b style="color: red">*</b></label>
+                    <input class="col-md-6" type="text" name="Request[name]">
+                </div>
+                <div class="row">
+                    <label class="col-md-6">Телефон <b style="color: red">*</b></label>
+                    <input class="col-md-6" type="text" name="Request[phone]">
+                </div>
+                <div class="row">
+                    <label class="col-md-6">Дата просмотра <b style="color: red">*</b></label>
+                    <input class="col-md-6" type="text" name="Request[period]">
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <input id="acceptchk" type="checkbox" name="accept" value="on">
+                        <span class="small">Даю согласие на обработку указанных персональных данных.</span>
+                    </div>
+                </div>
+                <div class="row">
+                    <input class="green-btn" type="submit" value="Отправить">
+                </div>
+            </form>
+        </div>
+    </div>
+
 {/block}

@@ -28,7 +28,7 @@
                 call-центр
             </div>
             <div class="col-md-4 ticket-action">
-                <a class="green-btn" href="#">Оставить заявку</a>
+                <a class="green-btn popup-open" data-id="1">Оставить заявку</a>
             </div>
         </div>
         <div class="row header-menu">
@@ -63,6 +63,26 @@
         <div class="col-md-12">© 2006—2020 Компания "Имя" Все права защищены.</div>
     </div>
 </footer>
+
+<div class="popup-fade" data-id="1">
+    <div class="popup">
+        <a class="popup-close" href="#">×</a>
+        <span class="popup-title">Заявка on-line</span>
+        <form method="post">
+            <div class="row">
+                <label class="col-md-6"> Телефон <b style="color: red">*</b> </label>
+                <input class="col-md-6" type="text" name="Request[phone]">
+            </div>
+            <div class="row">
+                <input type="checkbox" name="Request[accept]" value="on">
+                <span class="small">Даю согласие на обработку указанных персональных данных.</span>
+            </div>
+            <div class="row">
+                <input class="green-btn" type="submit" value="Отправить">
+            </div>
+        </form>
+    </div>
+</div>
 
 </body>
 </html>
