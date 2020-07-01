@@ -15,6 +15,11 @@ class Model
         return Flight::db()->get(static::$table, '*', ['id' => $id]);
     }
 
+    public static function updateByID($id)
+    {
+        Flight::db()->update(static::$table, static::$data, ['id' => $id]);
+    }
+
     public static function insert()
     {
         Flight::db()->insert(static::$table, static::$data);

@@ -28,18 +28,20 @@ class APIController
         $object_type = 1;
         $categories = Intrum::getCategories();
         foreach ($categories as $category) {
-            $category_exist = IntrumEquals::getObjectByIntrum((int)$category->id, $object_type);
-            if (!$category_exist) {
-                Category::$data = [
-                    'mark' => $category->id,
-                    'name' => $category->name,
-                ];
+            $categoryID = IntrumEquals::getObjectByIntrum((int)$category->id, $object_type)['object_id'];
+            Category::$data = [
+                'mark' => $category->id,
+                'name' => $category->name,
+            ];
+            if (!$categoryID) {
                 IntrumEquals::$data = [
                     'type' => $object_type,
                     'object_id' => Category::insert(),
                     'intrum_id' => $category->id,
                 ];
                 IntrumEquals::insert();
+            } else {
+                Category::updateByID($categoryID);
             }
         }
     }
@@ -125,58 +127,70 @@ class APIController
         $products = json_decode(json_encode(Intrum::getProducts($category)),true);
 
         foreach ($products as $product) {
-            $price_ids = [810, 470, 562, 528];
-            $price = 0;
-            foreach ($product['fields'] as $field) {
 
-                $field_ids[] = $field['id'];
-                //Определение поля с ценой
-                if (in_array($field['id'], $price_ids)) {
-                    $price = $field['value'];
+            $product_exist = IntrumEquals::getObjectByIntrum($product['id'], 4)['object_id'];
+            if (!$product_exist) {
+                $price_ids = [810, 470, 562, 528];
+                $price = 0;
+                foreach ($product['fields'] as $field) {
+
+                    $field_ids[] = $field['id'];
+                    //Определение поля с ценой
+                    if (in_array($field['id'], $price_ids)) {
+                        $price = $field['value'];
+                    }
+
                 }
 
-            }
+                //Сохранение обьекта
+                Product::$data = [
+                    'mark' => $product['id'],
+                    'user' => IntrumEquals::getObjectByIntrum($product['author'], 3)["object_id"],
+                    'name' => $product['name'],
+                    'short_desc' => '',
+                    'price' => $price,
+                    'category' => $category,
+                    'created' => strtotime($product['date_add']),
+                ];
 
-            //Сохранение обьектов
-            Product::$data = [
-                'mark' => $product['id'],
-                'user' => IntrumEquals::getObjectByIntrum($product['author'], 3)["object_id"],
-                'name' => $product['name'],
-                'short_desc' => '',
-                'price' => $price,
-                'category' => $category,
-                'created' => strtotime($product['date_add']),
-            ];
+                $product_id = Product::insert();
 
-            $product_id = Product::insert();
+                //Сохранение в таблицу соответствий
+                IntrumEquals::$data = [
+                    'type' => 4,
+                    'object_id' => $product_id,
+                    'intrum_id' => $product['id'],
+                ];
+                IntrumEquals::insert();
 
-            //Сохранение полей обьекта
-            $eq = IntrumEquals::getObjectsByIntrum($field_ids, 2);
-            foreach ($product['fields'] as $field) {
+                //Сохранение полей обьекта
+                $eq = IntrumEquals::getObjectsByIntrum($field_ids, 2);
+                foreach ($product['fields'] as $field) {
 
-                if ($field['type'] == 'file') {
-                    $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
-                    $fn2 = 'https://iyidebabina.intrumnet.com/files/crm/product/resized200x200/'.$field['value'];
-                    $fi = explode('.', $field['value']);
-                    $file1 = file_get_contents($fn1);
-                    $file2 = file_get_contents($fn2);
-                    $name = md5($fi[0]).'.'.$fi[1];
-                    $new_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/original/'.$name;
-                    $new_mini_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/mini/'.$name;
-                    file_put_contents($new_file, $file1);
-                    file_put_contents($new_mini_file, $file2);
-                    ProductPhoto::$data = [
-                        'product' => $product_id,
-                        'name' => $name,
-                    ];
-                    ProductPhoto::insert();
-                } else {
-                    ProductParam::$data = [
-                        'product' => $product_id,
-                        'param' => $eq[$field['id']]['object_id'],
-                        'value' => $field['value'],
-                    ];
-                    ProductParam::insert();
+                    if ($field['type'] == 'file') {
+                        $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
+                        $fn2 = 'https://iyidebabina.intrumnet.com/files/crm/product/resized200x200/'.$field['value'];
+                        $fi = explode('.', $field['value']);
+                        $file1 = file_get_contents($fn1);
+                        $file2 = file_get_contents($fn2);
+                        $name = md5($fi[0]).'.'.$fi[1];
+                        $new_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/original/'.$name;
+                        $new_mini_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/mini/'.$name;
+                        file_put_contents($new_file, $file1);
+                        file_put_contents($new_mini_file, $file2);
+                        ProductPhoto::$data = [
+                            'product' => $product_id,
+                            'name' => $name,
+                        ];
+                        ProductPhoto::insert();
+                    } else {
+                        ProductParam::$data = [
+                            'product' => $product_id,
+                            'param' => $eq[$field['id']]['object_id'],
+                            'value' => $field['value'],
+                        ];
+                        ProductParam::insert();
+                    }
                 }
             }
         }

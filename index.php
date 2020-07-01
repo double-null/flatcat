@@ -24,7 +24,11 @@ Flight::route('/test/', ['App\Controllers\APIController', 'test']);
 
 Flight::route('/test2/', ['App\Controllers\APIController', 'updateCategories']);
 
-Flight::route('/test3/', ['App\Controllers\APIController', 'updateFields']);
+Flight::route('/api/update-products/', function (){
+    App\Controllers\APIController::updateProduct(1);
+});
+
+Flight::route('/api/update-agents/', ['App\Controllers\APIController', 'updateAgents']);
 
 /******************** DELETE  *********************************/
 
