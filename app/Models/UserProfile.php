@@ -24,4 +24,12 @@ class UserProfile extends Model
             Flight::db()->insert(self::$table, self::$data);
         }
     }
+
+    public static function searchByFullname($chunkName)
+    {
+        return Flight::db()->select(self::$table,
+            ['user', 'fullname'],
+            ['fullname[~]' => $chunkName]
+        );
+    }
 }

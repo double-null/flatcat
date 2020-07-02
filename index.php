@@ -56,6 +56,8 @@ Flight::route('/admin/users/', ['App\Controllers\UserController', 'listing']);
 
 Flight::route('/admin/user/create/', ['App\Controllers\UserController', 'create']);
 
+Flight::route('/admin/user/search/', ['App\Controllers\UserController', 'search']);
+
 Flight::route('/admin/user/drop/', ['App\Controllers\UserController', 'drop']);
 
 Flight::route('/admin/user_profile/', ['App\Controllers\UserProfileController', 'update']);
@@ -123,5 +125,10 @@ Flight::route('/admin/product_etc/create/@id/', function($id) {
 
 
 Flight::route('/admin/object_params/create/', ['App\Modules\ObjectParams', 'create']);
+
+Flight::route('/admin/reviews/', ['App\Controllers\ReviewController', 'listing']);
+
+Flight::route('/admin/review/create/', ['App\Controllers\ReviewController', 'create']);
+
 
 Flight::start();

@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\User;
+use App\Models\UserProfile;
 use Flight;
 
 class UserController
@@ -54,5 +55,12 @@ class UserController
         User::$data['id'] = (int)$_POST['id'];
         User::delete();
         echo json_encode(['status' => 1]);
+    }
+
+    public static function search()
+    {
+        $chunkName = $_POST['chunk_name'];
+        $users = UserProfile::searchByFullname($chunkName);
+        echo json_encode($users);
     }
 }

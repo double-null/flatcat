@@ -8,10 +8,10 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="apple-touch-icon" href="https://modularcode.io/modular-admin-html/apple-touch-icon.png">
-    <link rel="stylesheet" id="theme-style" href="/themes/Admin/css/app-green.css">
-    <link rel="stylesheet" id="theme-style" href="/themes/Admin/css/app.css">
-
-    <link rel="stylesheet" id="theme-style" href="/themes/Admin/css/vendor.css">
+    <link rel="stylesheet" href="/themes/Admin/css/additionally.css">
+    <link rel="stylesheet" href="/themes/Admin/css/app-green.css">
+    <link rel="stylesheet" href="/themes/Admin/css/app.css">
+    <link rel="stylesheet"  href="/themes/Admin/css/vendor.css">
     <style type="text/css">.jqstooltip { position: absolute;left: 0px;top: 0px;visibility: hidden;background: rgb(0, 0, 0) transparent;background-color: rgba(0,0,0,0.6);filter:progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000);-ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorstr=#99000000, endColorstr=#99000000)";color: white;font: 10px arial, san serif;text-align: left;white-space: nowrap;padding: 5px;border: 1px solid white;box-sizing: content-box;z-index: 10000;}.jqsfield { color: white;font: 10px arial, san serif;text-align: left;}</style>
 </head>
 <body class="loaded">
@@ -89,6 +89,9 @@
                                 </ul>
                             </li>
                         {/if}
+                        {if $user_info['role'] == 1}
+                            <li><a href="/admin/reviews/"><i class="fa fa-comments-o"></i> Отзывы </a></li>
+                        {/if}
                     </ul>
                 </nav>
             </div>
@@ -107,6 +110,7 @@
 </div>
 <script src="/themes/Admin/js/vendor.js"></script>
 <script src="/themes/Admin/js/app.js"></script>
+<script src="/themes/Admin/js/custom.js"></script>
 {block name="scripts"}{/block}
 <input type="file" multiple="multiple" class="dz-hidden-input" style="visibility: hidden; position: absolute; top: 0px; left: 0px; height: 0px; width: 0px;"><!----><div class="responsive-bootstrap-toolkit"><div class="device-xs hidden-sm-up"></div><div class="device-sm hidden-xs-down hidden-md-up"></div><div class="device-md hidden-sm-down hidden-lg-up"></div><div class="device-lg hidden-md-down hidden-xl-up"></div><div class="device-xl hidden-lg-down"></div></div>
 </body>
