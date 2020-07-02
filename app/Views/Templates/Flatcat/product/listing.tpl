@@ -18,7 +18,7 @@
                             </div>
                             <span class="obj-hover-img">
                                 {foreach $product['photos'] as $photo}
-                                    <span class="obj-hover-img-5" data-photo="{$photo}"></span>
+                                    {if $photo@iteration <= 5}<span class="obj-hover-img-5" data-photo="{$photo}"></span>{/if}
                                 {/foreach}
                             </span>
                         {else}
