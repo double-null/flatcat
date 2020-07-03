@@ -1,6 +1,6 @@
 html, body, ul {margin: 0; padding: 0;}
 
-a{text-decoration: none}
+a{text-decoration: none; color: #dd0018;}
 
 img{border: 0;}
 
@@ -136,15 +136,12 @@ footer{
     font-size: 1.2rem;
     font-weight: bold;
 }
-
-/* Agent Cards listing */
-
 .agent-card{
     min-height: 200px;
     margin-top: 20px;
 }
 
-.agent-card:hover{
+.agent-card:hover, .review-card:hover {
     background: #f1f4f5 none repeat scroll 0 0;
 }
 
@@ -154,6 +151,22 @@ footer{
 
 .agent-info div{
     margin-top: 5px;
+}
+
+/* Reviews Card*/
+.review-card{
+    outline: 1px solid #e2e2e2;
+    min-height: 200px;
+    margin-top: 20px;
+    padding-top: 20px;
+}
+
+.review-card div{
+    padding-top: 5px;
+}
+
+.review-content{
+    text-align: justify;
 }
 
 /**/

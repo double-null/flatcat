@@ -38,7 +38,7 @@
                         <li><a href="/category/{$category.mark}/">{$category.name}</a></li>
                     {/foreach}
                     <li><a href="/agents/">Агенты</a></li>
-                    <li>Отзывы</li>
+                    <li><a href="/reviews/">Отзывы</a></li>
                 </ul>
             </div>
         </div>

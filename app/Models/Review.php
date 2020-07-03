@@ -9,6 +9,17 @@ class Review extends Model
 {
     public static $table = 'reviews';
 
+    public static function getAll()
+    {
+        return Flight::db()->select(self::$table,
+            ['[><]user_profiles(pr)' => ['user' => 'user']],
+            [
+                'reviews.name', 'reviews.content', 'reviews.photos',
+                'pr.fullname(agentname)',
+            ]
+        );
+    }
+
     public static function validate()
     {
         if (!(int)self::$data['user']) {

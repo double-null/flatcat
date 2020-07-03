@@ -20,6 +20,8 @@ Flight::route('/', function () {
 
 Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
+Flight::route('/reviews/', ['App\Controllers\ReviewController', 'listing']);
+
 /******************** DELETE  *********************************/
 
 Flight::route('/test/', ['App\Controllers\APIController', 'test']);
