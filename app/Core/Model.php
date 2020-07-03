@@ -10,6 +10,8 @@ class Model
 
     public static $data;
 
+    public static $error;
+
     public static function getOneByID($id)
     {
         return Flight::db()->get(static::$table, '*', ['id' => $id]);
@@ -18,6 +20,11 @@ class Model
     public static function updateByID($id)
     {
         Flight::db()->update(static::$table, static::$data, ['id' => $id]);
+    }
+
+    public static function getAll()
+    {
+        return Flight::db()->select(static::$table, '*');
     }
 
     public static function insert()

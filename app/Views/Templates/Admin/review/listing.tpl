@@ -24,20 +24,20 @@
                                         <div><span>ID</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>Логин</span></div>
+                                        <div><span>Имя клиента</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>E-Mail</span></div>
+                                        <div><span>Отзыв</span></div>
                                     </div>
                                     <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
                                 </div>
                             </li>
-                            {foreach $users as $user}
+                            {foreach $reviews as $review}
                                 <li class="item">
                                     <div class="item-row">
-                                        <div class="item-col item-col-sales"><div>{$user.id}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$user.name}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$user.email}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$review.id}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$review.name}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$review.content}</div></div>
                                         <div class="item-col fixed item-col-actions-dropdown">
                                             <div class="item-actions-dropdown">
                                                 <a class="item-actions-toggle-btn">

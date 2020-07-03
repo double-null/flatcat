@@ -15,7 +15,6 @@ class Image
 
     public static $path;
 
-
     public static function save()
     {
         $type = (static::$type == 'jpeg') ? 'jpg' : static::$type;
@@ -28,7 +27,10 @@ class Image
         }
     }
 
-    public static function generateName(){}
+    public static function generateName()
+    {
+        return time().rand(100000, 999999);
+    }
 
     public static function validate()
     {
