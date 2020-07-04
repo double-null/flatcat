@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Parameter;
 use App\Models\ProductEtc;
 use Flight;
 
@@ -38,11 +39,13 @@ class ProductController
         Flight::view()->display('product/listing.tpl');
     }
 
-    public static function listingForCategory($category)
+    public static function listingForCategory($categoryMark)
     {
-        $category = Category::getOneByMark($category);
-        $products = Product::getAllByCategoryName($category);
+        $category = Category::getOneByMark($categoryMark);
+        $products = Product::getAllByCategoryName($category['id']);
+        $parameters = Parameter::getAllByCategory($category['id']);
         Flight::view()->assign('category', $category);
+        Flight::view()->assign('parameters', $parameters);
         Flight::view()->assign('products', $products);
         Flight::view()->display('product/listing.tpl');
     }

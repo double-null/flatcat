@@ -27,6 +27,11 @@ class Parameter extends Model
         );
     }
 
+    public static function getAllByCategory($category)
+    {
+        return Flight::db()->select(self::$table, '*', ['category' => $category]);
+    }
+
     public static function save()
     {
         $options = explode("\r\n", self::$data['options']);
