@@ -7,9 +7,11 @@
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link rel="stylesheet" href="/themes/Flatcat/css/bootstrap-grid.min.css">
         <link rel="stylesheet" href="/themes/Flatcat/css/fotorama.css">
+        <link rel="stylesheet" href="/themes/Flatcat/css/sumoselect.min.css">
         <link rel="stylesheet" href="/themes/Flatcat/css/style.css">
         <script src="/themes/Flatcat/js/jquery-3.4.1.min.js"></script>
         <script src="/themes/Flatcat/js/fotorama.js"></script>
+        <script src="/themes/Flatcat/js/jquery.sumoselect.min.js"></script>
         <script src="/themes/Flatcat/js/custom.js"></script>
     </head>
 <body>
@@ -40,10 +42,13 @@
                     <li><a href="/agents/">Агенты</a></li>
                     <li><a href="/reviews/">Отзывы</a></li>
                 </ul>
+                <div id="filters" class="col-md-12">{block name="filters"}{/block}</div>
             </div>
         </div>
     </div>
 </header>
+
+
 
 <div class="container" id="breadcrumbs">
     <div class="row">

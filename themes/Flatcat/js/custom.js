@@ -32,4 +32,6 @@ $( document ).ready(function() {
         return false;
     });
 
+    window.asd = $('.SlectBox').SumoSelect({ csvDispCount: 3, selectAll:true, captionFormatAllSelected: "Yeah, OK, so everything." });
+
 });

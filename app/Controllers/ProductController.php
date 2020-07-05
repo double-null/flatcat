@@ -42,7 +42,12 @@ class ProductController
     public static function listingForCategory($categoryMark)
     {
         $category = Category::getOneByMark($categoryMark);
-        $products = Product::getAllByCategoryName($category['id']);
+       // $products = Product::getAllByCategoryName($categoryMark);
+        $products = Product::getAllCTPR($categoryMark, $_POST);
+        echo "<pre>";
+        var_dump($products);
+        var_dump(Flight::db()->last());
+        echo "</pre>";
         $parameters = Parameter::getAllByCategory($category['id']);
         Flight::view()->assign('category', $category);
         Flight::view()->assign('parameters', $parameters);

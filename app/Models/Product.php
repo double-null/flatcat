@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\Model;
 use Flight;
+use Medoo\Raw;
 
 class Product extends Model
 {
@@ -59,7 +60,7 @@ class Product extends Model
                     'products.price', 'products.created',
                 ],
             ],
-            ['c.mark' => $name,]
+            ['c.mark' => $name]
         );
         $photos = Flight::db()->select('product_photos',
             ['name', 'product'],
@@ -74,6 +75,26 @@ class Product extends Model
        return $products;
     }
 
+    public static function getAllCTPR($categoryMark, $filters)
+    {
+        $connector = null;
+        $chunkSQL = 'WHERE';
+        foreach ($filters as $param => $values) {
+
+            $chunkSQL .= $connector . " (`pp`.`param` = $param AND `pp`.`value` IN (".implode(',',$values)."))";
+            $connector = ' AND';
+        }
+        echo "<pre>";
+        var_dump($chunkSQL);
+
+        echo "</pre>";
+        return Flight::db()->select(self::$table,
+            ['[>]product_params(pp)' => ['id' => 'product']],
+            ['products.mark', 'pp.value', 'pp.param'],
+            Flight::db()->raw($chunkSQL)
+        );
+    }
+
     public static function save()
     {
         self::$data['user'] = Flight::get('user_id');
@@ -83,7 +104,6 @@ class Product extends Model
 
     public static function validate()
     {
-        var_dump(self::$data);
         return (!self::$error);
     }
 }

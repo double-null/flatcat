@@ -16,10 +16,6 @@ input[type='text']{border: 1px solid #506266; width: 220px;}
 
 .small{font-size: 12px;}
 
-.main-header{
-    height: 120px;
-}
-
 .header-general{
     height: 60px;
     align-items: center;

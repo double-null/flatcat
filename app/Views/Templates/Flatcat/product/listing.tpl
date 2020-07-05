@@ -1,5 +1,27 @@
 {extends file="template.tpl"}
 
+{block name="filters"}
+    <div class="row">
+        <div class="col-md-12" style="background-color: #4f5f6f;">
+            <form method="post">
+                {foreach $parameters as $parameter}
+                    {if $parameter.type|in_array:[3,4]}
+                        {if $parameter.options|json_decode|is_array}
+                            <select multiple="multiple" placeholder="{$parameter.name}"
+                                    class="SlectBox" name="{$parameter.mark}[]" onclick="console.log($(this).val())">
+                                {foreach $parameter.options|json_decode as $variant}
+                                    <option value="{$variant@iteration}">{$variant}</option>
+                                {/foreach}
+                            </select>
+                        {/if}
+                    {/if}
+                {/foreach}
+                <input type="submit" class="green-btn">
+            </form>
+        </div>
+    </div>
+{/block}
+
 {block name="breadcrumbs"}
     <li><a href="/">Главная</a></li>
     <li>{$category.name}</li>
