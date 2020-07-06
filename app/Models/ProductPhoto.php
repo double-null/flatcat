@@ -7,8 +7,6 @@ use Flight;
 
 class ProductPhoto extends Model
 {
-    public static $data;
-
     public static $table = 'product_photos';
 
     public static function save()

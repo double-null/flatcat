@@ -48,6 +48,10 @@ input[type='text']{border: 1px solid #506266; width: 220px;}
 
 .header-menu ul li a{color: white;}
 
+#filters-block{
+    background-color: #F1F4F5;
+}
+
 .breadcrumbs li + li {
     background: rgba(0, 0, 0, 0) url("../images/arr.png") no-repeat scroll left center;
     margin-left: 15px;

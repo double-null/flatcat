@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Parameter;
-use App\Models\ProductEtc;
 use Flight;
 
 use App\Models\{Product, ProductPhoto, ProductParam, Category};
@@ -42,12 +41,12 @@ class ProductController
     public static function listingForCategory($categoryMark)
     {
         $category = Category::getOneByMark($categoryMark);
-       // $products = Product::getAllByCategoryName($categoryMark);
-        $products = Product::getAllCTPR($categoryMark, $_POST);
-        echo "<pre>";
-        var_dump($products);
-        var_dump(Flight::db()->last());
-        echo "</pre>";
+        if (!empty($_POST)) {
+            $ids = Product::getIDsByFilter($_POST);
+            $products = Product::getAllByIDs($ids);
+        } else {
+            $products = Product::getAllByCategoryName($categoryMark);
+        }
         $parameters = Parameter::getAllByCategory($category['id']);
         Flight::view()->assign('category', $category);
         Flight::view()->assign('parameters', $parameters);

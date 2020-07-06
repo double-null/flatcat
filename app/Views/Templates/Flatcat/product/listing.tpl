@@ -2,7 +2,7 @@
 
 {block name="filters"}
     <div class="row">
-        <div class="col-md-12" style="background-color: #4f5f6f;">
+        <div id="filters-block" class="col-md-12" >
             <form method="post">
                 {foreach $parameters as $parameter}
                     {if $parameter.type|in_array:[3,4]}

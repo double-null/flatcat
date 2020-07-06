@@ -4,11 +4,10 @@ namespace App\Models;
 
 use App\Core\Model;
 use Flight;
-use Medoo\Raw;
+use PDO;
 
 class Product extends Model
 {
-
     public static $table = 'products';
 
     public static $error;
@@ -62,37 +61,52 @@ class Product extends Model
             ],
             ['c.mark' => $name]
         );
-        $photos = Flight::db()->select('product_photos',
-            ['name', 'product'],
-            [
-                'product' => array_keys($products),
-                'ORDER' => ['product' => 'ASC'],
-            ]
-        );
+        $photos = ProductPhoto::getAllForProduct(array_keys($products));
         foreach ($photos as $photo) {
             $products[$photo['product']]['photos'][] = $photo['name'];
         }
        return $products;
     }
 
-    public static function getAllCTPR($categoryMark, $filters)
+    public static function getAllByIDs($ids)
     {
-        $connector = null;
-        $chunkSQL = 'WHERE';
-        foreach ($filters as $param => $values) {
-
-            $chunkSQL .= $connector . " (`pp`.`param` = $param AND `pp`.`value` IN (".implode(',',$values)."))";
-            $connector = ' AND';
+        $products = Flight::db()->select(self::$table, '*', ['id' => $ids]);
+        $photos = ProductPhoto::getAllForProduct(array_keys($products));
+        foreach ($photos as $photo) {
+            $products[$photo['product']]['photos'][] = $photo['name'];
         }
-        echo "<pre>";
-        var_dump($chunkSQL);
+        return $products;
+    }
 
-        echo "</pre>";
-        return Flight::db()->select(self::$table,
-            ['[>]product_params(pp)' => ['id' => 'product']],
-            ['products.mark', 'pp.value', 'pp.param'],
-            Flight::db()->raw($chunkSQL)
-        );
+    public static function getIDsByFilter($filters)
+    {
+        $condition= '';
+        if ($filters) {
+            $connector = 'WHERE ';
+            foreach ($filters as $param => $values) {
+                $condition .= $connector."(param = $param AND value IN (".implode(',', $values)."))";
+                $connector = "OR ";
+            }
+        }
+        $sql = 'SELECT * FROM product_params '.$condition.' ORDER BY product';
+        $params = Flight::db()->query($sql)->fetchAll(PDO::FETCH_ASSOC);
+
+        // Формирование массива продуктов с вложенными характеристиками
+        $products = [];
+        foreach ($params as $param) {
+            $products[$param['product']][] = [$param['param'] => $param['value']];
+        }
+
+        // Формирование списка ID продуктов соответствующих фильтру
+        $totalFilters = count($filters);
+        foreach ($products as $id => $product) {
+            // Сравнение количества подходящих характеристик у продуктов с количеством фильтров
+            if (count($product) == $totalFilters) {
+                $out[] = $id;
+            }
+        }
+
+        return $out;
     }
 
     public static function save()
