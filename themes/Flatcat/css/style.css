@@ -26,13 +26,13 @@ input[type='text']{border: 1px solid #506266; width: 220px;}
     justify-content: flex-end;
 }
 
-
 .header-menu ul{
     display: flex;
     list-style: outside none none;
     margin: 0;
     padding: 0;
 }
+
 .header-menu ul li{
     display: flex;
     flex-direction: column;
@@ -51,6 +51,35 @@ input[type='text']{border: 1px solid #506266; width: 220px;}
 #filters-block{
     background-color: #F1F4F5;
 }
+
+#filters-block input[type="checkbox"]{
+    display: none;
+}
+
+#filters-block  input[type="checkbox"] + label {
+    border-bottom: 1px dotted black;
+    cursor: pointer;
+}
+
+#filters-block  input[type="checkbox"]:checked + label {
+    background: #eb0027 none repeat scroll 0 0;
+}
+
+.filters-list{
+    display: flex;
+}
+
+.filters-item, .filter-submit{
+    align-self: end;
+    padding: 5px;
+}
+
+input[type="checkbox"] + label {
+    font-family: Arial,sans-serif;
+    font-size: 14px;
+}
+
+#breadcrumbs{margin-top: 20px;}
 
 .breadcrumbs li + li {
     background: rgba(0, 0, 0, 0) url("../images/arr.png") no-repeat scroll left center;

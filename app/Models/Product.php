@@ -71,9 +71,11 @@ class Product extends Model
     public static function getAllByIDs($ids)
     {
         $products = Flight::db()->select(self::$table, '*', ['id' => $ids]);
-        $photos = ProductPhoto::getAllForProduct(array_keys($products));
-        foreach ($photos as $photo) {
-            $products[$photo['product']]['photos'][] = $photo['name'];
+        if ($products) {
+            $photos = ProductPhoto::getAllForProduct(array_keys($products));
+            foreach ($photos as $photo) {
+                $products[$photo['product']]['photos'][] = $photo['name'];
+            }
         }
         return $products;
     }
@@ -98,6 +100,7 @@ class Product extends Model
         }
 
         // Формирование списка ID продуктов соответствующих фильтру
+        $out = [];
         $totalFilters = count($filters);
         foreach ($products as $id => $product) {
             // Сравнение количества подходящих характеристик у продуктов с количеством фильтров

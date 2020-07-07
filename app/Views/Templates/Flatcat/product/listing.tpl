@@ -1,11 +1,13 @@
 {extends file="template.tpl"}
 
+{block name="html_title"}{$category.name}{/block}
+
 {block name="filters"}
-    <div class="row">
-        <div id="filters-block" class="col-md-12" >
-            <form method="post">
-                {foreach $parameters as $parameter}
-                    {if $parameter.type|in_array:[3,4]}
+    <div id="filters-block" class="row">
+        <form method="post" class="filters-list row">
+            {foreach $parameters as $parameter}
+                {if $parameter.type|in_array:[3,4]}
+                    <div class="filters-item">
                         {if $parameter.options|json_decode|is_array}
                             <select multiple="multiple" placeholder="{$parameter.name}"
                                     class="SlectBox" name="{$parameter.mark}[]" onclick="console.log($(this).val())">
@@ -14,11 +16,17 @@
                                 {/foreach}
                             </select>
                         {/if}
-                    {/if}
-                {/foreach}
-                <input type="submit" class="green-btn">
-            </form>
-        </div>
+                    </div>
+                {/if}
+                {if $parameter.type == 2}
+                   <div class="filters-item">
+                        <input id="check{$parameter.mark}" type="checkbox" name="{$parameter.mark}[]" value="1">
+                        <label for="check{$parameter.mark}">{$parameter.name}</label>
+                    </div>
+                {/if}
+            {/foreach}
+            <div class="filter-submit"><input type="submit" class="green-btn"></div>
+        </form>
     </div>
 {/block}
 
