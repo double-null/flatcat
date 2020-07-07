@@ -14,15 +14,6 @@ use App\Models\UserProfile;
 
 class APIController
 {
-    public static function test()
-    {
-        $categories = Category::getAll();
-        foreach ($categories as $category)
-        {
-            self::updateProduct($category['id']);
-        }
-    }
-
     public static function updateCategories()
     {
         $object_type = 1;
@@ -60,8 +51,8 @@ class APIController
         foreach ($fields as $category => $parameters) {
             $category_id = IntrumEquals::getObjectByIntrum((int)$category, 1)['object_id'];
             foreach ($parameters['fields'] as $parameter) {
-                $param_exist = IntrumEquals::getObjectByIntrum($parameter['id'], 2)['object_id'];
-                if (!$param_exist) {
+                $paramID = IntrumEquals::getObjectByIntrum($parameter['id'], 2)['object_id'];
+                if (!$paramID) {
                     $type = $types[$parameter['datatype']] ?? 1;
                     $options = [];
                     if ($type == 3 || $type == 4) {
@@ -92,8 +83,8 @@ class APIController
     {
         $agents = json_decode(json_encode(Intrum::getAgents()),true);
         foreach ($agents as $agent){
-            $user_exist = IntrumEquals::getObjectByIntrum($agent['id'], 3)['object_id'];
-            if (!$user_exist) {
+            $userID = IntrumEquals::getObjectByIntrum($agent['id'], 3)['object_id'];
+            if (!$userID) {
                 User::$data = [
                     'name' => $agent['name'],
                     'email' => $agent['internalemail'][0]['email'],
@@ -128,8 +119,8 @@ class APIController
 
         foreach ($products as $product) {
 
-            $product_exist = IntrumEquals::getObjectByIntrum($product['id'], 4)['object_id'];
-            if (!$product_exist) {
+            $productID = IntrumEquals::getObjectByIntrum($product['id'], 4)['object_id'];
+            if (!$productID) {
                 $price_ids = [810, 470, 562, 528];
                 $price = 0;
                 foreach ($product['fields'] as $field) {

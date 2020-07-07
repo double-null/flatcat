@@ -10,6 +10,7 @@ Flight::register('view', 'Smarty', array(), function($smarty){
     //$smarty->cache_dir = './cache/';
 });
 
+
 Flight::register('db', 'Medoo\Medoo', [database()]);
 
 App\Modules\Application::start();
@@ -21,20 +22,6 @@ Flight::route('/', function () {
 Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
 Flight::route('/reviews/', ['App\Controllers\ReviewController', 'listing']);
-
-/******************** DELETE  *********************************/
-
-Flight::route('/test/', ['App\Controllers\APIController', 'test']);
-
-Flight::route('/test2/', ['App\Controllers\APIController', 'updateCategories']);
-
-Flight::route('/api/update-products/', function (){
-    App\Controllers\APIController::updateProduct(5);
-});
-
-Flight::route('/api/update-agents/', ['App\Controllers\APIController', 'updateAgents']);
-
-/******************** DELETE  *********************************/
 
 Flight::route('/category/@name/', function ($name) {
     \App\Controllers\ProductController::listingForCategory($name);
