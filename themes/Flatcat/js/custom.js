@@ -34,4 +34,15 @@ $( document ).ready(function() {
 
     window.asd = $('.SlectBox').SumoSelect({ csvDispCount: 3, selectAll:true, captionFormatAllSelected: "Yeah, OK, so everything." });
 
+    // Изменение фильтров
+    $('.filters-list').change(function(){
+        let data = $(this).serialize();
+        $.post('/product_counter/', data).done(function(count){
+            let text = 'Найти';
+            if (count > 0) {
+                text = 'Найдено ' + count + ' обьектов';
+            }
+            $('#filter-send').html(text);
+        });
+    });
 });

@@ -54,6 +54,12 @@ class ProductController
         Flight::view()->display('product/listing.tpl');
     }
 
+    public static function countingProducts()
+    {
+        $c = (!empty($_POST)) ? count(Product::getIDsByFilter($_POST)) : 0;
+        echo json_encode($c);
+    }
+
     public static function show($product_mark)
     {
         $product = Product::getOneByMark($product_mark);

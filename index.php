@@ -23,6 +23,8 @@ Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
 Flight::route('/reviews/', ['App\Controllers\ReviewController', 'listing']);
 
+Flight::route('/product_counter/', ['App\Controllers\ProductController', 'countingProducts']);
+
 Flight::route('/category/@name/', function ($name) {
     \App\Controllers\ProductController::listingForCategory($name);
 });

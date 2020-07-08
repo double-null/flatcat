@@ -25,7 +25,7 @@
                     </div>
                 {/if}
             {/foreach}
-            <div class="filter-submit"><input type="submit" class="green-btn"></div>
+            <div class="filter-submit"><button id="filter-send" type="submit" class="green-btn">Найти</button></div>
         </form>
     </div>
 {/block}
@@ -68,4 +68,10 @@
         {/foreach}
         </div>
     </div>
+{/block}
+
+{block name="scripts"}
+    <script type="text/javascript">
+
+    </script>
 {/block}
