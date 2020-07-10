@@ -30,8 +30,8 @@
                 <p class="text-center">LOGIN TO CONTINUE</p>
                 <form id="login-form" method="POST">
                     <div class="form-group">
-                        <label for="username">Username</label>
-                        <input type="text" class="form-control underlined" name="User[name]" id="username" placeholder="Your email address">
+                        <label for="username">E-mail</label>
+                        <input type="text" class="form-control underlined" name="User[email]" id="username" placeholder="Your email address">
                     </div>
                     <div class="form-group">
                         <label for="password">Password</label>

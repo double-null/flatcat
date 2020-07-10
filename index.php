@@ -51,6 +51,8 @@ Flight::route('/admin/user/search/', ['App\Controllers\UserController', 'search'
 
 Flight::route('/admin/user/drop/', ['App\Controllers\UserController', 'drop']);
 
+Flight::route('/admin/user_settings/', ['App\Controllers\UserController', 'settings']);
+
 Flight::route('/admin/user_profile/', ['App\Controllers\UserProfileController', 'update']);
 
 Flight::route('/admin/category/create/', ['App\Controllers\CategoryController', 'create']);

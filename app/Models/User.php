@@ -14,7 +14,7 @@ class User extends Model
     public static function getAuth($user)
     {
         return Flight::db()->get('users', '*', [
-            'name' => $user['name'],
+            'email' => $user['email'],
             'password' => md5($user['password'])
         ]);
     }
@@ -42,6 +42,34 @@ class User extends Model
         self::$data['password'] = md5(self::$data['password']);
         self::$data['created'] = time();
         Flight::db()->insert('users', self::$data);
+    }
+
+    public static function updateAuthParams()
+    {
+        $validPassword = Flight::db()->has(self::$table, '*', [
+            'id' => Flight::get('user_id'),
+            'password' => md5(self::$data['password']),
+        ]);
+        if ($validPassword) {
+            $updateParams = [];
+            if (
+                !empty(self::$data['new_password'])
+                && self::$data['new_password'] == self::$data['new_repass']
+            ) {
+                $updateParams['password'] = md5(self::$data['new_password']);
+            }
+            if (!empty(self::$data['email'])) {
+                $updateParams['email'] = self::$data['email'];
+            }
+            if (count($updateParams) > 0) {
+                Flight::db()->update(self::$table, $updateParams, [
+                    'id' => Flight::get('user_id')]
+                );
+            }
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public static function validate()

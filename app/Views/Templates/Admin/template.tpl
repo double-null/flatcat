@@ -28,7 +28,7 @@
                             <a class="dropdown-item" href="/admin/user_profile/">
                                 <i class="fa fa-user icon"></i> Профиль
                             </a>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="/admin/user_settings/">
                                 <i class="fa fa-gear icon"></i> Настройки
                             </a>
                             <div class="dropdown-divider"></div>

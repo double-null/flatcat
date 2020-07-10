@@ -23,6 +23,18 @@ class UserController
         Flight::view()->display('enter.tpl');
     }
 
+    public static function settings()
+    {
+        if (!empty($_POST['User'])) {
+            User::$data = $_POST['User'];
+            $success = User::updateAuthParams();
+            if ($success) {
+                Flight::view()->assign('success', 1);
+            }
+        }
+        Flight::view()->display('user/settings.tpl');
+    }
+
     public static function create()
     {
         if (!empty($_POST['User'])) {
