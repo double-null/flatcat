@@ -189,11 +189,9 @@ footer{
     padding: 0 5px;
 }
 
-.review-card{
-    padding: 10px 24px;
-}
+.card{padding: 10px 24px;}
 
-.review-border{
+.card-border{
     outline: 1px solid #e2e2e2;
     min-height: 200px;
     margin-top: 20px;

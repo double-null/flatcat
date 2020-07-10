@@ -28,7 +28,22 @@ class User extends Model
     {
         return Flight::db()->select(self::$table,
             ['[><]user_profiles(p)' => ['id' => 'user']],
-            ['p.fullname', 'p.phone', 'p.position', 'p.photo', 'users.email']
+            [
+                'p.fullname', 'p.phone', 'p.position',
+                'p.photo', 'users.email', 'users.id',
+            ]
+        );
+    }
+
+    public static function getOneWithProfile($id)
+    {
+        return Flight::db()->get(self::$table,
+            ['[><]user_profiles(p)' => ['id' => 'user']],
+            [
+                'p.fullname', 'p.phone', 'p.position',
+                'p.photo', 'users.email', 'users.id',
+            ],
+            ['users.id' => $id]
         );
     }
 

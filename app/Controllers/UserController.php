@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Review;
 use App\Models\User;
 use App\Models\UserProfile;
 use Flight;
@@ -60,6 +61,13 @@ class UserController
     {
         Flight::view()->assign('users', User::getAllWithProfile());
         Flight::view()->display('user/listing.tpl');
+    }
+
+    public static function show($id)
+    {
+        Flight::view()->assign('user', User::getOneWithProfile($id));
+        Flight::view()->assign('reviews', Review::getAllForUser($id));
+        Flight::view()->display('user/show.tpl');
     }
 
     public static function drop()

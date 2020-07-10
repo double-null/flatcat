@@ -20,6 +20,14 @@ class Review extends Model
         );
     }
 
+    public static function getAllForUser($user)
+    {
+        return Flight::db()->select(self::$table,
+            ['name', 'content', 'photos'],
+            ['user' => $user]
+        );
+    }
+
     public static function validate()
     {
         if (!(int)self::$data['user']) {

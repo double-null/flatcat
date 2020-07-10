@@ -15,7 +15,8 @@ class UserProfileController
             if (!empty($_FILES['photo'])) {
                 UserAvatar::$data = $_FILES['photo'];
                 if (UserAvatar::validate()) {
-                    UserProfile::$data['photo'] = UserAvatar::save();
+                    $photoName = '/'.UserAvatar::$path.UserAvatar::save();
+                    UserProfile::$data['photo'] = $photoName;
                 }
             }
             UserProfile::save();

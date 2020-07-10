@@ -9,13 +9,13 @@
     <div class="container">
         <div class="row">
             {foreach $users as $user}
-                <div class="agent-card col-md-4">
-                    <div class="row">
+                <div class="card col-md-4">
+                    <div class="row card-border">
                         <div class="agent-photo col-md-4">
-                            <img width="100%" src="/themes/Flatcat/images/unnamed.jpg">
+                            <img width="100%" src="{$user.photo}">
                         </div>
                         <div class="agent-info col-md-8">
-                            <div class="col-12 agent-name"><a href="#">{$user.fullname}</a></div>
+                            <div class="col-12 agent-name"><a href="/agent/{$user.id}/">{$user.fullname}</a></div>
                             <div class="col-12 agent-position">{$user.position}</div>
                             <div class="col-12 agent-phone">{$user.phone}</div>
                         </div>

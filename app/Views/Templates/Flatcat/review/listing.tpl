@@ -9,8 +9,8 @@
     <div class="container">
         <div class="row reviews-list">
             {foreach $reviews as $review}
-                <div class="review-card col-md-4">
-                    <div class="row review-border">
+                <div class="card col-md-4">
+                    <div class="row card-border">
                         <div class="review-info">
                             <div class="col-12 review-agent"><a href="#">{$review.agentname}</a></div>
                             <div class="col-12 review-client">{$review.name}</div>
