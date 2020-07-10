@@ -12,6 +12,7 @@ class ReviewController
     {
         if (!empty($_POST['Review'])) {
             Review::$data = $_POST['Review'];
+            Review::$data['user'] = Flight::get('user_id');
             if (Review::validate()) {
                 foreach ($_FILES as $photo) {
                     ReviewImage::$data = $photo;

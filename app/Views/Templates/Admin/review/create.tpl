@@ -13,16 +13,6 @@
                 <form method="post" enctype="multipart/form-data">
                     {if !empty($error)}<span style="color: #FF4444;">{$error}</span>{/if}
                     <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Агент: </label>
-                        <div class="col-sm-10 select-block">
-                            <input type="text" class="form-control boxed select-field">
-                            <div class="results_container">
-                                <ul class="result_list"></ul>
-                            </div>
-                            <input type="hidden" name="Review[user]">
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-sm-2 form-control-label text-xs-right"> ФИО Клиента: </label>
                         <div class="col-sm-10"><input type="text" class="form-control boxed" name="Review[name]"></div>
                     </div>

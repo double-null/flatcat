@@ -170,7 +170,7 @@ footer{
     margin-top: 20px;
 }
 
-.agent-card:hover, .review-card:hover {
+.agent-card:hover/*, .review-card:hover*/ {
     background: #f1f4f5 none repeat scroll 0 0;
 }
 
@@ -183,11 +183,22 @@ footer{
 }
 
 /* Reviews Card*/
+
+
+.reviews-list{
+    padding: 0 5px;
+}
+
 .review-card{
+    padding: 10px 24px;
+}
+
+.review-border{
     outline: 1px solid #e2e2e2;
     min-height: 200px;
     margin-top: 20px;
     padding-top: 20px;
+    height: 100%;
 }
 
 .review-card div{
