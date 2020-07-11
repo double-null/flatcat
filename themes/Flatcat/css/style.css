@@ -10,7 +10,17 @@ form div{margin-top: 10px;}
 
 label{font-weight: bold;}
 
-input[type='text']{border: 1px solid #506266; width: 220px;}
+input[type='text']{border: 1px solid #e4e4e4; padding: 2px 5px; width: 100%;}
+
+textarea {
+    border: 1px solid #e4e4e4;
+    display: block;
+    font: 14px helveticaneue,Tahoma;
+    height: 110px;
+    padding: 2px 5px;
+    resize: none;
+    width: 100%;
+}
 
 .img-fluid{width: 100%;}
 
@@ -170,7 +180,7 @@ footer{
     margin-top: 20px;
 }
 
-.agent-card:hover/*, .review-card:hover*/ {
+.card-border:hover {
     background: #f1f4f5 none repeat scroll 0 0;
 }
 
@@ -178,18 +188,13 @@ footer{
     padding-top: 20px;
 }
 
-.agent-info div{
+.card-info div{
     margin-top: 5px;
 }
 
-/* Reviews Card*/
+.agent-form{padding: 0; margin: 0;}
 
-
-.reviews-list{
-    padding: 0 5px;
-}
-
-.card{padding: 10px 24px;}
+.card{padding: 10px 30px;}
 
 .card-border{
     outline: 1px solid #e2e2e2;
@@ -197,10 +202,6 @@ footer{
     margin-top: 20px;
     padding-top: 20px;
     height: 100%;
-}
-
-.review-card div{
-    padding-top: 5px;
 }
 
 .review-content{
@@ -226,7 +227,7 @@ footer{
     vertical-align: middle;
     width: 100%;
     height: 1px;
-    background-color: black;
+    background-color: #e4e4e4;
     position: relative;
 }
 

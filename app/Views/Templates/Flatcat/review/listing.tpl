@@ -7,12 +7,12 @@
 
 {block name="content"}
     <div class="container">
-        <div class="row reviews-list">
+        <div class="row">
             {foreach $reviews as $review}
                 <div class="card col-md-4">
                     <div class="row card-border">
-                        <div class="review-info">
-                            <div class="col-12 review-agent"><a href="#">{$review.agentname}</a></div>
+                        <div class="card-info">
+                            <div class="col-12 review-agent"><a href="/agent/{$review.user}/">{$review.agentname}</a></div>
                             <div class="col-12 review-client">{$review.name}</div>
                             <div class="col-12 review-content">{$review.content}</div>
                             <div class="col-12 review-photos">

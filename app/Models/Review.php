@@ -15,7 +15,7 @@ class Review extends Model
             ['[><]user_profiles(pr)' => ['user' => 'user']],
             [
                 'reviews.name', 'reviews.content', 'reviews.photos',
-                'pr.fullname(agentname)',
+                'reviews.user', 'pr.fullname(agentname)',
             ]
         );
     }
