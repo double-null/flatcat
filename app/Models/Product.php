@@ -61,11 +61,13 @@ class Product extends Model
             ],
             ['c.mark' => $name]
         );
-        $photos = ProductPhoto::getAllForProduct(array_keys($products));
-        foreach ($photos as $photo) {
-            $products[$photo['product']]['photos'][] = $photo['name'];
+        if ($products) {
+            $photos = ProductPhoto::getAllForProduct(array_keys($products));
+            foreach ($photos as $photo) {
+                $products[$photo['product']]['photos'][] = $photo['name'];
+            }
         }
-       return $products;
+        return $products;
     }
 
     public static function getAllByIDs($ids)
