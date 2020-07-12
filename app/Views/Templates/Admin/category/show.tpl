@@ -1,5 +1,7 @@
 {extends file="template.tpl"}
 
+{block name="html_title"}Админ панель &raquo; Параметры обьектов категории "{$category.name}"{/block}
+
 {block name="content"}
 
     <div class="title-block">
@@ -62,12 +64,7 @@
                                                             </a>
                                                         </li>
                                                         <li>
-                                                            <a title="Просмотр" class="descriptions" href="/admin/category/show/{$param.id}/">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Редактирование" class="descriptions" href="/admin/category/edit/{$param.id}/">
+                                                            <a title="Редактирование" class="descriptions" href="/admin/parameter/modify/{$param.id}/">
                                                                 <i class="fa fa-pencil" aria-hidden="true"></i>
                                                             </a>
                                                         </li>

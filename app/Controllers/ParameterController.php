@@ -19,6 +19,16 @@ class ParameterController
         Flight::view()->display('parameter/create.tpl');
     }
 
+    public static function modify($id)
+    {
+        if (!empty($_POST['Parameter'])) {
+            Parameter::$data = $_POST['Parameter'];
+            Parameter::updateByID($id);
+        }
+        Flight::view()->assign('parameter', Parameter::getOneByID($id));
+        Flight::view()->display('parameter/modify.tpl');
+    }
+
     public static function drop()
     {
         Parameter::$data['id'] = (int)$_POST['id'];

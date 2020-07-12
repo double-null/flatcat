@@ -83,6 +83,10 @@ Flight::route('/admin/parameter/create/@id/',
     function ($id) {App\Controllers\ParameterController::create($id);}
 );
 
+Flight::route('/admin/parameter/modify/@id/',
+    function ($id) {App\Controllers\ParameterController::modify($id);}
+);
+
 Flight::route('/admin/product/create/', ['App\Controllers\ProductController', 'create']);
 
 Flight::route('/admin/products/', ['App\Controllers\ProductController', 'listing']);

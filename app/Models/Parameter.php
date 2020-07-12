@@ -32,6 +32,18 @@ class Parameter extends Model
         return Flight::db()->select(self::$table, '*', ['category' => $category]);
     }
 
+    public static function updateByID($id)
+    {
+        $options = explode("\r\n", self::$data['options']);
+        foreach ($options as $option) {
+            if (!empty(trim($option))) {
+                $out[] = trim($option);
+            }
+        }
+        self::$data['options'] = json_encode($out);
+        parent::updateByID($id);
+    }
+
     public static function save()
     {
         $options = explode("\r\n", self::$data['options']);
