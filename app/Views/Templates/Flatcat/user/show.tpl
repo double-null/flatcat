@@ -74,7 +74,6 @@
                 <div class="card col-md-4">
                     <div class="row card-border">
                         <div class="card-info">
-                            <div class="col-12 review-agent"><a href="/agent/{$review.user}/">{$review.agentname}</a></div>
                             <div class="col-12 review-client">{$review.name}</div>
                             <div class="col-12 review-content">{$review.content}</div>
                             <div class="col-12 review-photos">

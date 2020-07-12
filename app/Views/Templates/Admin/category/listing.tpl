@@ -22,6 +22,9 @@
                                     <div class="item-col item-col-header">
                                         <div><span>Метка</span></div>
                                     </div>
+                                    <div class="item-col item-col-header">
+                                        <div><span>Имя</span></div>
+                                    </div>
                                     <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
                                 </div>
                             </li>
@@ -32,8 +35,10 @@
                                             <div>{$category.id}</div>
                                         </div>
                                         <div class="item-col item-col-sales">
-                                            <div class="item-heading">Sales</div>
                                             <div>{$category.mark}</div>
+                                        </div>
+                                        <div class="item-col item-col-sales">
+                                            <div>{$category.name}</div>
                                         </div>
                                         <div class="item-col fixed item-col-actions-dropdown">
                                             <div class="item-actions-dropdown">
