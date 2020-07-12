@@ -6,23 +6,25 @@
     <div id="filters-block" class="row">
         <form method="post" class="filters-list row">
             {foreach $parameters as $parameter}
-                {if $parameter.type|in_array:[3,4]}
-                    <div class="filters-item">
-                        {if $parameter.options|json_decode|is_array}
-                            <select multiple="multiple" placeholder="{$parameter.name}"
-                                    class="SlectBox" name="{$parameter.mark}[]" onclick="console.log($(this).val())">
-                                {foreach $parameter.options|json_decode as $variant}
-                                    <option value="{$variant@iteration}">{$variant}</option>
-                                {/foreach}
-                            </select>
-                        {/if}
-                    </div>
-                {/if}
-                {if $parameter.type == 2}
-                   <div class="filters-item">
-                        <input id="check{$parameter.mark}" type="checkbox" name="{$parameter.mark}[]" value="1">
-                        <label for="check{$parameter.mark}">{$parameter.name}</label>
-                    </div>
+                {if $parameter.filter == 1}
+                    {if $parameter.type|in_array:[3,4]}
+                        <div class="filters-item">
+                            {if $parameter.options|json_decode|is_array}
+                                <select multiple="multiple" placeholder="{$parameter.name}"
+                                        class="SlectBox" name="{$parameter.mark}[]" onclick="console.log($(this).val())">
+                                    {foreach $parameter.options|json_decode as $variant}
+                                        <option value="{$variant@iteration}">{$variant}</option>
+                                    {/foreach}
+                                </select>
+                            {/if}
+                        </div>
+                    {/if}
+                    {if $parameter.type == 2}
+                       <div class="filters-item">
+                            <input id="check{$parameter.mark}" type="checkbox" name="{$parameter.mark}[]" value="1">
+                            <label for="check{$parameter.mark}">{$parameter.name}</label>
+                        </div>
+                    {/if}
                 {/if}
             {/foreach}
             <div class="filter-submit"><button id="filter-send" type="submit" class="green-btn">Найти</button></div>
