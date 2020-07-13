@@ -89,7 +89,7 @@
                                 </ul>
                             </li>
                         {/if}
-                        {if $user_info['role'] == 1}
+                        {if $user_info['role'] == 1 || $user_info['role'] == 2}
                             <li><a href="/admin/reviews/"><i class="fa fa-comments-o"></i> Отзывы </a></li>
                         {/if}
                         {if $user_info['role'] == 1}
