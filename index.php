@@ -129,5 +129,6 @@ Flight::route('/admin/reviews/', ['App\Controllers\ReviewController', 'listing']
 
 Flight::route('/admin/review/create/', ['App\Controllers\ReviewController', 'create']);
 
+Flight::route('/admin/intrum/actions/', ['App\Controllers\APIController', 'starter']);
 
 Flight::start();

@@ -11,6 +11,7 @@ use App\Models\ProductParam;
 use App\Models\ProductPhoto;
 use App\Models\User;
 use App\Models\UserProfile;
+use Flight;
 
 class APIController
 {
@@ -185,5 +186,28 @@ class APIController
                 }
             }
         }
+    }
+
+    public static function starter()
+    {
+        if (!empty($_POST['Intrum'])) {
+            ini_set('max_execution_time', 600);
+            $data = $_POST['Intrum'];
+            if (!empty($data['category'])) {
+                self::updateProduct((int)$data['category']);
+            }
+            if (!empty($data['fields'])) {
+                self::updateFields();
+            }
+            if (!empty($data['agents'])) {
+                self::updateAgents();
+            }
+            if (!empty($data['categories'])) {
+                self::updateCategories();
+            }
+            Flight::view()->assign('success', 1);
+        }
+        Flight::view()->assign('categories', Category::getAll());
+        Flight::view()->display('intrum/starter.tpl');
     }
 }

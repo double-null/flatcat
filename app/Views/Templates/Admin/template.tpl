@@ -92,6 +92,13 @@
                         {if $user_info['role'] == 1}
                             <li><a href="/admin/reviews/"><i class="fa fa-comments-o"></i> Отзывы </a></li>
                         {/if}
+                        {if $user_info['role'] == 1}
+                            <li>
+                                <a href="/admin/intrum/actions/">
+                                    <i class="fa fa-arrows-h"></i> Intrum </i>
+                                </a>
+                            </li>
+                        {/if}
                     </ul>
                 </nav>
             </div>
