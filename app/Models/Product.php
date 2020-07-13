@@ -51,7 +51,7 @@ class Product extends Model
 
     public static function getAllByCategoryName($name)
     {
-        $products =  Flight::db()->select('products',
+        $products =  Flight::db()->select(self::$table,
             ['[>]categories(c)' => ['category' => 'id']],
             [
                 'products.id' => [
@@ -59,7 +59,7 @@ class Product extends Model
                     'products.price', 'products.created',
                 ],
             ],
-            ['c.mark' => $name]
+            ['c.mark' => $name, 'ORDER' => ['products.created' => 'DESC']]
         );
         if ($products) {
             $photos = ProductPhoto::getAllForProduct(array_keys($products));
@@ -72,7 +72,18 @@ class Product extends Model
 
     public static function getAllByIDs($ids)
     {
-        $products = Flight::db()->select(self::$table, '*', ['id' => $ids]);
+        $products = Flight::db()->select(self::$table,
+            [
+                'id' => [
+                    'user', 'mark', 'name', 'short_desc',
+                    'price', 'category', 'created',
+                ],
+            ],
+            [
+                'id' => $ids,
+                'ORDER' => ['created' => 'DESC'],
+            ]
+        );
         if ($products) {
             $photos = ProductPhoto::getAllForProduct(array_keys($products));
             foreach ($photos as $photo) {
