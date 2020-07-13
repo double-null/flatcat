@@ -36,10 +36,10 @@ Flight::route('/product/@name/', function ($name) {
 });
 
 Flight::route('/admin/*', function (){
-    Flight::set('user_id', (int)$_SESSION['user']['id']);
-    Flight::set('user_role', (int)$_SESSION['user']['role']);
+    Flight::set('user_id', $_SESSION['user']['id'] ?? null);
+    Flight::set('user_role', $_SESSION['user']['role'] ?? null);
     Flight::view()->template_dir = './app/Views/Templates/Admin/';
-    Flight::view()->assign('user_info', $_SESSION['user']);
+    Flight::view()->assign('user_info', $_SESSION['user'] ?? null);
     return true;
 });
 
