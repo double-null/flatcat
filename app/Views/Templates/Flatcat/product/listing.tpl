@@ -69,11 +69,17 @@
             </div>
         {/foreach}
         </div>
+        <div class="row">
+            <div class="pagination">
+                {for $page=1 to ceil($totalProducts/30)}
+                    {if $page == $currentPage}
+                        <div class="current-page">{$page}</div>
+                    {else}
+                        <div class="page-link"><a href="/category/{$category.mark}/{$page}/">{$page}</a></div>
+                    {/if}
+                {/for}
+            </div>
+            <div id="totalProducts" style="display: none">{$totalProducts}</div>
+        </div>
     </div>
-{/block}
-
-{block name="scripts"}
-    <script type="text/javascript">
-
-    </script>
 {/block}

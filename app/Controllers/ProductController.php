@@ -38,19 +38,24 @@ class ProductController
         Flight::view()->display('product/listing.tpl');
     }
 
-    public static function listingForCategory($categoryMark)
+    public static function listingForCategory($categoryMark, $page = 1)
     {
         $category = Category::getOneByMark($categoryMark);
         if (!empty($_POST)) {
             $ids = Product::getIDsByFilter($_POST);
             $products = Product::getAllByIDs($ids);
         } else {
-            $products = Product::getAllByCategoryName($categoryMark);
+            $page = $page ?? 1;
+            $limit = [($page - 1) * 30, 30];
+            $products = Product::getAllByCategoryName($categoryMark, $limit);
+            $totalProducts = Product::countAllInCategory($category['id']);
         }
         $parameters = Parameter::getAllByCategory($category['id']);
         Flight::view()->assign('category', $category);
         Flight::view()->assign('parameters', $parameters);
         Flight::view()->assign('products', $products);
+        Flight::view()->assign('totalProducts', $totalProducts);
+        Flight::view()->assign('currentPage', $page);
         Flight::view()->display('product/listing.tpl');
     }
 

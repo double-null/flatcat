@@ -309,3 +309,31 @@ footer{
 }
 
 .popup-title{font-size: 24px; font-weight: bold;}
+
+/* /MODAL */
+
+.pagination{
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+    width: 100%;
+    justify-content: center;
+}
+
+.pagination .page-link, .pagination .page{
+    margin: 5px;
+    padding: 5px;
+}
+
+.pagination .page-link {
+    outline: 1px solid #e2e2e2;
+}
+
+.pagination .page-link:hover {
+    background: #F1F4F5;
+}
+
+.pagination .page-link:hover a{
+    color: black;
+    font-weight: bold;
+}

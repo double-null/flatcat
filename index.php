@@ -27,8 +27,8 @@ Flight::route('/reviews/', ['App\Controllers\ReviewController', 'listing']);
 
 Flight::route('/product_counter/', ['App\Controllers\ProductController', 'countingProducts']);
 
-Flight::route('/category/@name/', function ($name) {
-    \App\Controllers\ProductController::listingForCategory($name);
+Flight::route('/category/@name(/@page)/', function ($name, $page) {
+    \App\Controllers\ProductController::listingForCategory($name, $page);
 });
 
 Flight::route('/product/@name/', function ($name) {

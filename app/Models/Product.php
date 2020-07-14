@@ -49,7 +49,7 @@ class Product extends Model
         );
     }
 
-    public static function getAllByCategoryName($name)
+    public static function getAllByCategoryName($name, $limit = [0 , 30])
     {
         $products =  Flight::db()->select(self::$table,
             ['[>]categories(c)' => ['category' => 'id']],
@@ -59,7 +59,11 @@ class Product extends Model
                     'products.price', 'products.created',
                 ],
             ],
-            ['c.mark' => $name, 'ORDER' => ['products.created' => 'DESC']]
+            [
+                'c.mark' => $name,
+                'ORDER' => ['products.created' => 'DESC'],
+                'LIMIT' => $limit,
+            ]
         );
         if ($products) {
             $photos = ProductPhoto::getAllForProduct(array_keys($products));
@@ -123,6 +127,11 @@ class Product extends Model
         }
 
         return $out;
+    }
+
+    public static function countAllInCategory($category)
+    {
+        return Flight::db()->count(self::$table, ['category' => $category]);
     }
 
     public static function save()
