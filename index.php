@@ -19,6 +19,16 @@ Flight::route('/', function () {
     \App\Controllers\ProductController::listingForCategory(1);
 });
 
+Flight::route('/flats_and_rooms/', ['App\Controllers\PageController', 'flats']);
+
+Flight::route('/new_buildings/', ['App\Controllers\PageController', 'new_buildings']);
+
+Flight::route('/suburban/', ['App\Controllers\PageController', 'suburban']);
+
+Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
+
+Flight::route('/commercial/', ['App\Controllers\PageController', 'commercial']);
+
 Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
 Flight::route('/agent/@id/', function ($id){App\Controllers\UserController::show($id);});

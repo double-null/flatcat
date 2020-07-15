@@ -36,9 +36,16 @@
         <div class="row header-menu">
             <div class="col-md-12">
                 <ul>
+                    <li><a href="/flats_and_rooms/">Квартиры и комнаты</a></li>
+                    <li><a href="/new_buildings/">Новостройки</a></li>
+                    <li><a href="/suburban/">Загородная</a></li>
+                    <li><a href="/rent/">Аренда</a></li>
+                    <li><a href="/commercial/">Коммерческая</a></li>
+                    <!--
                     {foreach $categories as $category}
                         <li><a href="/category/{$category.mark}/">{$category.name}</a></li>
                     {/foreach}
+                    -->
                     <li><a href="/agents/">Агенты</a></li>
                     <li><a href="/reviews/">Отзывы</a></li>
                 </ul>

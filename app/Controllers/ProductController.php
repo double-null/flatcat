@@ -43,6 +43,7 @@ class ProductController
         $category = Category::getOneByMark($categoryMark);
         if (!empty($_POST)) {
             $ids = Product::getIDsByFilter($_POST);
+            var_dump($ids);
             $products = Product::getAllByIDs($ids);
         } else {
             $page = $page ?? 1;
