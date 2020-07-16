@@ -210,4 +210,87 @@ class APIController
         Flight::view()->assign('categories', Category::getAll());
         Flight::view()->display('intrum/starter.tpl');
     }
+
+    public static function test()
+    {
+        echo  "<pre>";
+        $category = 1;
+        $products = json_decode(json_encode(Intrum::getProducts($category   )),true);
+        foreach ($products as $product) {
+            $params = [];
+            $params['deal'] = $product['stock_type'];
+            $params['type'] = $category;
+            $params['agent'] = $product['author'];
+            $params['created'] = strtotime($product['date_add']);
+            foreach ($product['fields'] as $field) {
+                switch ($field['id']) {
+                    case 530: $params['rooms'] = $field['value']; break;
+                    case 446: $params['rooms'] = $field['value']; break;
+                    case 506: $params['floor'] = $field['value']; break;
+                    case 408: $params['floor'] = $field['value']; break;
+                    case 467: $params['max_floor'] = $field['value']; break;
+                    case 493: $params['max_floor'] = $field['value']; break;
+                    case 816: $params['max_floor'] = $field['value']; break;
+                    case 458: $params['material'] = $field['value']; break;
+                    case 447: $params['area_total'] = $field['value']; break;
+                    case 1154: $params['area_total'] = $field['value']; break;
+                    case 450: $params['area_live'] = $field['value']; break;
+                    case 451: $params['area_kitchen'] = $field['value']; break;
+                    case 562: $params['price'] = $field['value']; break;
+                    case 528: $params['price'] = $field['value']; break;
+                    case 810: $params['price'] = $field['value']; break;
+                    case 470: $params['price'] = $field['value']; break;
+                    case 624: $params['description'] = $field['value']; break;
+                    case 811: $params['money_type'] = $field['value']; break;
+                    case 492: $params['money_type'] = $field['value']; break;
+                    case 471: $params['money_type'] = $field['value']; break;
+                    case 563: $params['money_type'] = $field['value']; break;
+                    case 529: $params['money_type'] = $field['value']; break;
+                    case 546: $params['price_sm'] = $field['value']; break;
+                    case 855: $params['price_sm'] = $field['value']; break;
+                    case 856: $params['price_sm'] = $field['value']; break;
+                    case 744: $params['animals'] = $field['value']; break;
+                    case 743: $params['children'] = $field['value']; break;
+                    case 486: $params['metro'] = $field['value']; break;
+                    case 570: $params['metro'] = $field['value']; break;
+                    case 517: $params['metro'] = $field['value']; break;
+                    case 460: $params['water'] = $field['value']; break;
+                    case 519: $params['water'] = $field['value']; break;
+                    case 461: $params['heating'] = $field['value']; break;
+                    case 499: $params['heating'] = $field['value']; break;
+                }
+                if ($field['type'] == 'file') {
+                    $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
+                    $fn2 = 'https://iyidebabina.intrumnet.com/files/crm/product/resized200x200/'.$field['value'];
+                    $fi = explode('.', $field['value']);
+                    $file1 = file_get_contents($fn1);
+                    $file2 = file_get_contents($fn2);
+                    $name = md5($fi[0]).'.'.$fi[1];
+                    $new_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/original/'.$name;
+                    $new_mini_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/mini/'.$name;
+                    //file_put_contents($new_file, $file1);
+                    //file_put_contents($new_mini_file, $file2);
+                    $params['photos'][] = $name;
+                }
+            }
+            $params['photos'] = json_encode($params['photos']);
+            var_dump($params);
+        }
+
+
+        var_dump($products);
+
+        /*
+
+        $fields = Intrum::getFields();
+        $fields = json_decode(json_encode($fields),true);
+        foreach ($fields as $field) {
+            foreach ($field as $field_src) {
+
+                var_dump($field_src);
+
+            }
+        }
+        */
+    }
 }

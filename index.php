@@ -29,6 +29,8 @@ Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
 
 Flight::route('/commercial/', ['App\Controllers\PageController', 'commercial']);
 
+Flight::route('/test/', ['App\Controllers\APIController', 'test']);
+
 Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
 Flight::route('/agent/@id/', function ($id){App\Controllers\UserController::show($id);});
