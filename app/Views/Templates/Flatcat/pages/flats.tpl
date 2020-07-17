@@ -74,11 +74,11 @@
 {block name="content"}
     <div class="container">
         <div class="row">
-            {foreach $products as $product}
+            {foreach $flats as $flat}
                 <div class="col-md-4 object-item">
                     <div style="width: 100%; position: relative;">
-                        <a class="object-link" href="/product/{$product.mark}/">
-                            {if !empty($product.photos)}
+                        <a class="object-link" href="/product/{$flat.id}/">
+                            {if !empty($flat.photos)}
                                 <div class="object-photos">
                                     <img class="img-fluid" src="/images/objects/mini/{$product.photos[0]}">
                                 </div>
@@ -95,10 +95,18 @@
                         </a>
                     </div>
                     <div class="object-info row">
-                        <div class="obj-title col-12"><a href="/product/{$product.mark}/">{$product.name}</a></div>
-                        <div class="obj-short-desc col-12">{$product.short_desc}</div>
-                        <div class="obj-price col-6">от {$product.price|number_format:2:" ":","} GEL</div>
-                        <div class="obj-created col-6">{$product.created|date_format:"d.m.Y"}</div>
+                        <div class="obj-title col-12"><a href="/product/{$flat.id}/">{$flat.name}</a></div>
+                        <div class="obj-short-desc col-12">
+                            {if !empty($flat.rooms)} {$flat.rooms}-комн {/if}
+                            {if !empty($flat.max_floor) && !empty($flat.floor)}
+                                , {$flat.floor}/{$flat.max_floor} эт
+                            {/if}
+                            {if !empty($flat.material)}, {$flat.material} {/if}
+                        </div>
+                        <div class="obj-price col-6">
+                            от {$flat.price|number_format:2:" ":","}{$flat.money_type}
+                        </div>
+                        <div class="obj-created col-6">{$flat.created|date_format:"d.m.Y"}</div>
                     </div>
                 </div>
             {/foreach}

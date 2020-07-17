@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Category;
+use App\Models\Construction;
 use App\Models\Intrum;
 use App\Models\IntrumEquals;
 use App\Models\Parameter;
@@ -221,6 +222,7 @@ class APIController
             $params['deal'] = $product['stock_type'];
             $params['type'] = $category;
             $params['agent'] = $product['author'];
+            $params['name'] = $product['name'];
             $params['created'] = strtotime($product['date_add']);
             foreach ($product['fields'] as $field) {
                 switch ($field['id']) {
@@ -263,8 +265,8 @@ class APIController
                     $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
                     $fn2 = 'https://iyidebabina.intrumnet.com/files/crm/product/resized200x200/'.$field['value'];
                     $fi = explode('.', $field['value']);
-                    $file1 = file_get_contents($fn1);
-                    $file2 = file_get_contents($fn2);
+                    //$file1 = file_get_contents($fn1);
+                    //$file2 = file_get_contents($fn2);
                     $name = md5($fi[0]).'.'.$fi[1];
                     $new_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/original/'.$name;
                     $new_mini_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/mini/'.$name;
@@ -274,11 +276,9 @@ class APIController
                 }
             }
             $params['photos'] = json_encode($params['photos']);
-            var_dump($params);
+            Construction::$data = $params;
+            Construction::insert();
         }
-
-
-        var_dump($products);
 
         /*
 

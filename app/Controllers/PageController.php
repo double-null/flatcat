@@ -2,12 +2,15 @@
 
 namespace App\Controllers;
 
+use App\Models\Flat;
 use Flight;
 
 class PageController
 {
     public static function flats()
     {
+        $flats = Flat::getAll();
+        Flight::view()->assign('flats', $flats);
         Flight::view()->display('pages/flats.tpl');
     }
 
