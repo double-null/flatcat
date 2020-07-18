@@ -86,7 +86,7 @@
                                         </div>
                                         <span class="obj-hover-img">
                                     {/if}
-                                    
+
                                     {if $photo@iteration <= 5}<span class="obj-hover-img-5" data-photo="{$photo}"></span>{/if}
 
                                     {if $photo@last}

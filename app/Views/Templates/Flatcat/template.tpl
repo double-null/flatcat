@@ -37,10 +37,12 @@
             <div class="col-md-12">
                 <ul>
                     <li><a href="/flats_and_rooms/">Квартиры и комнаты</a></li>
-                    <li><a href="/new_buildings/">Новостройки</a></li>
-                    <li><a href="/suburban/">Загородная</a></li>
-                    <li><a href="/rent/">Аренда</a></li>
                     <li><a href="/commercial/">Коммерческая</a></li>
+                    <li><a href="/land_and_houses/">Дома и участки</a></li>
+                    <li><a href="/garages/">Гаражи и Стоянки</a></li>
+                    <li><a href="/suburban/">Загородная</a></li>
+
+
                     <!--
                     {foreach $categories as $category}
                         <li><a href="/category/{$category.mark}/">{$category.name}</a></li>

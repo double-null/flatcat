@@ -26,9 +26,9 @@
                             <img width="100%" src="/themes/Flatcat/images/unnamed.jpg" alt="" class="fluid-img">
                         </div>
                         <div class="col-md-8">
-                            <div class="agent-name"><a href="#">{$product.user.fullname}</a></div>
-                            <div class="agent-desc"> {$product.user.position} </div>
-                            <div class="agent-contact"> {$product.user.phone} </div>
+                            <div class="agent-name"><a href="/agent/{$object.agent}/">{$object.fullname}</a></div>
+                            <div class="agent-desc"> {$object.position} </div>
+                            <div class="agent-contact"> {$object.phone} </div>
                             <div class="agent-order">
                                 <a class="green-btn popup-open" data-id="2">Заказать просмотр</a>
                             </div>
