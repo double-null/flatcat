@@ -43,8 +43,8 @@ Flight::route('/category/@name(/@page)/', function ($name, $page) {
     \App\Controllers\ProductController::listingForCategory($name, $page);
 });
 
-Flight::route('/product/@name/', function ($name) {
-    \App\Controllers\ProductController::show($name);
+Flight::route('/object/@category-@object/', function ($category, $object) {
+        App\Controllers\RealtyController::show($object, $category);
 });
 
 Flight::route('/admin/*', function (){

@@ -10,6 +10,7 @@ class PageController
     public static function flats()
     {
         $flats = Flat::getAll();
+        Flight::view()->assign('categoryID', 1);
         Flight::view()->assign('flats', $flats);
         Flight::view()->display('pages/flats.tpl');
     }

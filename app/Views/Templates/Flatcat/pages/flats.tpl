@@ -77,16 +77,22 @@
             {foreach $flats as $flat}
                 <div class="col-md-4 object-item">
                     <div style="width: 100%; position: relative;">
-                        <a class="object-link" href="/product/{$flat.id}/">
+                        <a class="object-link" href="/object/{$categoryID}-{$flat.id}/">
                             {if !empty($flat.photos)}
-                                <div class="object-photos">
-                                    <img class="img-fluid" src="/images/objects/mini/{$product.photos[0]}">
-                                </div>
-                                <span class="obj-hover-img">
-                                {foreach $product['photos'] as $photo}
+                                {foreach $flat.photos|json_decode as $photo}
+                                    {if $photo@first}
+                                        <div class="object-photos">
+                                            <img class="img-fluid" src="/images/objects/mini/{$photo}">
+                                        </div>
+                                        <span class="obj-hover-img">
+                                    {/if}
+                                    
                                     {if $photo@iteration <= 5}<span class="obj-hover-img-5" data-photo="{$photo}"></span>{/if}
+
+                                    {if $photo@last}
+                                        </span>
+                                    {/if}
                                 {/foreach}
-                            </span>
                             {else}
                                 <div class="object-photos">
                                     <img class="img-fluid" src="/images/default/no-photo.jpg">
@@ -95,7 +101,7 @@
                         </a>
                     </div>
                     <div class="object-info row">
-                        <div class="obj-title col-12"><a href="/product/{$flat.id}/">{$flat.name}</a></div>
+                        <div class="obj-title col-12"><a href="/object/{$categoryID}-{$flat.id}/">{$flat.name}</a></div>
                         <div class="obj-short-desc col-12">
                             {if !empty($flat.rooms)} {$flat.rooms}-комн {/if}
                             {if !empty($flat.max_floor) && !empty($flat.floor)}
