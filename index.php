@@ -19,15 +19,17 @@ Flight::route('/', function () {
     \App\Controllers\ProductController::listingForCategory(1);
 });
 
-Flight::route('/flats_and_rooms/', ['App\Controllers\PageController', 'flats']);
+Flight::route('/flats_and_rooms/', function (){App\Controllers\RealtyController::listing(1);});
 
-Flight::route('/new_buildings/', ['App\Controllers\PageController', 'new_buildings']);
+Flight::route('/lands_and_houses/', function (){App\Controllers\RealtyController::listing(2);});
 
-Flight::route('/suburban/', ['App\Controllers\PageController', 'suburban']);
+Flight::route('/commercial/', function (){App\Controllers\RealtyController::listing(6);});
+
+Flight::route('/garages/', function (){App\Controllers\RealtyController::listing(4);});
+
+Flight::route('/suburban/', function (){App\Controllers\RealtyController::listing(5);});
 
 Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
-
-Flight::route('/commercial/', ['App\Controllers\PageController', 'commercial']);
 
 Flight::route('/test/', ['App\Controllers\APIController', 'test']);
 
@@ -68,6 +70,10 @@ Flight::route('/admin/user/drop/', ['App\Controllers\UserController', 'drop']);
 Flight::route('/admin/user_settings/', ['App\Controllers\UserController', 'settings']);
 
 Flight::route('/admin/user_profile/', ['App\Controllers\UserProfileController', 'update']);
+
+Flight::route('/admin/realty/create/@type/',
+    function ($type){App\Controllers\RealtyController::create($type);
+});
 
 Flight::route('/admin/category/create/', ['App\Controllers\CategoryController', 'create']);
 

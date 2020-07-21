@@ -38,7 +38,7 @@
                 <ul>
                     <li><a href="/flats_and_rooms/">Квартиры и комнаты</a></li>
                     <li><a href="/commercial/">Коммерческая</a></li>
-                    <li><a href="/land_and_houses/">Дома и участки</a></li>
+                    <li><a href="/lands_and_houses/">Дома и участки</a></li>
                     <li><a href="/garages/">Гаражи и Стоянки</a></li>
                     <li><a href="/suburban/">Загородная</a></li>
 

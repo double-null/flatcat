@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\Category;
+use App\Models\CommercialRealty;
 use App\Models\Flat;
 use App\Models\Intrum;
 use App\Models\IntrumEquals;
@@ -10,6 +11,7 @@ use App\Models\Parameter;
 use App\Models\Product;
 use App\Models\ProductParam;
 use App\Models\ProductPhoto;
+use App\Models\Realty;
 use App\Models\User;
 use App\Models\UserProfile;
 use Flight;
@@ -214,8 +216,15 @@ class APIController
 
     public static function test()
     {
-        $category = 1;
+        ini_set('max_execution_time', 600);
+        $category = 3;
         $products = json_decode(json_encode(Intrum::getProducts($category   )),true);
+
+        /*
+        echo "<pre>";
+        var_dump($products);
+        echo "</pre>";
+        */
         foreach ($products as $product) {
             $params = [];
             $params['deal'] = $product['stock_type'];
@@ -247,18 +256,25 @@ class APIController
                     case 471: $params['money_type'] = $field['value']; break;
                     case 563: $params['money_type'] = $field['value']; break;
                     case 529: $params['money_type'] = $field['value']; break;
-                    case 546: $params['price_sm'] = $field['value']; break;
-                    case 855: $params['price_sm'] = $field['value']; break;
-                    case 856: $params['price_sm'] = $field['value']; break;
+                    case 546: $params['unit_price'] = $field['value']; break;
+                    case 855: $params['unit_price'] = $field['value']; break;
+                    case 856: $params['unit_price'] = $field['value']; break;
                     case 744: $params['animals'] = $field['value']; break;
                     case 743: $params['children'] = $field['value']; break;
-                    case 486: $params['metro'] = $field['value']; break;
-                    case 570: $params['metro'] = $field['value']; break;
-                    case 517: $params['metro'] = $field['value']; break;
-                    case 460: $params['water'] = $field['value']; break;
-                    case 519: $params['water'] = $field['value']; break;
+                    case 486: $params['distance_metro'] = $field['value']; break;
+                    case 570: $params['distance_metro'] = $field['value']; break;
+                    case 517: $params['distance_metro'] = $field['value']; break;
+                    case 460: $params['distance_sea'] = $field['value']; break;
+                    case 519: $params['distance_sea'] = $field['value']; break;
                     case 461: $params['heating'] = $field['value']; break;
                     case 499: $params['heating'] = $field['value']; break;
+                    case 778:
+                        if ($field['value'] == 'სახლი') $params['type'] = 3; // Дом
+                        if ($field['value'] == 'აგარაკი') $params['type'] = 4; //Дача
+                        if ($field['value'] == 'კოტეჯი') $params['type'] = 5; // Коттедж
+                        if ($field['value'] == 'სახლის ნაწილი') $params['type'] = 6; // Часть дома
+                        if ($field['value'] == 'ნაკვეთი') $params['type'] = 7; // Участок
+                        break;
                 }
                 if ($field['type'] == 'file') {
                     $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
@@ -275,12 +291,12 @@ class APIController
                 }
             }
             $params['photos'] = json_encode($params['photos']);
-            Flat::$data = $params;
-            Flat::insert();
+            Realty::$data = $params;
+            Realty::insert();
         }
 
         /*
-
+        echo "<pre>";
         $fields = Intrum::getFields();
         $fields = json_decode(json_encode($fields),true);
         foreach ($fields as $field) {
@@ -291,5 +307,11 @@ class APIController
             }
         }
         */
+
+    }
+
+    public function updateCommercial()
+    {
+
     }
 }

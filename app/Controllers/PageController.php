@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\CommercialRealty;
 use App\Models\Flat;
 use Flight;
 
@@ -32,7 +33,10 @@ class PageController
 
     public static function commercial()
     {
-        Flight::view()->display('pages/commercial.tpl');
+        $flats = CommercialRealty::getAll();
+        Flight::view()->assign('categoryID', 2);
+        Flight::view()->assign('flats', $flats);
+        Flight::view()->display('pages/flats.tpl');
     }
 }
 

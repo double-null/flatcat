@@ -74,12 +74,12 @@
 {block name="content"}
     <div class="container">
         <div class="row">
-            {foreach $flats as $flat}
+            {foreach $flats as $object}
                 <div class="col-md-4 object-item">
                     <div style="width: 100%; position: relative;">
-                        <a class="object-link" href="/object/{$categoryID}-{$flat.id}/">
-                            {if !empty($flat.photos)}
-                                {foreach $flat.photos|json_decode as $photo}
+                        <a class="object-link" href="/object/{$categoryID}-{$object.id}/">
+                            {if !empty($object.photos|json_decode)}
+                                {foreach $object.photos|json_decode as $photo}
                                     {if $photo@first}
                                         <div class="object-photos">
                                             <img class="img-fluid" src="/images/objects/mini/{$photo}">
@@ -101,18 +101,32 @@
                         </a>
                     </div>
                     <div class="object-info row">
-                        <div class="obj-title col-12"><a href="/object/{$categoryID}-{$flat.id}/">{$flat.name}</a></div>
+                        <div class="obj-title col-12"><a href="/object/{$categoryID}-{$object.id}/">{$object.name}</a></div>
                         <div class="obj-short-desc col-12">
-                            {if !empty($flat.rooms)} {$flat.rooms}-комн {/if}
-                            {if !empty($flat.max_floor) && !empty($flat.floor)}
-                                , {$flat.floor}/{$flat.max_floor} эт
+                            {if ($object.type == 1)}
+                                {if !empty($object.rooms)} {$object.rooms}-комн {/if}
+                                {if !empty($object.max_floor) && !empty($object.floor)}
+                                    , {$object.floor}/{$object.max_floor} эт
+                                {/if}
+                                {if !empty($object.material)}, {$object.material} {/if}
                             {/if}
-                            {if !empty($flat.material)}, {$flat.material} {/if}
+                            {if ($object.type|in_array:[3,4,5,6])}
+                                {if $object.type == 3}Дом{/if}
+                                {if $object.type == 4}Дача{/if}
+                                {if $object.type == 5}Коттедж{/if}
+                                {if $object.type == 6}Часть дома{/if}
+                                {if !empty($object.area_total)}{$object.area_total}{/if}
+                                {if !empty($object.material)}{$object.material}{/if}
+                                {if !empty($object.land_size)}{$object.land_size}{/if}
+                            {/if}
+                            {if ($object.type == 7)}
+                                Земельный участок {$object.land_size}
+                            {/if}
                         </div>
                         <div class="obj-price col-6">
-                            от {$flat.price|number_format:2:" ":","}{$flat.money_type}
+                            от {$object.price|number_format:2:" ":","}{$object.money_type}
                         </div>
-                        <div class="obj-created col-6">{$flat.created|date_format:"d.m.Y"}</div>
+                        <div class="obj-created col-6">{$object.created|date_format:"d.m.Y"}</div>
                     </div>
                 </div>
             {/foreach}
