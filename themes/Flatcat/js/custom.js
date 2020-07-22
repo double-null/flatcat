@@ -45,4 +45,17 @@ $( document ).ready(function() {
             $('#filter-send').html(text);
         });
     });
+
+    $(document).ready(function(){
+        $(".owl-carousel").owlCarousel(
+            {
+                'items':1,
+                'dots':true,
+            }
+        );
+    });
+
+    $('.spoiler-item').click(function(){
+        $(this).find('.spoiler-body').slideToggle('slow');
+    });
 });

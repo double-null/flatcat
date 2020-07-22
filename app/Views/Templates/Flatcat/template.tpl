@@ -6,10 +6,13 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
         <link rel="stylesheet" href="/themes/Flatcat/css/bootstrap-grid.min.css">
+        <link rel="stylesheet" href="/themes/Flatcat/css/owl.carousel.min.css">
+        <link rel="stylesheet" href="/themes/Flatcat/css/owl.theme.default.min.css">
         <link rel="stylesheet" href="/themes/Flatcat/css/fotorama.css">
         <link rel="stylesheet" href="/themes/Flatcat/css/sumoselect.min.css">
         <link rel="stylesheet" href="/themes/Flatcat/css/style.css">
         <script src="/themes/Flatcat/js/jquery-3.4.1.min.js"></script>
+        <script src="/themes/Flatcat/js/owl.carousel.min.js"></script>
         <script src="/themes/Flatcat/js/fotorama.js"></script>
         <script src="/themes/Flatcat/js/jquery.sumoselect.min.js"></script>
         <script src="/themes/Flatcat/js/custom.js"></script>
@@ -41,7 +44,6 @@
                     <li><a href="/lands_and_houses/">Дома и участки</a></li>
                     <li><a href="/garages/">Гаражи и Стоянки</a></li>
                     <li><a href="/suburban/">Загородная</a></li>
-
 
                     <!--
                     {foreach $categories as $category}
