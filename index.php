@@ -69,9 +69,15 @@ Flight::route('/admin/user_settings/', ['App\Controllers\UserController', 'setti
 
 Flight::route('/admin/user_profile/', ['App\Controllers\UserProfileController', 'update']);
 
+Flight::route('/admin/blocks/', ['App\Controllers\BlockController', 'listing']);
+
+Flight::route('/admin/block/mod/@id/', function($id){App\Controllers\BlockController::update($id);});
+
 Flight::route('/admin/realty/create/@type/',
     function ($type){App\Controllers\RealtyController::create($type);
 });
+
+Flight::route('/admin/users/', ['App\Controllers\UserController', 'listing']);
 
 Flight::route('/admin/category/create/', ['App\Controllers\CategoryController', 'create']);
 

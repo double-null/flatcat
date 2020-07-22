@@ -59,6 +59,13 @@
                         </li>
                         {if $user_info['role'] == 1}
                             <li>
+                                <a href="/admin/blocks/">
+                                    <i class="fa fa-newspaper-o"></i> Текстовые блоки
+                                </a>
+                            </li>
+                        {/if}
+                        {if $user_info['role'] == 1}
+                            <li>
                                 <a href="#">
                                     <i class="fa fa-user"></i> Агенты <i class="fa arrow"></i>
                                 </a>
