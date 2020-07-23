@@ -63,7 +63,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-12 main-title">Отзывы клиентов</div>
+            <div class="col-12 main-title">{$inscriptions.reviews_title}</div>
             {foreach $reviews as $review}
                 <div class="card col-md-4">
                     <div class="row card-border">
@@ -85,47 +85,25 @@
 
             <div class="col-12">
                 <div class="row center">
-                    <div class="col-4"><a href="/reviews/" class="green-btn">Смотреть все отзывы</a></div>
+                    <div class="col-4"><a href="/reviews/" class="green-btn">{$inscriptions.reviews_btn_text}</a></div>
                 </div>
             </div>
 
         </div>
         <div class="row">
-            <div class="col-12 main-title">8 причин выбрать «Владис» для продажи недвижимости</div>
+            <div class="col-12 main-title">{$inscriptions.advantages_title}</div>
             <div id="advantages" class="col-md-6">
-                <div class="spoiler-item">
-                    <div class="spoiler-head">
-                        <div class="circle">1</div>
-                        Лидер рынка недвижимости в России
+                {foreach $advantages as $advantage}
+                    <div class="spoiler-item">
+                        <div class="spoiler-head">
+                            <div class="circle">{$advantage@iteration}</div>
+                            {$advantage.title}
+                        </div>
+                        <div class="spoiler-body">
+                            {$advantage.description}
+                        </div>
                     </div>
-                    <div class="spoiler-body">
-                        <p>
-                        «Владис» признали лучшим агентством недвижимости в России численностью более 100 сотрудников в рамках ХХ Национального конгресса по недвижимости 2016 в Екатеринбурге.
-                        </p>
-                    </div>
-                </div>
-                <div class="spoiler-item">
-                    <div class="spoiler-head">
-                        <div class="circle">2</div>
-                        Мощнейшая профессиональная сеть продаж
-                    </div>
-                    <div class="spoiler-body">
-                        <p>
-                            Более 250 менеджеров по продажам и 50 агентств-партнеров сразу начнут предлагать ваш объект своим покупателям. Все специалисты компании являются профессионалами своего дела и постоянно повышают квалификацию
-                        </p>
-                    </div>
-                </div>
-                <div class="spoiler-item">
-                    <div class="spoiler-head">
-                        <div class="circle">3</div>
-                        Тысячи продавцов не могут ошибаться
-                    </div>
-                    <div class="spoiler-body">
-                        <p>
-                            Более 3000 продавцов сотрудничают с «Владис» прямо сейчас. Они с уверенностью доверили нам самое дорогое.
-                        </p>
-                    </div>
-                </div>
+                {/foreach}
             </div>
             <div class="col-md-6">
                 <img class="img-fluid" src="/themes/Flatcat/images/no.jpg">

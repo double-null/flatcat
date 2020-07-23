@@ -15,6 +15,8 @@ Flight::register('db', 'Medoo\Medoo', [database()]);
 
 App\Modules\Application::start();
 
+App\Controllers\PageController::start();
+
 Flight::route('/', ['App\Controllers\PageController', 'main']);
 
 Flight::route('/flats_and_rooms/', function (){App\Controllers\RealtyController::listing(1);});

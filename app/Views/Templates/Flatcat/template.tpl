@@ -33,25 +33,15 @@
                 call-центр
             </div>
             <div class="col-md-4 ticket-action">
-                <a class="green-btn popup-open" data-id="1">Оставить заявку</a>
+                <a class="green-btn popup-open" data-id="1">{$common.leave_request}</a>
             </div>
         </div>
         <div class="row header-menu">
             <div class="col-md-12">
                 <ul>
-                    <li><a href="/flats_and_rooms/">Квартиры и комнаты</a></li>
-                    <li><a href="/commercial/">Коммерческая</a></li>
-                    <li><a href="/lands_and_houses/">Дома и участки</a></li>
-                    <li><a href="/garages/">Гаражи и Стоянки</a></li>
-                    <li><a href="/suburban/">Загородная</a></li>
-
-                    <!--
-                    {foreach $categories as $category}
-                        <li><a href="/category/{$category.mark}/">{$category.name}</a></li>
+                    {foreach $menu as $item}
+                        <li><a href="{$item.link}">{$item.name}</a></li>
                     {/foreach}
-                    -->
-                    <li><a href="/agents/">Агенты</a></li>
-                    <li><a href="/reviews/">Отзывы</a></li>
                 </ul>
                 <div id="filters" class="col-md-12">{block name="filters"}{/block}</div>
             </div>
@@ -76,25 +66,25 @@
 <footer class="container-fluid">
     <div id="city"></div>
     <div id="rights" class="row">
-        <div class="col-md-12">© 2006—2020 Компания "Имя" Все права защищены.</div>
+        <div class="col-md-12"> © {$smarty.now|date_format:'Y'} {$common.copyrights}</div>
     </div>
 </footer>
 
 <div class="popup-fade" data-id="1">
     <div class="popup">
         <a class="popup-close" href="#">×</a>
-        <span class="popup-title">Заявка on-line</span>
+        <span class="popup-title">{$common.online_request}</span>
         <form method="post">
             <div class="row">
-                <label class="col-md-6"> Телефон <b style="color: red">*</b> </label>
+                <label class="col-md-6"> {$common.phone_title} <b style="color: red">*</b> </label>
                 <input class="col-md-6" type="text" name="Request[phone]">
             </div>
             <div class="row">
                 <input type="checkbox" name="Request[accept]" value="on">
-                <span class="small">Даю согласие на обработку указанных персональных данных.</span>
+                <span class="small">{$common.confirm_data_processing}</span>
             </div>
             <div class="row">
-                <input class="green-btn" type="submit" value="Отправить">
+                <input class="green-btn" type="submit" value="{$common.submit_title}">
             </div>
         </form>
     </div>

@@ -21,4 +21,9 @@ class Block extends Model
     {
         return Flight::db()->get(self::$table, ['code[JSON]'], ['id' => $id]);
     }
+
+    public static function getOneByParams($params)
+    {
+        return Flight::db()->get(self::$table, ['code[JSON]'], $params)['code'];
+    }
 }
