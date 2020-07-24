@@ -116,81 +116,6 @@ class APIController
         }
     }
 
-    public static function updateProduct($category)
-    {
-
-        $products = json_decode(json_encode(Intrum::getProducts($category)),true);
-
-        foreach ($products as $product) {
-
-            $productID = IntrumEquals::getObjectByIntrum($product['id'], 4)['object_id'];
-            if (!$productID) {
-                $price_ids = [810, 470, 562, 528];
-                $price = 0;
-                foreach ($product['fields'] as $field) {
-
-                    $field_ids[] = $field['id'];
-                    //Определение поля с ценой
-                    if (in_array($field['id'], $price_ids)) {
-                        $price = $field['value'];
-                    }
-
-                }
-
-                //Сохранение обьекта
-                Product::$data = [
-                    'mark' => $product['id'],
-                    'user' => IntrumEquals::getObjectByIntrum($product['author'], 3)["object_id"],
-                    'name' => $product['name'],
-                    'short_desc' => '',
-                    'price' => $price,
-                    'category' => $category,
-                    'created' => strtotime($product['date_add']),
-                ];
-
-                $product_id = Product::insert();
-
-                //Сохранение в таблицу соответствий
-                IntrumEquals::$data = [
-                    'type' => 4,
-                    'object_id' => $product_id,
-                    'intrum_id' => $product['id'],
-                ];
-                IntrumEquals::insert();
-
-                //Сохранение полей обьекта
-                $eq = IntrumEquals::getObjectsByIntrum($field_ids, 2);
-                foreach ($product['fields'] as $field) {
-
-                    if ($field['type'] == 'file') {
-                        $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
-                        $fn2 = 'https://iyidebabina.intrumnet.com/files/crm/product/resized200x200/'.$field['value'];
-                        $fi = explode('.', $field['value']);
-                        $file1 = file_get_contents($fn1);
-                        $file2 = file_get_contents($fn2);
-                        $name = md5($fi[0]).'.'.$fi[1];
-                        $new_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/original/'.$name;
-                        $new_mini_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/mini/'.$name;
-                        file_put_contents($new_file, $file1);
-                        file_put_contents($new_mini_file, $file2);
-                        ProductPhoto::$data = [
-                            'product' => $product_id,
-                            'name' => $name,
-                        ];
-                        ProductPhoto::insert();
-                    } else {
-                        ProductParam::$data = [
-                            'product' => $product_id,
-                            'param' => $eq[$field['id']]['object_id'],
-                            'value' => $field['value'],
-                        ];
-                        ProductParam::insert();
-                    }
-                }
-            }
-        }
-    }
-
     public static function starter()
     {
         if (!empty($_POST['Intrum'])) {
@@ -214,104 +139,89 @@ class APIController
         Flight::view()->display('intrum/starter.tpl');
     }
 
-    public static function test()
+    public static function updateProduct($category)
     {
         ini_set('max_execution_time', 600);
-        $category = 3;
         $products = json_decode(json_encode(Intrum::getProducts($category   )),true);
 
-        /*
-        echo "<pre>";
-        var_dump($products);
-        echo "</pre>";
-        */
         foreach ($products as $product) {
-            $params = [];
-            $params['deal'] = $product['stock_type'];
-            $params['type'] = $category;
-            $params['agent'] = $product['author'];
-            $params['name'] = $product['name'];
-            $params['created'] = strtotime($product['date_add']);
-            foreach ($product['fields'] as $field) {
-                switch ($field['id']) {
-                    case 530: $params['rooms'] = $field['value']; break;
-                    case 446: $params['rooms'] = $field['value']; break;
-                    case 506: $params['floor'] = $field['value']; break;
-                    case 408: $params['floor'] = $field['value']; break;
-                    case 467: $params['max_floor'] = $field['value']; break;
-                    case 493: $params['max_floor'] = $field['value']; break;
-                    case 816: $params['max_floor'] = $field['value']; break;
-                    case 458: $params['material'] = $field['value']; break;
-                    case 447: $params['area_total'] = $field['value']; break;
-                    case 1154: $params['area_total'] = $field['value']; break;
-                    case 450: $params['area_live'] = $field['value']; break;
-                    case 451: $params['area_kitchen'] = $field['value']; break;
-                    case 562: $params['price'] = $field['value']; break;
-                    case 528: $params['price'] = $field['value']; break;
-                    case 810: $params['price'] = $field['value']; break;
-                    case 470: $params['price'] = $field['value']; break;
-                    case 624: $params['description'] = $field['value']; break;
-                    case 811: $params['money_type'] = $field['value']; break;
-                    case 492: $params['money_type'] = $field['value']; break;
-                    case 471: $params['money_type'] = $field['value']; break;
-                    case 563: $params['money_type'] = $field['value']; break;
-                    case 529: $params['money_type'] = $field['value']; break;
-                    case 546: $params['unit_price'] = $field['value']; break;
-                    case 855: $params['unit_price'] = $field['value']; break;
-                    case 856: $params['unit_price'] = $field['value']; break;
-                    case 744: $params['animals'] = $field['value']; break;
-                    case 743: $params['children'] = $field['value']; break;
-                    case 486: $params['distance_metro'] = $field['value']; break;
-                    case 570: $params['distance_metro'] = $field['value']; break;
-                    case 517: $params['distance_metro'] = $field['value']; break;
-                    case 460: $params['distance_sea'] = $field['value']; break;
-                    case 519: $params['distance_sea'] = $field['value']; break;
-                    case 461: $params['heating'] = $field['value']; break;
-                    case 499: $params['heating'] = $field['value']; break;
-                    case 778:
-                        if ($field['value'] == 'სახლი') $params['type'] = 3; // Дом
-                        if ($field['value'] == 'აგარაკი') $params['type'] = 4; //Дача
-                        if ($field['value'] == 'კოტეჯი') $params['type'] = 5; // Коттедж
-                        if ($field['value'] == 'სახლის ნაწილი') $params['type'] = 6; // Часть дома
-                        if ($field['value'] == 'ნაკვეთი') $params['type'] = 7; // Участок
-                        break;
+            $eq = IntrumEquals::getObjectsByIntrum($product['id'],4);
+            if (!$eq) {
+                $params = [];
+                $params['deal'] = $product['stock_type'];
+                $params['type'] = $category;
+                $params['agent'] = $product['author'];
+                $params['name'] = $product['name'];
+                $params['created'] = strtotime($product['date_add']);
+                foreach ($product['fields'] as $field) {
+                    switch ($field['id']) {
+                        case 530: $params['rooms'] = $field['value']; break;
+                        case 446: $params['rooms'] = $field['value']; break;
+                        case 506: $params['floor'] = $field['value']; break;
+                        case 408: $params['floor'] = $field['value']; break;
+                        case 467: $params['max_floor'] = $field['value']; break;
+                        case 493: $params['max_floor'] = $field['value']; break;
+                        case 816: $params['max_floor'] = $field['value']; break;
+                        case 458: $params['material'] = $field['value']; break;
+                        case 447: $params['area_total'] = $field['value']; break;
+                        case 1154: $params['area_total'] = $field['value']; break;
+                        case 450: $params['area_live'] = $field['value']; break;
+                        case 451: $params['area_kitchen'] = $field['value']; break;
+                        case 562: $params['price'] = $field['value']; break;
+                        case 528: $params['price'] = $field['value']; break;
+                        case 810: $params['price'] = $field['value']; break;
+                        case 470: $params['price'] = $field['value']; break;
+                        case 624: $params['description'] = $field['value']; break;
+                        case 811: $params['money_type'] = $field['value']; break;
+                        case 492: $params['money_type'] = $field['value']; break;
+                        case 471: $params['money_type'] = $field['value']; break;
+                        case 563: $params['money_type'] = $field['value']; break;
+                        case 529: $params['money_type'] = $field['value']; break;
+                        case 546: $params['unit_price'] = $field['value']; break;
+                        case 855: $params['unit_price'] = $field['value']; break;
+                        case 856: $params['unit_price'] = $field['value']; break;
+                        case 744: $params['animals'] = $field['value']; break;
+                        case 743: $params['children'] = $field['value']; break;
+                        case 486: $params['distance_metro'] = $field['value']; break;
+                        case 570: $params['distance_metro'] = $field['value']; break;
+                        case 517: $params['distance_metro'] = $field['value']; break;
+                        case 460: $params['distance_sea'] = $field['value']; break;
+                        case 519: $params['distance_sea'] = $field['value']; break;
+                        case 461: $params['heating'] = $field['value']; break;
+                        case 499: $params['heating'] = $field['value']; break;
+                        case 778:
+                            if ($field['value'] == 'სახლი') $params['type'] = 3; // Дом
+                            if ($field['value'] == 'აგარაკი') $params['type'] = 4; //Дача
+                            if ($field['value'] == 'კოტეჯი') $params['type'] = 5; // Коттедж
+                            if ($field['value'] == 'სახლის ნაწილი') $params['type'] = 6; // Часть дома
+                            if ($field['value'] == 'ნაკვეთი') $params['type'] = 7; // Участок
+                            break;
+                    }
+                    if ($field['type'] == 'file') {
+                        $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
+                        $fn2 = 'https://iyidebabina.intrumnet.com/files/crm/product/resized200x200/'.$field['value'];
+                        $fi = explode('.', $field['value']);
+                        $file1 = file_get_contents($fn1);
+                        $file2 = file_get_contents($fn2);
+                        $name = md5($fi[0]).'.'.$fi[1];
+                        $new_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/original/'.$name;
+                        $new_mini_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/mini/'.$name;
+                        file_put_contents($new_file, $file1);
+                        file_put_contents($new_mini_file, $file2);
+                        $params['photos'][] = $name;
+                    }
                 }
-                if ($field['type'] == 'file') {
-                    $fn1 = 'https://iyidebabina.intrumnet.com/files/crm/product/'.$field['value'];
-                    $fn2 = 'https://iyidebabina.intrumnet.com/files/crm/product/resized200x200/'.$field['value'];
-                    $fi = explode('.', $field['value']);
-                    $file1 = file_get_contents($fn1);
-                    $file2 = file_get_contents($fn2);
-                    $name = md5($fi[0]).'.'.$fi[1];
-                    $new_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/original/'.$name;
-                    $new_mini_file = $_SERVER['DOCUMENT_ROOT'].'/images/objects/mini/'.$name;
-                    file_put_contents($new_file, $file1);
-                    file_put_contents($new_mini_file, $file2);
-                    $params['photos'][] = $name;
-                }
-            }
-            $params['photos'] = json_encode($params['photos']);
-            Realty::$data = $params;
-            Realty::insert();
-        }
+                $params['photos'] = json_encode($params['photos']);
+                Realty::$data = $params;
+                $object_id = Realty::insert();
 
-        /*
-        echo "<pre>";
-        $fields = Intrum::getFields();
-        $fields = json_decode(json_encode($fields),true);
-        foreach ($fields as $field) {
-            foreach ($field as $field_src) {
-
-                var_dump($field_src);
-
+                IntrumEquals::$data = [
+                    'type' => 4,
+                    'object_id' => $object_id,
+                    'intrum_id' => $product['id'],
+                ];
+                IntrumEquals::insert();
             }
         }
-        */
-
-    }
-
-    public function updateCommercial()
-    {
-
     }
 }

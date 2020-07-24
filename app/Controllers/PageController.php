@@ -23,4 +23,3 @@ class PageController
         Flight::view()->assign('common', Block::getOneByParams(['name' => 'all_pages']));
     }
 }
-
