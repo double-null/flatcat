@@ -19,16 +19,6 @@ class PageController
 
     public static function start()
     {
-        $a = [
-            'leave_request' => 'შეიტანეთ განცხადება',
-            'online_request' => 'განაცხადის on-line',
-            'phone_title' => 'ტელეფონი',
-            'submit_title' => 'პირადი',
-            'confirm_data_processing' => 'მე ვაძლევ ჩემს თანხმობას დამუშავება მითითებული პირადი მონაცემები.',
-            'copyrights' => 'iyidebabina.ge. ყველა უფლება დაცულია.',
-        ];
-        //echo json_encode($a);
-
         Flight::view()->assign('menu', Block::getOneByParams(['name' => 'menu']));
         Flight::view()->assign('common', Block::getOneByParams(['name' => 'all_pages']));
     }

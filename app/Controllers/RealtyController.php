@@ -27,6 +27,19 @@ class RealtyController
         Flight::view()->display('pages/flats.tpl');
     }
 
+    public static function search()
+    {
+        $params = [];
+        foreach ($_GET as $param => $value) {
+            if (!empty($value)) {
+                $params[$param] = trim($value);
+            }
+        }
+        $objects = Realty::getAllByParams($params);
+        Flight::view()->assign('objects', $objects);
+        Flight::view()->display('realty/listing.tpl');
+    }
+
     public static function show($objectID, $categoryID)
     {
         $object = Realty::getOneByID($objectID);

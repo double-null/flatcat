@@ -29,6 +29,8 @@ Flight::route('/garages/', function (){App\Controllers\RealtyController::listing
 
 Flight::route('/suburban/', function (){App\Controllers\RealtyController::listing(5);});
 
+Flight::route('/search/', ['App\Controllers\RealtyController', 'search']);
+
 Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
 
 Flight::route('/test/', ['App\Controllers\APIController', 'test']);

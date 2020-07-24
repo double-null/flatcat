@@ -22,4 +22,9 @@ class Realty extends Model
     {
         return Flight::db()->select(self::$table, '*', ['type' => $types]);
     }
+
+    public static function getAllByParams($params)
+    {
+        return Flight::db()->select(self::$table, '*', $params);
+    }
 }

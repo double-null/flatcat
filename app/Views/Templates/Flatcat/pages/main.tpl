@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div  class="col-md-4">
-                <form id="fast-search">
+                <form id="fast-search" action="/search/">
                     <div class="row">
                         <div class="col-12">
                             <b>Быстрый поиск недвижимости</b>
