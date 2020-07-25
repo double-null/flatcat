@@ -14,8 +14,10 @@ class Category extends Model
         return Flight::db()->select('categories', '*');
     }
 
-    public static function getOneByMark($mark)
+    public static function getOneByMark($mark, $lang = 1)
     {
-        return Flight::db()->get('categories', '*', ['mark' => $mark]);
+        return Flight::db()->get('categories', 'name', [
+            'AND' => ['mark' => $mark, 'lang' => $lang]
+        ]);
     }
 }

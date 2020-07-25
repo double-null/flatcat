@@ -27,9 +27,9 @@
             </div>
             <div class="filters-item">
                 <select multiple="multiple" placeholder="{$filters[5].value}" class="SlectBox" name="heating">
-                    <option value="1">Центральное</option>
-                    <option value="2">Своя котельня</option>
-                    <option value="3">Индивидуальный котёл</option>
+                    {foreach $variants[1] as $variant}
+                        <option value="{$variant.id}">{$variant.value}</option>
+                    {/foreach}
                 </select>
             </div>
             <div class="filters-item">
@@ -54,8 +54,8 @@
 {/block}
 
 {block name="breadcrumbs"}
-    <li><a href="/">Главная</a></li>
-    <li>{$category.name}</li>
+    <li><a href="/">{$common.main_page}</a></li>
+    <li>{$categoryName}</li>
 {/block}
 
 {block name="content"}
