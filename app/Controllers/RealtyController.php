@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\Filter;
+use App\Models\FilterVariants;
 use App\Models\Realty;
 use Flight;
 
@@ -14,6 +16,8 @@ class RealtyController
 
     public static function listing($id)
     {
+        $filters = Filter::getAll();
+        $variants = FilterVariants::getAllByFilters([1,2]);
         switch ($id) {
             case 1: $types = [1,2]; break;
             case 2: $types = [3, 4, 5, 6, 7]; break;
@@ -23,6 +27,8 @@ class RealtyController
         Flight::view()->assign('categoryID', 1);
         Flight::view()->assign('totalProducts', 1);
         Flight::view()->assign('currentPage', 1);
+        Flight::view()->assign('variants', $variants);
+        Flight::view()->assign('filters', $filters);
         Flight::view()->assign('flats', $flats);
         Flight::view()->display('pages/flats.tpl');
     }

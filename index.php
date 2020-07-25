@@ -33,7 +33,7 @@ Flight::route('/search/', ['App\Controllers\RealtyController', 'search']);
 
 Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
 
-Flight::route('/test/', function (){App\Controllers\APIController::updateProduct(2);});
+Flight::route('/test/', function (){App\Controllers\APIController::updateProduct(1);});
 
 Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 

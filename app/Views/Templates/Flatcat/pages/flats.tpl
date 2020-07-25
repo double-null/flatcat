@@ -6,40 +6,27 @@
     <div id="filters-block" class="row">
         <form method="post" class="filters-list row">
             <div class="filters-item">
-                <select multiple="multiple" placeholder="Комнат" class="SlectBox" name="rooms">
-                    <option value="1">комнаты</option>
-                    <option value="2">студия</option>
-                    <option value="3">1-комнатные</option>
-                    <option value="4">2-комнатные</option>
-                    <option value="5">3-комнатные</option>
-                    <option value="6">1-комнатные</option>
-                    <option value="7">Многокомнатные</option>
+                <select multiple="multiple" placeholder="{$filters[1].value}" class="SlectBox" name="rooms">
+                    {foreach $variants[1] as $variant}
+                        <option value="{$variant.id}">{$variant.value}</option>
+                    {/foreach}
                 </select>
             </div>
             <div class="filters-item">
-                <select multiple="multiple" placeholder="Материал" class="SlectBox" name="material">
-                    <option value="1">кирпичный</option>
-                    <option value="2">панельный</option>
-                    <option value="3">монолитный</option>
-                    <option value="4">кирпично-панельный</option>
-                    <option value="4">кирпично-монолитный</option>
-                    <option value="4">блок + утеплитель</option>
-                    <option value="4">блочный</option>
-                    <option value="4">каркасно-щитовой</option>
-                    <option value="4">монолитно-блочный</option>
-                    <option value="4">бетон</option>
-                    <option value="4">блок-утеплитель</option>
-                    <option value="4">блочно-монолитный</option>
+                <select multiple="multiple" placeholder="{$filters[2].value}" class="SlectBox" name="material">
+                    {foreach $variants[2] as $variant}
+                        <option value="{$variant.id}">{$variant.value}</option>
+                    {/foreach}
                 </select>
             </div>
             <div class="filters-item">
-                Этаж <input type="text" name="min_floor" size="1"> - <input type="text" name="max_floor" size="1">
+                {$filters[3].value} <input type="text" name="min_floor" size="1"> - <input type="text" name="max_floor" size="1">
             </div>
             <div class="filters-item">
-                Дом не ниже <input type="text" name="max_floor" size="1"> эт.
+                {$filters[4].value} <input type="text" name="max_floor" size="1"> {$filters[4].additional}
             </div>
             <div class="filters-item">
-                <select multiple="multiple" placeholder="Отопление" class="SlectBox" name="heating">
+                <select multiple="multiple" placeholder="{$filters[5].value}" class="SlectBox" name="heating">
                     <option value="1">Центральное</option>
                     <option value="2">Своя котельня</option>
                     <option value="3">Индивидуальный котёл</option>
@@ -47,18 +34,18 @@
             </div>
             <div class="filters-item">
                 <input id="check_new_build" type="checkbox" name="new_build" value="0">
-                <label for="check_new_build">Без новостроек</label>
+                <label for="check_new_build">{$filters[6].value}</label>
             </div>
             <div class="filters-item">
                 <input id="check_reduced_price" type="checkbox" name="reduced_price" value="1">
-                <label for="check_reduced_price">Цена снижена</label>
+                <label for="check_reduced_price">{$filters[7].value}</label>
             </div>
             <div class="filters-item">
                 <input id="check_superprice" type="checkbox" name="superprice" value="1">
-                <label for="check_superprice">По суперцене</label>
+                <label for="check_superprice">{$filters[8].value}</label>
             </div>
             <div class="filters-item">
-                Цена <input type="text" name="min_price" size="5"> - <input type="text" name="max_price" size="5">
+                {$filters[9].value} <input type="text" name="min_price" size="5"> - <input type="text" name="max_price" size="5">
             </div>
 
             <div class="filter-submit"><button id="filter-send" type="submit" class="green-btn">Найти</button></div>

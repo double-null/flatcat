@@ -88,6 +88,15 @@ textarea {
     padding: 5px;
 }
 
+.filters-item input[type=text]{
+    background-color: #fff;
+    border: 1px solid #a4a4a4;
+    border-radius: 2px;
+    margin: 0;
+    min-height: 14px;
+    position: relative;
+}
+
 input[type="checkbox"] + label {
     font-family: Arial,sans-serif;
     font-size: 14px;
