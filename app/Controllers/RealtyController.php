@@ -19,15 +19,15 @@ class RealtyController
     {
         $lang = 1;
         $filters = Filter::getAll();
-        $variants = FilterVariants::getAllByFilters([1,2]);
+        $variants = FilterVariants::getAllByFilters([1,2,10,11]);
         $categoryName = Category::getOneByMark($id, $lang);
         switch ($id) {
             case 1: $types = [1,2]; break;
-            case 2: $types = [3, 4, 5, 6, 7]; break;
-            case 3: $types = [8]; break;
+            case 2: $types = [8]; break;
+            case 3: $types = [3, 4, 5, 6, 7]; break;
         }
         $flats = Realty::getAllByTypes($types);
-        Flight::view()->assign('categoryID', 1);
+        Flight::view()->assign('categoryID', $id);
         Flight::view()->assign('categoryName', $categoryName);
         Flight::view()->assign('totalProducts', 1);
         Flight::view()->assign('currentPage', 1);

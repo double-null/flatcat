@@ -7,29 +7,25 @@
                 <form id="fast-search" action="/search/">
                     <div class="row">
                         <div class="col-12">
-                            <b>Быстрый поиск недвижимости</b>
+                            <b>{$inscriptions.fast_search_title}</b>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="select">
                                 <select name="deal">
-                                    <option value="1">Купить</option>
-                                    <option value="2">Снять</option>
+                                    {foreach $variants[11] as $variant}
+                                        <option value="{$variant.id}">{$variant.value}</option>
+                                    {/foreach}
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="select">
                                 <select name="type">
-                                    <option value="1">Квартира</option>
-                                    <option value="2">Комната</option>
-                                    <option value="3">Дом</option>
-                                    <option value="4">Дачу</option>
-                                    <option value="5">Коттедж</option>
-                                    <option value="6">Часть дома</option>
-                                    <option value="7">Участок</option>
-                                    <option value="8">Коммерческую</option>
+                                    {foreach $variants[10] as $variant}
+                                        <option value="{$variant.id}">{$variant.value}</option>
+                                    {/foreach}
                                 </select>
                             </div>
                         </div>
@@ -50,7 +46,7 @@
                     </div>
                     <div class="row">
                         <div class="col-12">
-                            <button class="green-btn">Найти</button>
+                            <button class="green-btn">{$inscriptions.fast_search_btn}</button>
                         </div>
                     </div>
                 </form>
