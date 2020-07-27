@@ -35,7 +35,7 @@ textarea {
     align-items: center;
 }
 
-.ticket-action{
+.sub-menu{
     display: flex;
     justify-content: flex-end;
 }
@@ -142,17 +142,32 @@ footer{
 
 /* Buttons */
 
-.green-btn{
-    background: #6abf2f none repeat scroll 0 0;
+.green-btn, .white-btn{
     border: medium none;
-    color: #fff;
     display: flex;
     flex-direction: column;
-    height: 30px;
+    min-height: 30px;
     justify-content: center;
     padding: 0 12px;
     text-align: center;
+    cursor: pointer;
 }
+
+.green-btn{
+    background: #6abf2f none repeat scroll 0 0;
+    color: #fff;
+}
+
+.white-btn{
+    background: #FFFFFF none repeat scroll 0 0;
+    color: #000;
+}
+
+.white-btn:hover{
+    background: #506266 none repeat scroll 0 0;
+    color: #FFFFFF;
+}
+
 
 .object-item{margin-top: 20px;}
 
@@ -417,3 +432,40 @@ select {
 }
 
 #advantages{padding-top: 50px;}
+
+.callback-holder, .viber-holder{
+    color: #fff;
+    height: 50px;
+    left: 0;
+    max-width: 500px;
+    overflow: hidden;
+    position: fixed;
+    top: 40%;
+    transition: all 1s linear 0s;
+    z-index: 9999;
+}
+
+.callback-body, .callback-holder{display: flex; flex-flow: wrap;}
+
+.callback-body{order:1; display: none;}
+
+.callback-icon {
+    background: url("../images/iconwphone.png") no-repeat scroll 5px 5px / 35px 35px;
+    cursor: pointer;
+    order: 2;
+    width: 50px;
+}
+
+.callback-input{display: flex; flex-direction: column; justify-content: center;}
+
+.callback-confirm{
+    background: url("../images/iconwok.png") no-repeat scroll 12px 12px / 25px 25px;
+    min-width: 50px;
+}
+.callback-holder{
+    background: #6abf2f none repeat scroll 0 0;
+}
+.viber-holder{
+    background: #7C529E none repeat scroll 0 0;
+    margin-top: 60px;
+}

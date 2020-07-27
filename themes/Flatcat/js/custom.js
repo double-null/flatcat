@@ -58,4 +58,9 @@ $( document ).ready(function() {
     $('.spoiler-item').click(function(){
         $(this).find('.spoiler-body').slideToggle('slow');
     });
+
+    $('.callback-holder').click(function(){
+        $(this).css('max-width', '100%');
+        $(this).find('.callback-body').slideToggle('slow', 'left');
+    });
 });

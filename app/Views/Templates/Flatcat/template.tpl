@@ -22,17 +22,20 @@
     <header class="main-header">
         <div class="container">
             <div class="row header-general">
-                <div class="col-md-4">
+                <div class="col-md-2">
                     <a class="header-sub-block" href="/">
                         <img alt="" src="/themes/Flatcat/images/logo-site.svg">
                     </a>
                 </div>
-                <div class="col-md-2">(4922) 44 44 11</div>
-                <div class="col-md-2">
-                    пн-вс 9:00-20:00 <br>
-                    call-центр
+                <div class="col-md-3" class="short-contact-info">
+                    (4922) 44 44 11 <br>
+                    {$common.work_time}
                 </div>
-                <div class="col-md-4 ticket-action">
+
+                <div class="col-md-7 sub-menu">
+                    <a class="white-btn" href="/about/">{$common.about_btn}</a>
+                    <a class="white-btn" href="/for_seller/">{$common.for_seller_btn}</a>
+                    <a class="white-btn" href="/contacts/">{$common.contacts_btn}</a>
                     <a class="green-btn popup-open" data-id="1">{$common.leave_request}</a>
                 </div>
             </div>
@@ -69,6 +72,25 @@
             <div class="col-md-12"> © {$smarty.now|date_format:'Y'} {$common.copyrights}</div>
         </div>
     </footer>
+
+    <div class="callback-holder">
+
+        <div class="callback-icon"></div>
+        <div class="callback-body">
+            <div class="callback-input"><input type="text" name="callback-phone"></div>
+            <div class="callback-confirm"></div>
+        </div>
+
+
+    </div>
+
+    <div class="viber-holder">
+        <div class="callback-icon">
+            <img class="img-fluid" src="/themes/Flatcat/images/viber.jpg">
+        </div>
+    </div>
+
+
 
     <div class="popup-fade" data-id="1">
         <div class="popup">

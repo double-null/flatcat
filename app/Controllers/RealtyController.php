@@ -19,7 +19,7 @@ class RealtyController
     {
         $lang = 1;
         $filters = Filter::getAll();
-        $variants = FilterVariants::getAllByFilters([1,2,10,11]);
+        $variants = FilterVariants::getAllByFilters([1,2,5,10,11]);
         $categoryName = Category::getOneByMark($id, $lang);
         switch ($id) {
             case 1: $types = [1,2]; break;
