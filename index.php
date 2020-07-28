@@ -10,7 +10,6 @@ Flight::register('view', 'Smarty', array(), function($smarty){
     //$smarty->cache_dir = './cache/';
 });
 
-
 Flight::register('db', 'Medoo\Medoo', [database()]);
 
 App\Modules\Application::start();
@@ -18,6 +17,8 @@ App\Modules\Application::start();
 App\Controllers\PageController::start();
 
 Flight::route('/', ['App\Controllers\PageController', 'main']);
+
+Flight::route('/set_lang/', ['App\Controllers\LangController', 'change']);
 
 Flight::route('/@lang/flats_and_rooms/', function ($lang){App\Controllers\RealtyController::listing(1);});
 

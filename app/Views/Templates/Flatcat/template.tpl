@@ -27,7 +27,7 @@
                         <img alt="" src="/themes/Flatcat/images/logo-site.svg">
                     </a>
                 </div>
-                <div class="col-md-3" class="short-contact-info">
+                <div class="col-md-2" class="short-contact-info">
                     (4922) 44 44 11 <br>
                     {$common.work_time}
                 </div>
@@ -37,6 +37,24 @@
                     <a class="white-btn" href="/for_seller/">{$common.for_seller_btn}</a>
                     <a class="white-btn" href="/contacts/">{$common.contacts_btn}</a>
                     <a class="green-btn popup-open" data-id="1">{$common.leave_request}</a>
+                </div>
+                <div class="col-md-1">
+                    <div id="lang-changer">
+                        <a  href="#">
+                            <img src="/themes/Flatcat/images/langs/{$lang}.png">
+                        </a>
+                    </div>
+                    <div id="lang-list">
+                        <a href="/set_lang/?lang=1">
+                            <img src="/themes/Flatcat/images/langs/ge.png">
+                        </a>
+                        <a href="/set_lang/?lang=2">
+                            <img src="/themes/Flatcat/images/langs/en.png">
+                        </a>
+                        <a href="/set_lang/?lang=3">
+                            <img src="/themes/Flatcat/images/langs/ru.png">
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="row header-menu">

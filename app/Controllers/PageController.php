@@ -21,6 +21,8 @@ class PageController
 
     public static function start()
     {
+        LangController::setDefault();
+        Flight::view()->assign('lang', $_SESSION['lang']['short_name']);
         Flight::view()->assign('menu', Category::getAll());
         Flight::view()->assign('common', Block::getOneByParams(['name' => 'all_pages']));
     }

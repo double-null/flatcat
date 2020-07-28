@@ -40,6 +40,26 @@ textarea {
     justify-content: flex-end;
 }
 
+#lang-changer{
+    background:  url("/themes/Flatcat/images/down-arrow.png") no-repeat scroll 100% 50%;
+    text-align: center;
+}
+
+#lang-list{
+    background-color: white;
+    border: 1px solid red;
+    display: none;
+    margin-top: 5px;
+    position: absolute;
+    text-align: center;
+    width: 65px;
+    z-index: 2;
+}
+
+#lang-changer img, #lang-list img{
+    height: 30px;
+}
+
 .header-menu ul{
     display: flex;
     list-style: outside none none;

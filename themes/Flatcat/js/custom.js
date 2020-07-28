@@ -59,6 +59,11 @@ $( document ).ready(function() {
         $(this).find('.spoiler-body').slideToggle('slow');
     });
 
+    $('#lang-changer').click(function(){
+        $('#lang-list').slideToggle();
+    });
+
+
     $('.callback-holder').click(function(){
         $(this).css('max-width', '100%');
         $(this).find('.callback-body').slideToggle('slow', 'left');
