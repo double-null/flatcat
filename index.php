@@ -102,6 +102,10 @@ Flight::route('/admin/category_desc/create/@cat/', function($cat){
     App\Modules\CatDesc::create();
 });
 
+Flight::route('/admin/objects/', ['App\Controllers\RealtyController', 'privateListing']);
+
+Flight::route('/admin/object/mod/', ['App\Controllers\RealtyController', 'modify']);
+
 Flight::route('/admin/parameters/', ['App\Modules\Parameter', 'listing']);
 
 Flight::route('/admin/parameter/drop/', ['App\Controllers\ParameterController', 'drop']);

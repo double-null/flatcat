@@ -96,7 +96,7 @@
                                     <li><a href="/admin/realty/create/3/"> Добавить дом </a></li>
                                     <li><a href="/admin/product/create/"> Добавить дачу </a></li>
                                     <li><a href="/admin/product/create/"> Добавить участок </a></li>
-                                    <li><a href="/admin/products/"> Список обьектов </a></li>
+                                    <li><a href="/admin/objects/"> Список обьектов </a></li>
                                 </ul>
                             </li>
                         {/if}

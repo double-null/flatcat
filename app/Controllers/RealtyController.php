@@ -37,6 +37,25 @@ class RealtyController
         Flight::view()->display('pages/flats.tpl');
     }
 
+    public static function privateListing()
+    {
+        $objects = Realty::getAll();
+        Flight::view()->assign('objects', $objects);
+        Flight::view()->display('realty/listing.tpl');
+    }
+
+    public static function modify()
+    {
+        $id = (int)$_GET['id'];
+        if (!empty($_POST['Realty'])) {
+            Realty::$data = $_POST['Realty'];
+            Realty::updateByID($id);
+        }
+        $object = Realty::getOneByID($id);
+        Flight::view()->assign('object', $object);
+        Flight::view()->display('realty/modify.tpl');
+    }
+
     public static function search()
     {
         $params = [];
