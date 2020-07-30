@@ -1,3 +1,5 @@
+html, body{height: 100%;}
+
 html, body, ul {margin: 0; padding: 0; font-family: Verdana;}
 
 a{text-decoration: none; color: #dd0018;}
@@ -9,6 +11,8 @@ form{padding: 5px 20px;}
 label{font-weight: bold;}
 
 .center{justify-content: center; margin-top: 20px;}
+
+.page{min-height: 100%; position: relative;}
 
 .main-title{font-size: 24px; font-weight: bold; text-align: center; margin-top: 20px;}
 
@@ -38,6 +42,7 @@ textarea {
 .sub-menu{
     display: flex;
     justify-content: flex-end;
+    font-size: 14px;
 }
 
 #lang-changer{
@@ -139,7 +144,9 @@ input[type="checkbox"] + label {
 }
 
 footer{
+    bottom: 0;
     background: #f1f4f5 none repeat scroll 0 0;
+    height: 80px;
     margin-top: 75px;
     padding: 30px 0;
     position: absolute;
@@ -287,7 +294,7 @@ footer{
     right: -14px;
 }
 
-#content{margin-top: 20px; min-height: 600px;}
+#content{ padding-bottom: 150px; padding-top: 20px; text-align: justify;}
 
 .product-map *{width: 100%;}
 
@@ -489,3 +496,19 @@ select {
     background: #7C529E none repeat scroll 0 0;
     margin-top: 60px;
 }
+
+.about-media{
+    float: right;
+    height: 290px;
+    margin: 0 0 30px 30px;
+    width: 515px;
+}
+
+.sub-title{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.work-time{font-size: 12px;}
+
+.phone-info{font-weight: bold;}

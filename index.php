@@ -32,6 +32,10 @@ Flight::route('/@lang/suburban/', function ($lang){App\Controllers\RealtyControl
 
 Flight::route('/search/', ['App\Controllers\RealtyController', 'search']);
 
+Flight::route('/about/', ['App\Controllers\PageController', 'about']);
+
+Flight::route('/contacts/', ['App\Controllers\PageController', 'contacts']);
+
 Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
 
 Flight::route('/test/', function (){App\Controllers\APIController::updateProduct(1);});

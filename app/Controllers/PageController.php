@@ -19,6 +19,18 @@ class PageController
         Flight::view()->display('pages/main.tpl');
     }
 
+    public static function about()
+    {
+        Flight::view()->assign('inscriptions', Block::getOneByParams(['name' => 'about']));
+        Flight::view()->display('pages/about.tpl');
+    }
+
+    public static function contacts()
+    {
+        Flight::view()->assign('inscriptions', Block::getOneByParams(['name' => 'contacts']));
+        Flight::view()->display('pages/about.tpl');
+    }
+
     public static function start()
     {
         LangController::setDefault();

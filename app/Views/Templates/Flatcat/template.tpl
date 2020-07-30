@@ -18,88 +18,84 @@
         <script src="/themes/Flatcat/js/custom.js"></script>
     </head>
     <body>
-
-    <header class="main-header">
-        <div class="container">
-            <div class="row header-general">
-                <div class="col-md-2">
-                    <a class="header-sub-block" href="/">
-                        <img alt="" src="/themes/Flatcat/images/logo-site.svg">
-                    </a>
-                </div>
-                <div class="col-md-2" class="short-contact-info">
-                    (4922) 44 44 11 <br>
-                    {$common.work_time}
-                </div>
-
-                <div class="col-md-7 sub-menu">
-                    <a class="white-btn" href="/about/">{$common.about_btn}</a>
-                    <a class="white-btn" href="/for_seller/">{$common.for_seller_btn}</a>
-                    <a class="white-btn" href="/contacts/">{$common.contacts_btn}</a>
-                    <a class="green-btn popup-open" data-id="1">{$common.leave_request}</a>
-                </div>
-                <div class="col-md-1">
-                    <div id="lang-changer">
-                        <a  href="#">
-                            <img src="/themes/Flatcat/images/langs/{$lang}.png">
+    <div class="page">
+        <header class="main-header">
+            <div class="container">
+                <div class="row header-general">
+                    <div class="col-md-2">
+                        <a class="header-sub-block" href="/">
+                            <img alt="" src="/themes/Flatcat/images/logo-site.svg">
                         </a>
                     </div>
-                    <div id="lang-list">
-                        <a href="/set_lang/?lang=1">
-                            <img src="/themes/Flatcat/images/langs/ge.png">
-                        </a>
-                        <a href="/set_lang/?lang=2">
-                            <img src="/themes/Flatcat/images/langs/en.png">
-                        </a>
-                        <a href="/set_lang/?lang=3">
-                            <img src="/themes/Flatcat/images/langs/ru.png">
-                        </a>
+                    <div class="col-md-3" class="short-contact-info">
+                        <div class="phone-info">(4922) 44 44 11</div>
+                        <div class="work-time">{$common.work_time}</div>
+                    </div>
+
+                    <div class="col-md-6 sub-menu">
+                        <a class="white-btn" href="/about/">{$common.about_btn}</a>
+                        <a class="white-btn" href="/for_seller/">{$common.for_seller_btn}</a>
+                        <a class="white-btn" href="/contacts/">{$common.contacts_btn}</a>
+                        <a class="green-btn popup-open" data-id="1">{$common.leave_request}</a>
+                    </div>
+                    <div class="col-md-1">
+                        <div id="lang-changer">
+                            <a  href="#">
+                                <img src="/themes/Flatcat/images/langs/{$lang}.png">
+                            </a>
+                        </div>
+                        <div id="lang-list">
+                            <a href="/set_lang/?lang=1">
+                                <img src="/themes/Flatcat/images/langs/ge.png">
+                            </a>
+                            <a href="/set_lang/?lang=2">
+                                <img src="/themes/Flatcat/images/langs/en.png">
+                            </a>
+                            <a href="/set_lang/?lang=3">
+                                <img src="/themes/Flatcat/images/langs/ru.png">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row header-menu">
+                    <div class="col-md-12">
+                        <ul>
+                            {foreach $menu as $item}
+                                <li><a href="{$item.link}">{$item.name}</a></li>
+                            {/foreach}
+                        </ul>
+                        <div id="filters" class="col-md-12">{block name="filters"}{/block}</div>
                     </div>
                 </div>
             </div>
-            <div class="row header-menu">
-                <div class="col-md-12">
-                    <ul>
-                        {foreach $menu as $item}
-                            <li><a href="{$item.link}">{$item.name}</a></li>
-                        {/foreach}
+        </header>
+
+        <div class="container" id="breadcrumbs">
+            <div class="row">
+                <div class="col-12">
+                    <ul class="breadcrumbs">
+                        {block name="breadcrumbs"}{/block}
                     </ul>
-                    <div id="filters" class="col-md-12">{block name="filters"}{/block}</div>
                 </div>
             </div>
         </div>
-    </header>
 
+        <div id="content"> {block name="content"}{/block}</div>
 
-
-    <div class="container" id="breadcrumbs">
-        <div class="row">
-            <div class="col-12">
-                <ul class="breadcrumbs">
-                    {block name="breadcrumbs"}{/block}
-                </ul>
+        <footer class="container-fluid">
+            <div id="city"></div>
+            <div id="rights" class="row">
+                <div class="col-md-12"> © {$smarty.now|date_format:'Y'} {$common.copyrights}</div>
             </div>
-        </div>
+        </footer>
     </div>
 
-    <div id="content"> {block name="content"}{/block}</div>
-
-    <footer class="container-fluid">
-        <div id="city"></div>
-        <div id="rights" class="row">
-            <div class="col-md-12"> © {$smarty.now|date_format:'Y'} {$common.copyrights}</div>
-        </div>
-    </footer>
-
     <div class="callback-holder">
-
         <div class="callback-icon"></div>
         <div class="callback-body">
             <div class="callback-input"><input type="text" name="callback-phone"></div>
             <div class="callback-confirm"></div>
         </div>
-
-
     </div>
 
     <div class="viber-holder">
@@ -107,8 +103,6 @@
             <img class="img-fluid" src="/themes/Flatcat/images/viber.jpg">
         </div>
     </div>
-
-
 
     <div class="popup-fade" data-id="1">
         <div class="popup">
@@ -129,6 +123,7 @@
             </form>
         </div>
     </div>
+
 
     </body>
 </html>
