@@ -36,6 +36,8 @@ Flight::route('/about/', ['App\Controllers\PageController', 'about']);
 
 Flight::route('/contacts/', ['App\Controllers\PageController', 'contacts']);
 
+Flight::route('/for_seller/', ['App\Controllers\PageController', 'for_seller']);
+
 Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
 
 Flight::route('/test/', function (){App\Controllers\APIController::updateProduct(1);});
@@ -109,6 +111,10 @@ Flight::route('/admin/category_desc/create/@cat/', function($cat){
 Flight::route('/admin/objects/', ['App\Controllers\RealtyController', 'privateListing']);
 
 Flight::route('/admin/object/mod/', ['App\Controllers\RealtyController', 'modify']);
+
+Flight::route('/admin/advantages/', ['App\Controllers\AdvantageController', 'listing']);
+
+Flight::route('/admin/advantage/create/', ['App\Controllers\AdvantageController', 'create']);
 
 Flight::route('/admin/parameters/', ['App\Modules\Parameter', 'listing']);
 

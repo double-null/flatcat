@@ -105,6 +105,11 @@
                         {/if}
                         {if $user_info['role'] == 1}
                             <li>
+                                <a href="/admin/advantages/"><i class="fa fa-thumbs-o-up"></i> Преимущества </i></a>
+                            </li>
+                        {/if}
+                        {if $user_info['role'] == 1}
+                            <li>
                                 <a href="/admin/intrum/actions/">
                                     <i class="fa fa-arrows-h"></i> Intrum </i>
                                 </a>

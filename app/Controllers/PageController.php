@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Models\Advantage;
 use App\Models\Block;
 use App\Models\Category;
 use App\Models\FilterVariants;
@@ -29,6 +30,12 @@ class PageController
     {
         Flight::view()->assign('inscriptions', Block::getOneByParams(['name' => 'contacts']));
         Flight::view()->display('pages/about.tpl');
+    }
+
+    public static function for_seller()
+    {
+        Flight::view()->assign('advantages', Advantage::getAll());
+        Flight::view()->display('pages/for_seller.tpl');
     }
 
     public static function start()
