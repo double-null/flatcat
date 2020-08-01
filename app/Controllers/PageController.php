@@ -34,6 +34,7 @@ class PageController
 
     public static function for_seller()
     {
+        Flight::view()->assign('inscriptions', Block::getOneByParams(['name' => 'for_seller']));
         Flight::view()->assign('advantages', Advantage::getAll());
         Flight::view()->display('pages/for_seller.tpl');
     }

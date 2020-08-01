@@ -14,23 +14,18 @@
         </div>
         <div class="row gray-block">
             <div class="col-md-6">
-                <label>Поручите продажу «Владис» уже сегодня!</label>
-                <ul class="excellent-list">
-                    <li>Тысячи покупателей сразу узнают о вашем предложении.</li>
-                    <li>Более 250 специалистов предложат своим клиентам-покупателям вашу недвижимость.</li>
-                    <li>Более двух тысяч посетителей сайта ежедневно увидят её среди новых поступлений.</li>
-                    <li>Вы платите только за результат – совершенную сделку. Никаких авансовых платежей.</li>
-                </ul>
+                <label>{$inscriptions.list_title}</label>
+                <ul class="excellent-list">{$inscriptions.list}</ul>
                 <form class="feedback-form">
                     <div class="row">
                         <div class="col-md-4">
-                            <input type="text" placeholder="Ваше имя">
+                            <input type="text" placeholder="{$inscriptions.your_name}">
                         </div>
                         <div class="col-md-4">
-                            <input type="text" placeholder="Телефон">
+                            <input type="text" placeholder="{$inscriptions.your_phone}">
                         </div>
                         <div class="col-md-4">
-                            <button class="green-btn">Начать продажу</button>
+                            <button class="green-btn">{$inscriptions.seller_btn}</button>
                         </div>
                     </div>
                 </form>
@@ -40,9 +35,33 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-12" style="text-align: center;">
-                <span class="sub-title">8 причин выбрать «Владис» для продажи недвижимости</span>
+            <div class="col-md-12 m20" style="text-align: center;">
+                <span class="sub-title">{$inscriptions.center_title}</span>
             </div>
+        </div>
+        <div id="advantages">
+            {foreach $advantages as $advantage}
+                <div class="row advantage">
+                    <div class="col-md-6 m20">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="advantage-title">
+                                    <div class="advantage-num">{$advantage@iteration}</div>
+                                    <span>{$advantage.title}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="advantage-description m20">{$advantage.description}</div>
+                        <div class="advantage-btn m20">
+                            <button class="gray-btn">{$advantage.button_title}</button>
+                        </div>
+                    </div>
+                    <div class="col-md-6 m20">
+                        <img src="/images/advantages/{$advantage.photo_name}">
+                    </div>
+                </div>
+            {/foreach}
         </div>
     </div>
 {/block}
