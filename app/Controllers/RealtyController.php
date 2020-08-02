@@ -26,15 +26,18 @@ class RealtyController
             case 2: $types = [8]; break;
             case 3: $types = [3, 4, 5, 6, 7]; break;
         }
-        $flats = Realty::getAllByTypes($types);
+        $page = ((int)$_GET['page'] != 0) ? (int)$_GET['page'] : 1;
+        $limit = [($page - 1) * 10, 10];
+        $totalObjects = Realty::countAllByTypes($types);
+        $objects = Realty::getAllByTypes($types, $limit);
         Flight::view()->assign('categoryID', $id);
         Flight::view()->assign('categoryName', $categoryName);
-        Flight::view()->assign('totalProducts', 1);
-        Flight::view()->assign('currentPage', 1);
+        Flight::view()->assign('totalProducts', $totalObjects);
+        Flight::view()->assign('currentPage', $page);
         Flight::view()->assign('variants', $variants);
         Flight::view()->assign('filters', $filters);
-        Flight::view()->assign('flats', $flats);
-        Flight::view()->display('pages/flats.tpl');
+        Flight::view()->assign('objects', $objects);
+        Flight::view()->display('realty/listing.tpl');
     }
 
     public static function privateListing()

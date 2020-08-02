@@ -18,9 +18,16 @@ class Realty extends Model
         );
     }
 
-    public static function getAllByTypes($types)
+    public static function getAllByTypes($types, $limit = 0)
     {
-        return Flight::db()->select(self::$table, '*', ['type' => $types]);
+        return Flight::db()->select(self::$table, '*',
+            ['type' => $types, 'LIMIT' => $limit]
+        );
+    }
+
+    public static function countAllByTypes($types)
+    {
+        return Flight::db()->count(self::$table, ['type' => $types]);
     }
 
     public static function getAllByParams($params)
