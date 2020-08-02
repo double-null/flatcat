@@ -64,8 +64,16 @@ $( document ).ready(function() {
     });
 
 
-    $('.callback-holder').click(function(){
-        $(this).css('max-width', '100%');
-        $(this).find('.callback-body').slideToggle('slow', 'left');
+    $('.callback-holder .callback-icon').click(function(){
+        $(this).next().css('display', 'flex');
     });
+
+    $('.callback-cancel').click(function(){
+        $(this).parent().css('display', 'none');
+    });
+
+    $('.viber-holder .callback-icon').click(function(){
+        $(this).next().css('display', 'flex');
+    });
+
 });

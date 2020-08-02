@@ -484,7 +484,6 @@ select {
     color: #fff;
     height: 50px;
     left: 0;
-    max-width: 500px;
     overflow: hidden;
     position: fixed;
     top: 40%;
@@ -492,7 +491,7 @@ select {
     z-index: 9999;
 }
 
-.callback-body, .callback-holder{display: flex; flex-flow: wrap;}
+.callback-body, .callback-holder, .viber-holder{display: flex; flex-flow: wrap;}
 
 .callback-body{order:1; display: none;}
 
@@ -503,15 +502,41 @@ select {
     width: 50px;
 }
 
-.callback-input{display: flex; flex-direction: column; justify-content: center;}
+.callback-input{display: flex; flex-direction: column; justify-content: center; padding: 0 20px;}
+
+.callback-input input{border: 0px; width: 270px; height: 28px;}
 
 .callback-confirm{
     background: url("../images/iconwok.png") no-repeat scroll 12px 12px / 25px 25px;
     min-width: 50px;
 }
+
+.callback-btn, .callback-cancel{cursor: pointer;}
+
+.callback-btn, .callback-description, .viber-description{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.callback-description{
+    width: 200px;
+}
+
+.viber-description{
+    width: 647px;
+    text-align: center;
+}
+
+.callback-cancel{
+    background: url("../images/iconwcancel.png") no-repeat scroll 12px 12px / 25px 25px;
+    min-width: 50px;
+}
+
 .callback-holder{
     background: #6abf2f none repeat scroll 0 0;
 }
+
 .viber-holder{
     background: #7C529E none repeat scroll 0 0;
     margin-top: 60px;

@@ -95,12 +95,24 @@
         <div class="callback-body">
             <div class="callback-input"><input type="text" name="callback-phone"></div>
             <div class="callback-confirm"></div>
+            <div class="callback-btn">Отправить</div>
+            <div class="callback-cancel"></div>
+            <div class="callback-description">
+                Оставьте свой номер и мы Вам перезвоним
+            </div>
         </div>
     </div>
 
     <div class="viber-holder">
         <div class="callback-icon">
             <img class="img-fluid" src="/themes/Flatcat/images/viber.jpg">
+        </div>
+        <div class="callback-body">
+            <div class="callback-cancel"></div>
+            <div class="viber-description">
+                Ура, мы в вайбер! Запишите наш номер телефона 7 (902) 888-88-89
+                Получите консультацию, где бы вы не находились!
+            </div>
         </div>
     </div>
 
