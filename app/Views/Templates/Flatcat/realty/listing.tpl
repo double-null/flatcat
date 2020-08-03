@@ -4,7 +4,7 @@
 
 {block name="filters"}
     <div id="filters-block" class="row">
-        <form method="post" class="filters-list row">
+        <form method="GET" class="filters-list row">
             {if $categoryID|in_array:[2]}
                 <div class="filters-item">
                     {foreach $variants[11] as $variant}
@@ -14,7 +14,7 @@
             {/if}
             {if $categoryID|in_array:[1]}
                 <div class="filters-item">
-                    <select multiple="multiple" placeholder="{$filters[1].value}" class="SlectBox" name="rooms">
+                    <select multiple="multiple" placeholder="{$filters[1].value}" class="SlectBox" name="rooms[]">
                         {foreach $variants[1] as $variant}
                             <option value="{$variant.id}">{$variant.value}</option>
                         {/foreach}
@@ -22,7 +22,7 @@
                 </div>
             {/if}
             <div class="filters-item">
-                <select multiple="multiple" placeholder="{$filters[2].value}" class="SlectBox" name="material">
+                <select multiple="multiple" placeholder="{$filters[2].value}" class="SlectBox" name="material[]">
                     {foreach $variants[2] as $variant}
                         <option value="{$variant.id}">{$variant.value}</option>
                     {/foreach}
@@ -30,7 +30,7 @@
             </div>
             {if $categoryID|in_array:[1,2]}
                 <div class="filters-item">
-                    {$filters[3].value} <input type="text" name="min_floor" size="1"> - <input type="text" name="max_floor" size="1">
+                    {$filters[3].value} <input type="text" name="min_floor_d" size="1"> - <input type="text" name="max_floor_d" size="1">
                 </div>
             {/if}
             {if $categoryID|in_array:[1]}
@@ -40,7 +40,7 @@
             {/if}
             {if $categoryID|in_array:[1]}
                 <div class="filters-item">
-                    <select multiple="multiple" placeholder="{$filters[5].value}" class="SlectBox" name="heating">
+                    <select multiple="multiple" placeholder="{$filters[5].value}" class="SlectBox" name="heating[]">
                         {foreach $variants[5] as $variant}
                             <option value="{$variant.id}">{$variant.value}</option>
                         {/foreach}
@@ -161,7 +161,7 @@
                     {if $page == $currentPage}
                         <div class="current-page">{$page}</div>
                     {else}
-                        <div class="page-link"><a href="?page={$page}">{$page}</a></div>
+                        <div class="page-link"><a href="{$currentUrl}page={$page}">{$page}</a></div>
                     {/if}
                 {/for}
             </div>

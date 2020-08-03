@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use App\Core\Url;
 use App\Models\Category;
 use App\Models\Filter;
 use App\Models\FilterVariants;
@@ -21,6 +22,10 @@ class RealtyController
         $filters = Filter::getAll();
         $variants = FilterVariants::getAllByFilters([1,2,5,10,11]);
         $categoryName = Category::getOneByMark($id, $lang);
+        $limitations = [];
+        if (!empty($_GET['rooms'])) {
+            $limitations['rooms'] = $_GET['rooms'];
+        }
         switch ($id) {
             case 1: $types = [1,2]; break;
             case 2: $types = [8]; break;
@@ -28,14 +33,16 @@ class RealtyController
         }
         $page = ((int)$_GET['page'] != 0) ? (int)$_GET['page'] : 1;
         $limit = [($page - 1) * 10, 10];
-        $totalObjects = Realty::countAllByTypes($types);
-        $objects = Realty::getAllByTypes($types, $limit);
+        $input_filters = array_diff($_GET, ['']);
+        $totalObjects = Realty::countAllByTypes($types, $input_filters);
+        $objects = Realty::getAllByTypes($types, $limit, $input_filters);
         Flight::view()->assign('categoryID', $id);
         Flight::view()->assign('categoryName', $categoryName);
         Flight::view()->assign('totalProducts', $totalObjects);
         Flight::view()->assign('currentPage', $page);
         Flight::view()->assign('variants', $variants);
         Flight::view()->assign('filters', $filters);
+        Flight::view()->assign('currentUrl', Url::generate($input_filters));
         Flight::view()->assign('objects', $objects);
         Flight::view()->display('realty/listing.tpl');
     }
