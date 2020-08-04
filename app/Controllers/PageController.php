@@ -14,7 +14,7 @@ class PageController
     public static function main()
     {
         Flight::view()->assign('inscriptions', Block::getOneByParams(['name' => 'main_page']));
-        Flight::view()->assign('advantages', Block::getOneByParams(['name' => 'advantages']));
+        Flight::view()->assign('advantages', Advantage::getAll());
         Flight::view()->assign('reviews', Review::getAll());
         Flight::view()->assign('variants', FilterVariants::getAllByFilters([10,11]));
         Flight::view()->display('pages/main.tpl');

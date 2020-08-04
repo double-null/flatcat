@@ -94,8 +94,7 @@
         <div class="callback-icon"></div>
         <div class="callback-body">
             <div class="callback-input"><input type="text" name="callback-phone"></div>
-            <div class="callback-confirm"></div>
-            <div class="callback-btn">Отправить</div>
+            <div class="callback-confirm">Отправить</div>
             <div class="callback-cancel"></div>
             <div class="callback-description">
                 Оставьте свой номер и мы Вам перезвоним
@@ -136,6 +135,14 @@
         </div>
     </div>
 
+
+    <div class="popup-fade" data-id="3">
+        <div class="popup">
+            <a class="popup-close" href="#">×</a>
+            <span class="popup-title">Статус заявки</span>
+            <div class="report-result"></div>
+        </div>
+    </div>
 
     </body>
 </html>

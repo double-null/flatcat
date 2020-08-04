@@ -72,6 +72,14 @@ $( document ).ready(function() {
         $(this).parent().css('display', 'none');
     });
 
+    $('.callback-confirm').click(function(){
+        let phone = $('input[name="callback-phone"]').val();
+        $.post('/feedback_send/', {phone:phone}).done(function(msg){
+            $('.report-result').html(msg);
+        }, 'json');
+        $('.popup-fade[data-id="3"]').fadeIn();
+    });
+
     $('.viber-holder .callback-icon').click(function(){
         $(this).next().css('display', 'flex');
     });

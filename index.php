@@ -40,6 +40,8 @@ Flight::route('/for_seller/', ['App\Controllers\PageController', 'for_seller']);
 
 Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
 
+Flight::route('/feedback_send/', ['App\Controllers\FeedbackController', 'send']);
+
 Flight::route('/test/', function (){App\Controllers\APIController::updateProduct(1);});
 
 Flight::route('/@lang/agents/', ['App\Controllers\UserController', 'openListing']);

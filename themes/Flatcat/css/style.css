@@ -502,18 +502,21 @@ select {
     width: 50px;
 }
 
-.callback-input{display: flex; flex-direction: column; justify-content: center; padding: 0 20px;}
+.callback-input, .callback-confirm{display: flex; flex-direction: column; justify-content: center;}
+
+.callback-input{padding: 0 20px;}
 
 .callback-input input{border: 0px; width: 270px; height: 28px;}
 
 .callback-confirm{
     background: url("../images/iconwok.png") no-repeat scroll 12px 12px / 25px 25px;
-    min-width: 50px;
+    width: 137px;
+    padding-left: 45px;
 }
 
-.callback-btn, .callback-cancel{cursor: pointer;}
+.callback-btn, .callback-cancel, .callback-confirm{cursor: pointer;}
 
-.callback-btn, .callback-description, .viber-description{
+.callback-description, .viber-description{
     display: flex;
     flex-direction: column;
     justify-content: center;
