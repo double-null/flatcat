@@ -27,6 +27,29 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right"> Тип недвижимости: </label>
+                        <div class="col-sm-10">
+                            <select id="realty_type" class="c-select form-control boxed" name="Realty[type]">
+                                <option value="0">Не выбрано</option>
+                                <option value="1" {if ($object.type == 1)}selected{/if}>Квартира</option>
+                                <option value="2" {if ($object.type == 2)}selected{/if}>Комната</option>
+                                <option value="3" {if ($object.type == 3)}selected{/if}>Дом</option>
+                                <option value="4" {if ($object.type == 4)}selected{/if}>Дача</option>
+                                <option value="5" {if ($object.type == 5)}selected{/if}>Коттедж</option>
+                                <option value="6" {if ($object.type == 6)}selected{/if}>Часть дома</option>
+                                <option value="7" {if ($object.type == 7)}selected{/if}>Участок</option>
+                                <option value="8" {if ($object.type == 8)}selected{/if}>Коммерческая</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right"> Категория: </label>
+                        <div class="col-sm-10">
+                            <select id="realty_sub_type" class="c-select form-control boxed" name="Realty[sub_type]">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 form-control-label text-xs-right"> Название: </label>
                         <div class="col-sm-10">
                             <input type="text" class="form-control boxed" name="Realty[name]" value="{$object.name}">
@@ -213,4 +236,18 @@
             </section>
         </div>
     </div>
+{/block}
+
+{block name="scripts"}
+    <script type="text/javascript">
+        $("#realty_type").change(function() {
+            let a = [];
+            a[1] = ['Студия', '1-комнатная', '2-комнатная', '3-комнатная', 'Многокомнатная'];
+            a[8] = ['Офис', 'Торговая', 'Производство / Склад', 'Земельные участки', 'Готовый бизнес', 'Другое'];
+            $("#realty_sub_type").empty();
+            $.each(a[$(this).val()], function(key, value){
+                $("#realty_sub_type").append($(new Option(value, key+1)));
+            });
+        });
+    </script>
 {/block}

@@ -84,10 +84,6 @@ Flight::route('/admin/blocks/', ['App\Controllers\BlockController', 'listing']);
 
 Flight::route('/admin/block/mod/@id/', function($id){App\Controllers\BlockController::update($id);});
 
-Flight::route('/admin/realty/create/@type/',
-    function ($type){App\Controllers\RealtyController::create($type);
-});
-
 Flight::route('/admin/users/', ['App\Controllers\UserController', 'listing']);
 
 Flight::route('/admin/category/create/', ['App\Controllers\CategoryController', 'create']);
@@ -110,6 +106,8 @@ Flight::route('/admin/category_desc/create/@cat/', function($cat){
 
 Flight::route('/admin/objects/', ['App\Controllers\RealtyController', 'privateListing']);
 
+Flight::route('/admin/realty/create/', ['App\Controllers\RealtyController', 'create']);
+
 Flight::route('/admin/object/mod/', ['App\Controllers\RealtyController', 'modify']);
 
 Flight::route('/admin/advantages/', ['App\Controllers\AdvantageController', 'listing']);
@@ -127,44 +125,6 @@ Flight::route('/admin/parameter/create/@id/',
 Flight::route('/admin/parameter/modify/@id/',
     function ($id) {App\Controllers\ParameterController::modify($id);}
 );
-
-Flight::route('/admin/product/create/', ['App\Controllers\ProductController', 'create']);
-
-Flight::route('/admin/products/', ['App\Controllers\ProductController', 'listing']);
-
-Flight::route('/admin/product_parameters/create/@id/', function($id){
-    App\Modules\ProductParamModule::$id = (int)$id;
-    App\Modules\ProductParamModule::create();
-});
-
-Flight::route('/admin/product_parameters/mod/@id/', function($id) {
-    App\Controllers\ProductParamController::modify($id);
-});
-
-Flight::route('/admin/product_parameters/listing/@id/', function($id) {
-    App\Controllers\ProductParamController::listing($id);
-});
-
-/* PRODUCT IMAGES */
-Flight::route('/admin/product_images/listing/@id/', function($id) {
-    App\Controllers\ProductImageController::listing($id);
-});
-
-Flight::route('/admin/product_images/create/@id/', function($id) {
-    App\Controllers\ProductImageController::create($id);
-});
-
-/* PRODUCT ETC */
-Flight::route('/admin/product_etc/@id/', function($id) {
-    App\Controllers\ProductEtcController::listing($id);
-});
-
-Flight::route('/admin/product_etc/create/@id/', function($id) {
-    App\Controllers\ProductEtcController::create($id);
-});
-
-
-Flight::route('/admin/object_params/create/', ['App\Modules\ObjectParams', 'create']);
 
 Flight::route('/admin/reviews/', ['App\Controllers\ReviewController', 'listing']);
 

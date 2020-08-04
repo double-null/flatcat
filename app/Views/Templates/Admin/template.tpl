@@ -90,12 +90,7 @@
                             <li>
                                 <a href="/admin/slider/"><i class="fa fa-file"></i> Обьекты <i class="fa arrow"></i></a>
                                 <ul class="sidebar-nav collapse">
-                                    <li><a href="/admin/product/create/"> Добавить обьект </a></li>
-                                    <li><a href="/admin/realty/create/1/"> Добавить квартиру </a></li>
-                                    <li><a href="/admin/realty/create/2/"> Добавить комнату </a></li>
-                                    <li><a href="/admin/realty/create/3/"> Добавить дом </a></li>
-                                    <li><a href="/admin/product/create/"> Добавить дачу </a></li>
-                                    <li><a href="/admin/product/create/"> Добавить участок </a></li>
+                                    <li><a href="/admin/realty/create/"> Добавить Обьект </a></li>
                                     <li><a href="/admin/objects/"> Список обьектов </a></li>
                                 </ul>
                             </li>

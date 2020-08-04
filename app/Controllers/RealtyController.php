@@ -11,9 +11,14 @@ use Flight;
 
 class RealtyController
 {
-    public static function create($type)
+    public static function create()
     {
-        Flight::view()->display('realty/create_'.$type.'.tpl');
+        if (!empty($_POST['Realty'])) {
+            Realty::$data = $_POST['Realty'];
+            Realty::insert();
+            Flight::redirect('/admin/objects/');
+        }
+        Flight::view()->display('realty/modify.tpl');
     }
 
     public static function listing($id)
@@ -31,7 +36,7 @@ class RealtyController
             case 2: $types = [8]; break;
             case 3: $types = [3, 4, 5, 6, 7]; break;
         }
-        $page = ((int)$_GET['page'] != 0) ? (int)$_GET['page'] : 1;
+        $page = $_GET['page'] ?? 1;
         $limit = [($page - 1) * 10, 10];
         $input_filters = array_diff($_GET, ['']);
         $totalObjects = Realty::countAllByTypes($types, $input_filters);
