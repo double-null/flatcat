@@ -506,7 +506,7 @@ select {
 
 .callback-input{padding: 0 20px;}
 
-.callback-input input{border: 0px; width: 270px; height: 28px;}
+.callback-input input{border: 0px; width: 190px; height: 28px;}
 
 .callback-confirm{
     background: url("../images/iconwok.png") no-repeat scroll 12px 12px / 25px 25px;
@@ -523,7 +523,7 @@ select {
 }
 
 .callback-description{
-    width: 200px;
+    width: 280px;
 }
 
 .viber-description{

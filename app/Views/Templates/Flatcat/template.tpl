@@ -28,7 +28,7 @@
                         </a>
                     </div>
                     <div class="col-md-3" class="short-contact-info">
-                        <div class="phone-info">(4922) 44 44 11</div>
+                        <div class="phone-info">{$common.phone_number}</div>
                         <div class="work-time">{$common.work_time}</div>
                     </div>
 
@@ -94,11 +94,9 @@
         <div class="callback-icon"></div>
         <div class="callback-body">
             <div class="callback-input"><input type="text" name="callback-phone"></div>
-            <div class="callback-confirm">Отправить</div>
+            <div class="callback-confirm">{$common.callback_btn}</div>
             <div class="callback-cancel"></div>
-            <div class="callback-description">
-                Оставьте свой номер и мы Вам перезвоним
-            </div>
+            <div class="callback-description">{$common.callback_text}</div>
         </div>
     </div>
 
@@ -108,10 +106,7 @@
         </div>
         <div class="callback-body">
             <div class="callback-cancel"></div>
-            <div class="viber-description">
-                Ура, мы в вайбер! Запишите наш номер телефона 7 (902) 888-88-89
-                Получите консультацию, где бы вы не находились!
-            </div>
+            <div class="viber-description">{$common.viber_text}</div>
         </div>
     </div>
 
@@ -135,11 +130,10 @@
         </div>
     </div>
 
-
     <div class="popup-fade" data-id="3">
         <div class="popup">
             <a class="popup-close" href="#">×</a>
-            <span class="popup-title">Статус заявки</span>
+            <span class="popup-title">{$common.feedback_status}</span>
             <div class="report-result"></div>
         </div>
     </div>
