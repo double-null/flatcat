@@ -58,53 +58,58 @@
                 <div>4</div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-12 main-title">{$inscriptions.reviews_title}</div>
-            {foreach $reviews as $review}
-                <div class="card col-md-4">
-                    <div class="row card-border">
-                        <div class="card-info">
-                            <div class="col-12 review-agent"><a href="/agent/{$review.user}/">{$review.agentname}</a></div>
-                            <div class="col-12 review-client">{$review.name}</div>
-                            <div class="col-12 review-content">{$review.content}</div>
-                            <div class="col-12 review-photos">
-                                <div class="row">
-                                    {foreach $review.photos|json_decode as $photo}
-                                        <div class="col-md-6"><img class="img-fluid" src="/images/reviews/{$photo}"></div>
-                                    {/foreach}
+
+        {if count($advantages) > 0}
+            <div class="row">
+                <div class="col-12 main-title">{$inscriptions.reviews_title}</div>
+                {foreach $reviews as $review}
+                    <div class="card col-md-4">
+                        <div class="row card-border">
+                            <div class="card-info">
+                                <div class="col-12 review-agent"><a href="/agent/{$review.user}/">{$review.agentname}</a></div>
+                                <div class="col-12 review-client">{$review.name}</div>
+                                <div class="col-12 review-content">{$review.content}</div>
+                                <div class="col-12 review-photos">
+                                    <div class="row">
+                                        {foreach $review.photos|json_decode as $photo}
+                                            <div class="col-md-6"><img class="img-fluid" src="/images/reviews/{$photo}"></div>
+                                        {/foreach}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            {/foreach}
-
-            <div class="col-12">
-                <div class="row center">
-                    <div class="col-4"><a href="/reviews/" class="green-btn">{$inscriptions.reviews_btn_text}</a></div>
-                </div>
-            </div>
-
-        </div>
-        <div class="row">
-            <div class="col-12 main-title">{$inscriptions.advantages_title}</div>
-            <div id="advantages" class="col-md-6">
-                {foreach $advantages as $advantage}
-                    <div class="spoiler-item">
-                        <div class="spoiler-head">
-                            <div class="circle">{$advantage@iteration}</div>
-                            {$advantage.title}
-                        </div>
-                        <div class="spoiler-body">
-                            {$advantage.description}
-                        </div>
-                    </div>
                 {/foreach}
+
+                <div class="col-12">
+                    <div class="row center">
+                        <div class="col-4"><a href="/reviews/" class="green-btn">{$inscriptions.reviews_btn_text}</a></div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6">
-                <img class="img-fluid" src="/themes/Flatcat/images/no.jpg">
+        {/if}
+
+        {if count($advantages) > 0}
+            <div class="row">
+                <div class="col-12 main-title">{$inscriptions.advantages_title}</div>
+                <div id="advantages" class="col-md-6">
+                    {foreach $advantages as $advantage}
+                        <div class="spoiler-item">
+                            <div class="spoiler-head">
+                                <div class="circle">{$advantage@iteration}</div>
+                                {$advantage.title}
+                            </div>
+                            <div class="spoiler-body">
+                                {$advantage.description}
+                            </div>
+                        </div>
+                    {/foreach}
+                </div>
+                <div class="col-md-6">
+                    <img class="img-fluid" src="/themes/Flatcat/images/no.jpg">
+                </div>
             </div>
-        </div>
+        {/if}
 
     </div>
 {/block}

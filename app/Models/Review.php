@@ -28,6 +28,17 @@ class Review extends Model
         );
     }
 
+    public static function getAllForPage($limit)
+    {
+        return Flight::db()->select(self::$table, '*',
+            [
+                'lang' => Flight::get('langID'),
+                'ORDER' => ['id' => 'DESC'],
+                'LIMIT' => $limit,
+            ]
+        );
+    }
+
     public static function validate()
     {
         if (!(int)self::$data['user']) {

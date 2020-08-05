@@ -20,15 +20,15 @@ Flight::route('/', ['App\Controllers\PageController', 'main']);
 
 Flight::route('/set_lang/', ['App\Controllers\LangController', 'change']);
 
-Flight::route('/@lang/flats_and_rooms/', function ($lang){App\Controllers\RealtyController::listing(1);});
+Flight::route('/flats_and_rooms/', function (){App\Controllers\RealtyController::listing(1);});
 
-Flight::route('/@lang/lands_and_houses/', function ($lang){App\Controllers\RealtyController::listing(3);});
+Flight::route('/lands_and_houses/', function (){App\Controllers\RealtyController::listing(3);});
 
-Flight::route('/@lang/commercial/', function ($lang){App\Controllers\RealtyController::listing(2);});
+Flight::route('/commercial/', function (){App\Controllers\RealtyController::listing(2);});
 
-Flight::route('/@lang/garages/', function ($lang){App\Controllers\RealtyController::listing(4);});
+Flight::route('/garages/', function (){App\Controllers\RealtyController::listing(4);});
 
-Flight::route('/@lang/suburban/', function ($lang){App\Controllers\RealtyController::listing(5);});
+Flight::route('/suburban/', function (){App\Controllers\RealtyController::listing(5);});
 
 Flight::route('/search/', ['App\Controllers\RealtyController', 'search']);
 
@@ -44,11 +44,11 @@ Flight::route('/feedback_send/', ['App\Controllers\FeedbackController', 'send'])
 
 Flight::route('/test/', function (){App\Controllers\APIController::updateProduct(1);});
 
-Flight::route('/@lang/agents/', ['App\Controllers\UserController', 'openListing']);
+Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
 Flight::route('/agent/@id/', function ($id){App\Controllers\UserController::show($id);});
 
-Flight::route('/@lang/reviews/', ['App\Controllers\ReviewController', 'listing']);
+Flight::route('/reviews/', ['App\Controllers\ReviewController', 'listing']);
 
 Flight::route('/product_counter/', ['App\Controllers\ProductController', 'countingProducts']);
 

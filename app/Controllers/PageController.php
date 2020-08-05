@@ -13,9 +13,13 @@ class PageController
 {
     public static function main()
     {
-        Flight::view()->assign('inscriptions', Block::getOneByParams(['name' => 'main_page']));
-        Flight::view()->assign('advantages', Advantage::getAll());
-        Flight::view()->assign('reviews', Review::getAll());
+        $langID =  $_SESSION['lang']['id'];
+        Flight::view()->assign('inscriptions', Block::getOneByParams([
+            'name' => 'main_page',
+            'lang' => $langID,
+        ]));
+        Flight::view()->assign('advantages', Advantage::getAllByLang($langID));
+        Flight::view()->assign('reviews', Review::getAllForPage(6));
         Flight::view()->assign('variants', FilterVariants::getAllByFilters([10,11]));
         Flight::view()->display('pages/main.tpl');
     }
@@ -41,9 +45,23 @@ class PageController
 
     public static function start()
     {
+        $a = array (
+            'fast_search_title' => 'Fast property search',
+            'fast_search_btn' => 'Find',
+            'reviews_title' => 'Customer reviews',
+            'reviews_btn_text' => 'See all reviews',
+            'advantages_title' => 'Why should you choose us to buy or sell real estate?',
+        );
+
+        //Flight::json($a);
+
         LangController::setDefault();
         Flight::view()->assign('lang', $_SESSION['lang']['short_name']);
-        Flight::view()->assign('menu', Category::getAll());
-        Flight::view()->assign('common', Block::getOneByParams(['name' => 'all_pages']));
+        Flight::view()->assign('menu', Category::getAll($_SESSION['lang']['id']));
+        Flight::set('langID', $_SESSION['lang']['id']);
+        Flight::view()->assign('common', Block::getOneByParams([
+            'name' => 'all_pages',
+            'lang' => $_SESSION['lang']['id'],
+        ]));
     }
 }
