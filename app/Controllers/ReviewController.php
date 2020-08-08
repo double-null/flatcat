@@ -3,7 +3,9 @@
 namespace App\Controllers;
 
 use App\Models\Review;
+use App\Models\ReviewDesc;
 use App\Models\ReviewImage;
+use App\Models\User;
 use Flight;
 
 class ReviewController
@@ -12,7 +14,6 @@ class ReviewController
     {
         if (!empty($_POST['Review'])) {
             Review::$data = $_POST['Review'];
-            Review::$data['user'] = Flight::get('user_id');
             if (Review::validate()) {
                 foreach ($_FILES as $photo) {
                     ReviewImage::$data = $photo;
@@ -27,7 +28,41 @@ class ReviewController
                 Flight::view()->assign('error', Review::$error);
             }
         }
-        Flight::view()->display('review/create.tpl');
+        Flight::view()->assign('agents', User::getAll());
+        Flight::view()->display('review/desc.tpl');
+    }
+
+    public static function show()
+    {
+        $review = Review::getOneByID((int)$_GET['id']);
+        $descs = ReviewDesc::getAllForReview((int)$_GET['id']);
+        Flight::view()->assign('review', $review);
+        Flight::view()->assign('review_descs', $descs);
+        Flight::view()->display('review/show.tpl');
+    }
+
+    public static function desc()
+    {
+        if (!empty($_POST['Review'])) {
+            $reviewID =(int)$_GET['review'];
+            ReviewDesc::$data = $_POST['Review'];
+            ReviewDesc::$data['review'] = $reviewID;
+            if (ReviewDesc::insert()) {
+                Flight::redirect('/admin/review/show/?id='.$reviewID);
+            }
+        }
+        Flight::view()->display('review/desc.tpl');
+    }
+
+    public static function desc_drop()
+    {
+        if (!empty($_POST['id'])) {
+            ReviewDesc::$data['id'] = (int)$_POST['id'];
+            ReviewDesc::delete();
+            Flight::json(['status' => 1]);
+        } else {
+            Flight::json(['status' => 0]);
+        }
     }
 
     public static function listing()

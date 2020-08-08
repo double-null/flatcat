@@ -1,19 +1,16 @@
 {extends file="template.tpl"}
 
-{block name="html_title"}Админ панель &raquo; Список отзывов{/block}
+{block name="html_title"} Админ панель &raquo; Просмотр отзыва{/block}
 
 {block name="content"}
-
     <div class="title-block">
         <h3 class="title">
-            <span>Список отзывов</span>
-            <a href="/admin/review/create/" class="btn btn-primary btn-sm rounded-s">
-                Добавить
+            <span>Список описаний</span>
+            <a href="/admin/review/desc/?review={$review.id}" class="btn btn-primary btn-sm rounded-s">
+                Добавить описание
             </a>
         </h3>
-        <p class="title-description">  </p>
     </div>
-
     <div class="card">
         <div class="card-block">
             <section id="content items-list-page">
@@ -26,16 +23,24 @@
                                         <div><span>ID</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>Метка</span></div>
+                                        <div><span>Имя</span></div>
+                                    </div>
+                                    <div class="item-col item-col-header">
+                                        <div><span>Комментарий</span></div>
+                                    </div>
+                                    <div class="item-col item-col-header">
+                                        <div><span>Язык</span></div>
                                     </div>
                                     <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
                                 </div>
                             </li>
-                            {foreach $reviews as $review}
+                            {foreach $review_descs as $desc}
                                 <li class="item">
                                     <div class="item-row">
-                                        <div class="item-col item-col-sales"><div>{$review.id}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$review.mark}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$desc.id}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$desc.name}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$desc.content}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$desc.lang}</div></div>
                                         <div class="item-col fixed item-col-actions-dropdown">
                                             <div class="item-actions-dropdown">
                                                 <a class="item-actions-toggle-btn">
@@ -49,13 +54,8 @@
                                                 <div class="item-actions-block">
                                                     <ul class="item-actions-list">
                                                         <li>
-                                                            <a title="Удалить" class="remove" href="#" data-id="{$review.id}" data-toggle="modal" data-target="#confirm-modal">
+                                                            <a title="Удалить" class="remove" href="#" data-id="{$desc.id}" data-toggle="modal" data-target="#confirm-modal">
                                                                 <i class="fa fa-trash-o "></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Просмотр" href="/admin/review/show/?id={$review.id}">
-                                                                <i class="fa fa-eye" aria-hidden="true"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -78,7 +78,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
+                    <h4 class="modal-title"><i class="fa fa-warning"></i> Внимание</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -105,7 +105,7 @@
         $('#confirm-button').click(function () {
             var drop = $(this).data('drop');
             $.post({
-                url: '/admin/user/drop/',
+                url: '/admin/review/desc_drop/',
                 data: {id:drop},
                 success: function(data){
                     if (data.status == 1) location.reload();

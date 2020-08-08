@@ -45,16 +45,6 @@ class PageController
 
     public static function start()
     {
-        $a = array (
-            'fast_search_title' => 'Fast property search',
-            'fast_search_btn' => 'Find',
-            'reviews_title' => 'Customer reviews',
-            'reviews_btn_text' => 'See all reviews',
-            'advantages_title' => 'Why should you choose us to buy or sell real estate?',
-        );
-
-        //Flight::json($a);
-
         LangController::setDefault();
         Flight::view()->assign('lang', $_SESSION['lang']['short_name']);
         Flight::view()->assign('menu', Category::getAll($_SESSION['lang']['id']));

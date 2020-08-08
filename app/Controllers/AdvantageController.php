@@ -24,6 +24,6 @@ class AdvantageController
             Advantage::insert();
             Flight::redirect('/admin/advantages/');
         }
-        Flight::view()->display('advantage/create.tpl');
+        Flight::view()->display('advantage/desc.tpl');
     }
 }

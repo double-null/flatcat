@@ -21,6 +21,6 @@ class ProductEtcController
             Flight::redirect('/admin/product_etc/');
         }
         Flight::view()->assign('productID', $id);
-        Flight::view()->display('product_etc/create.tpl');
+        Flight::view()->display('product_etc/desc.tpl');
     }
 }

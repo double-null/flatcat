@@ -13,7 +13,7 @@ class FilterVariants extends Model
     {
         $variants = Flight::db()->select(self::$table,
             ['id', 'filter', 'variant', 'value'],
-            ['filter' => $filters]
+            ['AND' => ['filter' => $filters, 'lang' => Flight::get('langID')]]
         );
         $out = [];
         foreach ($variants as $variant) {

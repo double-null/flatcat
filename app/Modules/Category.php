@@ -12,7 +12,7 @@ class Category
             Flight::db()->insert('categories', $_POST['Category']);
             Flight::view()->assign('success', 1);
         }
-        Flight::view()->display('category/create.tpl');
+        Flight::view()->display('category/desc.tpl');
     }
 
     public static function listing()

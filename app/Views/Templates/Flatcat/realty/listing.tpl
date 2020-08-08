@@ -7,83 +7,83 @@
         <form method="GET" class="filters-list row">
             {if $categoryID|in_array:[2]}
                 <div class="filters-item">
-                    {foreach $variants[11] as $variant}
-                        <input type="radio" name="deal" value="{$variant.id}"> {$variant.value}
+                    {foreach $sVariants.deal as $variant}
+                        <input type="radio" name="deal" value="{$variant@iteration}"> {$variant}
                     {/foreach}
                 </div>
             {/if}
             {if $categoryID|in_array:[1]}
                 <div class="filters-item">
-                    <select multiple="multiple" placeholder="{$filters[1].value}" class="SlectBox" name="rooms[]">
-                        {foreach $variants[1] as $variant}
-                            <option value="{$variant.id}">{$variant.value}</option>
+                    <select multiple="multiple" placeholder="{$filters.rooms}" class="SlectBox" name="sub_type">
+                        {foreach $sVariants.sub_types_1 as $variant}
+                            <option value="{$variant@iteration}">{$variant}</option>
                         {/foreach}
                     </select>
                 </div>
             {/if}
             <div class="filters-item">
-                <select multiple="multiple" placeholder="{$filters[2].value}" class="SlectBox" name="material[]">
-                    {foreach $variants[2] as $variant}
-                        <option value="{$variant.id}">{$variant.value}</option>
+                <select multiple="multiple" placeholder="{$filters.material}" class="SlectBox" name="material[]">
+                    {foreach $sVariants.material as $variant}
+                        <option value="{$variant@iteration}">{$variant}</option>
                     {/foreach}
                 </select>
             </div>
             {if $categoryID|in_array:[1,2]}
                 <div class="filters-item">
-                    {$filters[3].value} <input type="text" name="min_floor_d" size="1"> - <input type="text" name="max_floor_d" size="1">
+                    {$filters.floor} <input type="text" name="min_floor_d" size="1"> - <input type="text" name="max_floor_d" size="1">
                 </div>
             {/if}
             {if $categoryID|in_array:[1]}
                 <div class="filters-item">
-                    {$filters[4].value} <input type="text" name="max_floor" size="1"> {$filters[4].additional}
+                    {$filters.min_floor[0]} <input type="text" name="max_floor" size="1"> {$filters.min_floor[1]}
                 </div>
             {/if}
             {if $categoryID|in_array:[1]}
                 <div class="filters-item">
-                    <select multiple="multiple" placeholder="{$filters[5].value}" class="SlectBox" name="heating[]">
-                        {foreach $variants[5] as $variant}
-                            <option value="{$variant.id}">{$variant.value}</option>
+                    <select multiple="multiple" placeholder="{$filters.heating}" class="SlectBox" name="heating[]">
+                        {foreach $sVariants.heating as $variant}
+                            <option value="{$variant@iteration}">{$variant}</option>
                         {/foreach}
                     </select>
                 </div>
             {/if}
             <div class="filters-item">
-                {$filters[12].value}
+                {$filters.total_area[0]}
                 <input type="text" name="min_area" size="5"> - <input type="text" name="max_area" size="5">
-                {$filters[12].additional}
+                {$filters.total_area[1]}
             </div>
             {if $categoryID|in_array:[1,2]}
                 <div class="filters-item">
                     <input id="check_new_build" type="checkbox" name="new_build" value="0">
-                    <label for="check_new_build">{$filters[6].value}</label>
+                    <label for="check_new_build">{$filters.without_new_build}</label>
                 </div>
             {/if}
             {if $categoryID|in_array:[3,5]}
                 <div class="filters-item">
-                    {$filters[13].value}
+                    {$filters.land_size[0]}
                     <input type="text" name="min_land_size" size="5">
                     -
                     <input type="text" name="max_land_size" size="5">
-                    {$filters[13].additional}
+                    {$filters.land_size[1]}
                 </div>
             {/if}
             {if $categoryID|in_array:[1]}
                 <div class="filters-item">
                     <input id="check_reduced_price" type="checkbox" name="reduced_price" value="1">
-                    <label for="check_reduced_price">{$filters[7].value}</label>
+                    <label for="check_reduced_price">{$filters.reduced_price}</label>
                 </div>
             {/if}
             {if $categoryID|in_array:[1]}
                 <div class="filters-item">
                     <input id="check_superprice" type="checkbox" name="superprice" value="1">
-                    <label for="check_superprice">{$filters[8].value}</label>
+                    <label for="check_superprice">{$filters.superprice}</label>
                 </div>
             {/if}
             <div class="filters-item">
-                {$filters[9].value} <input type="text" name="min_price" size="5"> - <input type="text" name="max_price" size="5">
+                {$filters.price} <input type="text" name="min_price" size="5"> - <input type="text" name="max_price" size="5">
             </div>
 
-            <div class="filter-submit"><button id="filter-send" type="submit" class="green-btn">Найти</button></div>
+            <div class="filter-submit"><button id="filter-send" type="submit" class="green-btn">{$inscriptions.find_btn}</button></div>
         </form>
     </div>
 {/block}
@@ -126,18 +126,18 @@
                         <div class="obj-title col-12"><a href="/object/{$categoryID}-{$object.id}/">{$object.name}</a></div>
                         <div class="obj-short-desc col-12">
                             {if ($object.type == 1)}
-                                {if !empty($object.rooms)} {$object.rooms}-комн {/if}
+                                {$sVariants.sub_types_1[$object.sub_type-1]},
                                 {if !empty($object.max_floor) && !empty($object.floor)}
                                     , {$object.floor}/{$object.max_floor} эт
                                 {/if}
-                                {if !empty($object.material)}, {$object.material} {/if}
+                                {$sVariants.material[$object.material-1]}
                             {/if}
                             {if ($object.type|in_array:[3,4,5,6])}
                                 {foreach $variants[10] as $variant}
                                     {if $object.type == $variant.id}{$variant.value}{/if}
                                 {/foreach}
                                 {if !empty($object.area_total)}{$object.area_total}{/if}
-                                {if !empty($object.material)}{$object.material}{/if}
+                                {if !empty($object.material)}{$sVariants.material[$object.material-1]}{/if}
                                 {if !empty($object.land_size)}{$object.land_size}{/if}
                             {/if}
                             {if ($object.type == 7)}
@@ -148,7 +148,7 @@
                             {/if}
                         </div>
                         <div class="obj-price col-6">
-                            от {$object.price|number_format:2:" ":","}{$object.money_type}
+                            {$object.price|number_format:2:" ":","}{$object.money_type}
                         </div>
                         <div class="obj-created col-6">{$object.created|date_format:"d.m.Y"}</div>
                     </div>

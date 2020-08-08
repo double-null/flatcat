@@ -132,6 +132,12 @@ Flight::route('/admin/reviews/', ['App\Controllers\ReviewController', 'listing']
 
 Flight::route('/admin/review/create/', ['App\Controllers\ReviewController', 'create']);
 
+Flight::route('/admin/review/show/', ['App\Controllers\ReviewController', 'show']);
+
+Flight::route('/admin/review/desc/', ['App\Controllers\ReviewController', 'desc']);
+
+Flight::route('/admin/review/desc_drop/', ['App\Controllers\ReviewController', 'desc_drop']);
+
 Flight::route('/admin/intrum/actions/', ['App\Controllers\APIController', 'starter']);
 
 Flight::start();

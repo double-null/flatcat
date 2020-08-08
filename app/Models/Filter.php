@@ -11,6 +11,9 @@ class Filter extends Model
 
     public static function getAll()
     {
-        return Flight::db()->select(self::$table, ['mark' => ['value', 'additional']]);
+        return Flight::db()->select(self::$table,
+            ['mark' => ['value', 'additional']],
+            ['lang' => Flight::get('langID')]
+        );
     }
 }

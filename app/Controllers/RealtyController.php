@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\Filter;
 use App\Models\FilterVariants;
 use App\Models\Realty;
+use App\Models\Block;
 use Flight;
 
 class RealtyController
@@ -23,10 +24,9 @@ class RealtyController
 
     public static function listing($id)
     {
-        $lang = 1;
         $filters = Filter::getAll();
         $variants = FilterVariants::getAllByFilters([1,2,5,10,11]);
-        $categoryName = Category::getOneByMark($id, $lang);
+        $categoryName = Category::getOneByMark($id, Flight::get('langID'));
         $limitations = [];
         if (!empty($_GET['rooms'])) {
             $limitations['rooms'] = $_GET['rooms'];
@@ -46,8 +46,19 @@ class RealtyController
         Flight::view()->assign('totalProducts', $totalObjects);
         Flight::view()->assign('currentPage', $page);
         Flight::view()->assign('variants', $variants);
-        Flight::view()->assign('filters', $filters);
         Flight::view()->assign('currentUrl', Url::generate($input_filters));
+        Flight::view()->assign('sVariants', Block::getOneByParams([
+            'name' => 'variants',
+            'lang' => Flight::get('langID'),
+        ]));
+        Flight::view()->assign('filters', Block::getOneByParams([
+            'name' => 'filters',
+            'lang' => Flight::get('langID'),
+        ]));
+        Flight::view()->assign('inscriptions', Block::getOneByParams([
+            'name' => 'realty_list',
+            'lang' => Flight::get('langID'),
+        ]));
         Flight::view()->assign('objects', $objects);
         Flight::view()->display('realty/listing.tpl');
     }

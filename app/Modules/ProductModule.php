@@ -30,7 +30,7 @@ class ProductModule
             ]
         );
         Flight::view()->assign('categories', $categories);
-        Flight::view()->display('product/create.tpl');
+        Flight::view()->display('product/desc.tpl');
     }
 
     public static function view()

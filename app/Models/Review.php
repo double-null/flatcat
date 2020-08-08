@@ -9,6 +9,7 @@ class Review extends Model
 {
     public static $table = 'reviews';
 
+    /*
     public static function getAll()
     {
         return Flight::db()->select(self::$table,
@@ -19,7 +20,7 @@ class Review extends Model
             ]
         );
     }
-
+    */
     public static function getAllForUser($user)
     {
         return Flight::db()->select(self::$table,
@@ -30,10 +31,12 @@ class Review extends Model
 
     public static function getAllForPage($limit)
     {
-        return Flight::db()->select(self::$table, '*',
+        return Flight::db()->select(self::$table,
+            ['[>]reviews_desc(rd)' => ['id' => 'review']],
+            ['reviews.user', 'reviews.photos', 'rd.name', 'rd.content'],
             [
-                'lang' => Flight::get('langID'),
-                'ORDER' => ['id' => 'DESC'],
+                'rd.lang' => Flight::get('langID'),
+                'ORDER' => ['reviews.id' => 'DESC'],
                 'LIMIT' => $limit,
             ]
         );
@@ -42,12 +45,10 @@ class Review extends Model
     public static function validate()
     {
         if (!(int)self::$data['user']) {
-            self::$error = 'Пользователь не выбран';
-        } elseif (empty(self::$data['name'])) {
-            self::$error = 'ФИО Клиента не заполнено';
-        } elseif (empty(self::$data['content'])) {
-            self::$error = 'Текст отзыва не заполнен!';
-        } else {
+            self::$error = 'Агент не выбран';
+        } elseif (empty(self::$data['mark'])) {
+            self::$error = 'Метка не заполнена';
+        }  else {
             return true;
         }
         return false;

@@ -48,7 +48,7 @@ class UserController
                 Flight::view()->assign('errors', User::$error);
             }
         }
-        Flight::view()->display('user/create.tpl');
+        Flight::view()->display('user/desc.tpl');
     }
 
     public static function listing()

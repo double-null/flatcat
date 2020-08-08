@@ -16,7 +16,7 @@ class ParameterController
             );
             Parameter::save();
         }
-        Flight::view()->display('parameter/create.tpl');
+        Flight::view()->display('parameter/desc.tpl');
     }
 
     public static function modify($id)

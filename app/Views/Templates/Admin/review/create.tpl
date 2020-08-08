@@ -13,13 +13,18 @@
                 <form method="post" enctype="multipart/form-data">
                     {if !empty($error)}<span style="color: #FF4444;">{$error}</span>{/if}
                     <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> ФИО Клиента: </label>
-                        <div class="col-sm-10"><input type="text" class="form-control boxed" name="Review[name]"></div>
+                        <label class="col-sm-2 form-control-label text-xs-right"> Метка(EN): </label>
+                        <div class="col-sm-10"><input type="text" class="form-control boxed" name="Review[mark]"></div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Текст отзыва: </label>
+                        <label class="col-sm-2 form-control-label text-xs-right"> Агент: </label>
                         <div class="col-sm-10">
-                            <textarea class="form-control boxed" rows="10" cols="30" name="Review[content]"></textarea>
+                            <select class="c-select form-control boxed" name="Review[user]">
+                                <option></option>
+                                {foreach $agents as $agent}
+                                    <option value="{$agent.id}">{$agent.name}</option>
+                                {/foreach}
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

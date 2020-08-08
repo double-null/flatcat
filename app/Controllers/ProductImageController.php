@@ -32,6 +32,6 @@ class ProductImageController
                 }
             }
         }
-        Flight::view()->display('product_image/create.tpl');
+        Flight::view()->display('product_image/desc.tpl');
     }
 }
