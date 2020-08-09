@@ -7,6 +7,7 @@ use App\Models\Review;
 use App\Models\User;
 use App\Models\UserProfile;
 use App\Models\UserAvatar;
+use App\Models\Block;
 use Flight;
 
 class UserController
@@ -79,7 +80,12 @@ class UserController
 
     public static function show($id)
     {
-        Flight::view()->assign('user', User::getOneWithProfile($id));
+        Flight::view()->assign('inscriptions', Block::getOneByParams([
+            'name' => 'show_agent',
+            'lang' => Flight::get('langID'),
+        ]));
+        Flight::view()->assign('categoryName', Category::getOneByMark(6));
+        Flight::view()->assign('user', User::getOneWithDesc($id));
         Flight::view()->assign('reviews', Review::getAllForUser($id));
         Flight::view()->display('user/show.tpl');
     }

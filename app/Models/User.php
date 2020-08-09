@@ -41,15 +41,18 @@ class User extends Model
         );
     }
 
-    public static function getOneWithProfile($id)
+    public static function getOneWithDesc($id)
     {
         return Flight::db()->get(self::$table,
-            ['[><]user_profiles(p)' => ['id' => 'user']],
+            ['[>]users_desc(d)' => ['id' => 'user']],
             [
-                'p.fullname', 'p.phone', 'p.position',
-                'p.photo', 'users.email', 'users.id',
+                'd.fullname',  'd.position', 'd.about',  'users.phone',
+                'users.email', 'users.photo',  'users.id',
             ],
-            ['users.id' => $id]
+            [
+                'users.id' => $id,
+                'd.lang' => Flight::get('langID')
+            ]
         );
     }
 

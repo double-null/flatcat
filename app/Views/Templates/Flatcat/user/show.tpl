@@ -1,11 +1,11 @@
 {extends file="template.tpl"}
 
-{block name="html_title"}Агент - {$user.fullname}{/block}
+{block name="html_title"}{$user.fullname}{/block}
 
 {block name="breadcrumbs"}
-    <li><a href="/">Главная</a></li>
-    <li><a href="/agents/">Агенты</a></li>
-    <li>Агент {$user.fullname}</li>
+    <li><a href="/">{$common.main_page}</a></li>
+    <li>{$categoryName}</li>
+    <li>{$user.fullname}</li>
 {/block}
 
 {block name="content"}
@@ -13,49 +13,52 @@
         <div class="row">
             <div class="col-md-12">
                 <h2 class="agent-name">{$user.fullname}</h2>
-                <div class="agent-code">Код агента: <b>{$user.id}</b></div>
-                <div class="object-short-desc">{$user.position}</div>
+                <div class="agent-code">{$inscriptions.agent_code}: <b>{$user.id}</b></div>
             </div>
         </div>
         <div class="row">
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-6">
-                        <img class="img-fluid" src="{$user.photo}">
+                        {if !empty($user.photo)}
+                            <img width="100%" src="{$user.photo}">
+                        {else}
+                            <img width="100%" src="/themes/Flatcat/images/unnamed.jpg">
+                        {/if}
                     </div>
                     <div class="col-md-6">
-                        {if !empty($user.position)}<p> Должность: {$user.position} </p>{/if}
-                        <p> E-Mail: {$user.email}</p>
-                        <p> Телефон: {$user.phone}</p>
+                        {if !empty($user.position)}<p> {$inscriptions.position}: {$user.position} </p>{/if}
+                        <p> {$inscriptions.email}: {$user.email}</p>
+                        <p> {$inscriptions.phone}: {$user.phone}</p>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
                         <div class="lined">
-                            <span>О себе</span>
+                            <span>{$inscriptions.about}</span>
                         </div>
                     </div>
                     <div class="col-12">
-                        <p> {if !empty($user.about)}{$user.about}{else}Нет информации{/if} </p>
+                        <p> {if !empty($user.about)}{$user.about}{else}{$inscriptions.no_info}{/if} </p>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
                 <div class="row">
                     <div class="col-12">
-                        <div class="lined"><span>Связаться с агентом</span></div>
+                        <div class="lined"><span>{$inscriptions.form_title}</span></div>
                     </div>
                 </div>
                 <form class="agent-form" method="post">
                     <div class="row">
-                        <div class="col-6"><input type="text" placeholder="Ваше имя"></div>
-                        <div class="col-6"><input type="text" placeholder="Ваш телефон"></div>
+                        <div class="col-6"><input type="text" placeholder="{$inscriptions.your_name}"></div>
+                        <div class="col-6"><input type="text" placeholder="{$inscriptions.your_phone}"></div>
                         <div class="col-12">
-                            <textarea name="message" id="" cols="30" rows="10" placeholder="Ваше сообщение"></textarea>
+                            <textarea name="message" id="" cols="30" rows="10" placeholder="{$inscriptions.your_message}"></textarea>
                         </div>
                         <div class="col-12">
                             <input type="checkbox" name="confirm">
-                            <span class="small">Даю согласие на обработку указанных персональных данных.</span>
+                            <span class="small">{$inscriptions.confirm_data}</span>
                         </div>
                         <div class="col-12">
                             <input class="green-btn" type="submit" value="Отправить">
@@ -66,7 +69,7 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="lined"><span>Отзывы об агенте</span></div>
+                <div class="lined"><span>{$inscriptions.reviews}</span></div>
             </div>
         </div>
         <div class="row">
@@ -87,7 +90,7 @@
                     </div>
                 </div>
             {foreachelse}
-                <div class="col-12">Пока ещё нет отзывов о данном агенте</div>
+                <div class="col-12">{$inscriptions.empty_reviews}</div>
             {/foreach}
         </div>
     </div>
