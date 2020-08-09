@@ -82,6 +82,12 @@ Flight::route('/admin/user_settings/', ['App\Controllers\UserController', 'setti
 
 Flight::route('/admin/user_profile/', ['App\Controllers\UserProfileController', 'update']);
 
+Flight::route('/admin/user_descs/', ['App\Controllers\UserDescController', 'listing']);
+
+Flight::route('/admin/user_desc/create/', ['App\Controllers\UserDescController', 'create']);
+
+Flight::route('/admin/user_desc/drop/', ['App\Controllers\UserDescController', 'drop']);
+
 Flight::route('/admin/blocks/', ['App\Controllers\BlockController', 'listing']);
 
 Flight::route('/admin/block/mod/@id/', function($id){App\Controllers\BlockController::update($id);});

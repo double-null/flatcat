@@ -66,13 +66,9 @@
                         {/if}
                         {if $user_info['role'] == 1}
                             <li>
-                                <a href="#">
-                                    <i class="fa fa-user"></i> Агенты <i class="fa arrow"></i>
+                                <a href="/admin/users/">
+                                    <i class="fa fa-user"></i> Агенты </i>
                                 </a>
-                                <ul class="sidebar-nav collapse">
-                                    <li><a href="/admin/users/"> Список агентов </a></li>
-                                    <li><a href="/admin/user/create/"> Добавить агента </a></li>
-                                </ul>
                             </li>
                         {/if}
                         {if $user_info['role'] == 1}

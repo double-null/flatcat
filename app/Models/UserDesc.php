@@ -1,15 +1,16 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: DoubleTrouble
- * Date: 08.08.2020
- * Time: 15:55
- */
 
 namespace App\Models;
 
+use App\Core\Model;
+use Flight;
 
-class UserDesc
+class UserDesc extends Model
 {
+    public static $table = 'users_desc';
 
+    public static function getAllByUser($user)
+    {
+        return Flight::db()->select(self::$table, '*', ['user' => $user]);
+    }
 }

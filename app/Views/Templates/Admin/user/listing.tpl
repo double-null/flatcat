@@ -55,6 +55,11 @@
                                                                 <i class="fa fa-trash-o "></i>
                                                             </a>
                                                         </li>
+                                                        <li>
+                                                            <a title="Описание" href="/admin/user_descs/?user={$user.id}">
+                                                                <i class="fa fa-address-card" aria-hidden="true"></i>
+                                                            </a>
+                                                        </li>
                                                     </ul>
                                                 </div>
                                             </div>
