@@ -3,17 +3,13 @@
 namespace App\Controllers;
 
 use App\Models\Category;
-use App\Models\CommercialRealty;
-use App\Models\Flat;
 use App\Models\Intrum;
 use App\Models\IntrumEquals;
 use App\Models\Parameter;
-use App\Models\Product;
-use App\Models\ProductParam;
-use App\Models\ProductPhoto;
+
 use App\Models\Realty;
 use App\Models\User;
-use App\Models\UserProfile;
+use App\Models\UserDesc;
 use Flight;
 
 class APIController
@@ -91,21 +87,21 @@ class APIController
             if (!$userID) {
                 User::$data = [
                     'name' => $agent['name'],
+                    'phone' => $agent['mobilephone'][0]['phone'],
                     'email' => $agent['internalemail'][0]['email'],
                     'password' => md5('1234'),
                     'role' => 2,
                     'created' => time(),
                 ];
                 $user_id = (int)User::insert();
-                UserProfile::$data = [
+                UserDesc::$data = [
                     'user' => $user_id,
-                    'photo' => $agent['avatars']['original'],
                     'fullname' => $agent['surname'].' '.$agent['name'].' '.$agent['secondname'],
                     'position' => $agent['post'],
-                    'phone' => $agent['mobilephone'][0]['phone'],
                     'about' => $agent['about'],
+                    'lang' => 1,
                 ];
-                UserProfile::insert();
+                UserDesc::insert();
                 IntrumEquals::$data = [
                     'type' => 3,
                     'object_id' => $user_id,
