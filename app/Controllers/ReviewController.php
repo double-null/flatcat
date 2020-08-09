@@ -6,6 +6,7 @@ use App\Models\Review;
 use App\Models\ReviewDesc;
 use App\Models\ReviewImage;
 use App\Models\User;
+use App\Models\Category;
 use Flight;
 
 class ReviewController
@@ -67,6 +68,7 @@ class ReviewController
 
     public static function listing()
     {
+        Flight::view()->assign('categoryName', Category::getOneByMark(7));
         Flight::view()->assign('reviews', Review::getAll());
         Flight::view()->display('review/listing.tpl');
     }

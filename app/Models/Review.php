@@ -9,18 +9,24 @@ class Review extends Model
 {
     public static $table = 'reviews';
 
-    /*
     public static function getAll()
     {
         return Flight::db()->select(self::$table,
-            ['[><]user_profiles(pr)' => ['user' => 'user']],
             [
-                'reviews.name', 'reviews.content', 'reviews.photos',
-                'reviews.user', 'pr.fullname(agentname)',
+                '[>]reviews_desc(rd)' => ['id' => 'review'],
+                '[>]users_desc(ud)' => ['user' => 'user']
+            ],
+            [
+                'reviews.photos', 'rd.content', 'rd.name',
+                'reviews.user', 'ud.fullname(agentname)',
+            ],
+            [
+                'rd.lang' => Flight::get('langID'),
+                'ud.lang' => Flight::get('langID'),
             ]
         );
     }
-    */
+
     public static function getAllForUser($user)
     {
         return Flight::db()->select(self::$table,

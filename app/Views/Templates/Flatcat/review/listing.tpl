@@ -1,8 +1,8 @@
 {extends file="template.tpl"}
 
 {block name="breadcrumbs"}
-    <li><a href="/">Главная</a></li>
-    <li>Отзывы</li>
+    <li><a href="/">{$common.main_page}</a></li>
+    <li>{$categoryName}</li>
 {/block}
 
 {block name="content"}
