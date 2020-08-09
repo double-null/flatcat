@@ -24,13 +24,19 @@ class User extends Model
         return Flight::db()->select('users', '*');
     }
 
-    public static function getAllWithProfile()
+    public static function getAllWithDesc()
     {
         return Flight::db()->select(self::$table,
-            ['[><]user_profiles(p)' => ['id' => 'user']],
+            ['[>]users_desc(d)' => ['id' => 'user']],
             [
-                'p.fullname', 'p.phone', 'p.position',
-                'p.photo', 'users.email', 'users.id',
+                'd.fullname',  'd.position',  'users.phone',
+                'users.email', 'users.photo',  'users.id',
+            ],
+            [
+                'OR' => [
+                    'd.id' => NULL,
+                    'd.lang' => Flight::get('langID'),
+                ],
             ]
         );
     }
@@ -90,11 +96,14 @@ class User extends Model
     public static function validate()
     {
         if (empty(self::$data['name'])) {
-            self::$error['name'] = 'Имя не заполнено';
-        } elseif (self::exist()) {
-            self::$error['name'] = 'Пользователь с таким именем уже существует';
-        } elseif (empty(self::$data['password'])) {
-            self::$error['password'] = 'Пароль не введён';
+            self::$error = 'Имя не заполнено';
+        } elseif (empty(self::$data['email'])) {
+            self::$error = 'E-mail не заполнен';
+        } elseif (empty(self::$data['phone'])) {
+            self::$error = 'E-mail не заполнен';
+        } else {
+            return true;
         }
+        return false;
     }
 }

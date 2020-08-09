@@ -2,9 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\Category;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\UserAvatar;
 use Flight;
 
 class UserController
@@ -39,16 +41,27 @@ class UserController
     public static function create()
     {
         if (!empty($_POST['User'])) {
-            User::$data = $_POST['User'];
-            User::validate();
-            if (!User::$error) {
-                User::save();
+
+            User::$data = array_merge($_POST['User'], [
+                'password' => md5($_POST['User']['password']),
+                'role' => '2',
+                'created' => time(),
+            ]);
+            if (!empty($_FILES['photo'])) {
+                UserAvatar::$data = $_FILES['photo'];
+                if (UserAvatar::validate()) {
+                    $photoName = '/'.UserAvatar::$path.UserAvatar::save();
+                    UserProfile::$data['photo'] = $photoName;
+                }
+            }
+            if (User::validate()) {
+                User::insert();
                 Flight::redirect('/admin/users/');
-            } else {
-                Flight::view()->assign('errors', User::$error);
+            }  else {
+                Flight::view()->assign('error', User::$error);
             }
         }
-        Flight::view()->display('user/desc.tpl');
+        Flight::view()->display('user/create.tpl');
     }
 
     public static function listing()
@@ -59,7 +72,8 @@ class UserController
 
     public static function openListing()
     {
-        Flight::view()->assign('users', User::getAllWithProfile());
+        Flight::view()->assign('categoryName', Category::getOneByMark(6));
+        Flight::view()->assign('users', User::getAllWithDesc());
         Flight::view()->display('user/listing.tpl');
     }
 
