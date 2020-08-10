@@ -14,7 +14,7 @@ class Review extends Model
         return Flight::db()->select(self::$table,
             [
                 '[>]reviews_desc(rd)' => ['id' => 'review'],
-                '[>]users_desc(ud)' => ['user' => 'user']
+                '[>]users_desc(ud)' => ['user' => 'user'],
             ],
             [
                 'reviews.photos', 'rd.content', 'rd.name',
@@ -30,18 +30,31 @@ class Review extends Model
     public static function getAllForUser($user)
     {
         return Flight::db()->select(self::$table,
-            ['name', 'content', 'photos'],
-            ['user' => $user]
+            [
+                '[>]reviews_desc(rd)' => ['id' => 'review'],
+            ],
+            ['reviews.user', 'rd.name', 'rd.content', 'reviews.photos'],
+            [
+                'reviews.user' => $user,
+                'rd.lang' => Flight::get('langID'),
+            ]
         );
     }
 
     public static function getAllForPage($limit)
     {
         return Flight::db()->select(self::$table,
-            ['[>]reviews_desc(rd)' => ['id' => 'review']],
-            ['reviews.user', 'reviews.photos', 'rd.name', 'rd.content'],
+            [
+                '[>]reviews_desc(rd)' => ['id' => 'review'],
+                '[>]users_desc(ud)' => ['user' => 'user'],
+            ],
+            [
+                'reviews.user', 'reviews.photos', 'rd.name',
+                'rd.content', 'ud.fullname(agentname)',
+            ],
             [
                 'rd.lang' => Flight::get('langID'),
+                'ud.lang' => Flight::get('langID'),
                 'ORDER' => ['reviews.id' => 'DESC'],
                 'LIMIT' => $limit,
             ]

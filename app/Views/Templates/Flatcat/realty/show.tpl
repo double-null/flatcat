@@ -1,7 +1,7 @@
 {extends file="template.tpl"}
 
 {block name="breadcrumbs"}
-    <li><a href="/">Главная</a></li>
+    <li><a href="/">{$common.main_page}</a></li>
     <li><a href="/category/{$categoryID}/">{$categoryID}</a></li>
     <li>{$object.name}</li>
 {/block}

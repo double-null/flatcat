@@ -59,7 +59,7 @@
             </div>
         </div>
 
-        {if count($advantages) > 0}
+        {if count($reviews) > 0}
             <div class="row">
                 <div class="col-12 main-title">{$inscriptions.reviews_title}</div>
                 {foreach $reviews as $review}
