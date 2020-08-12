@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\Model;
 use Flight;
+use PDO;
 
 class User extends Model
 {
@@ -43,17 +44,12 @@ class User extends Model
 
     public static function getOneWithDesc($id)
     {
-        return Flight::db()->get(self::$table,
-            ['[>]users_desc(d)' => ['id' => 'user']],
-            [
-                'd.fullname',  'd.position', 'd.about',  'users.phone',
-                'users.email', 'users.photo',  'users.id',
-            ],
-            [
-                'users.id' => $id,
-                'd.lang' => Flight::get('langID')
-            ]
-        );
+        $sql = 'SELECT * FROM users AS u
+                LEFT JOIN users_desc AS ud 
+                  ON u.id = ud.user 
+                  AND ud.lang = '.Flight::get('langID').' 
+                WHERE u.id = ' . (int)$id;
+        return Flight::db()->query($sql)->fetch(PDO::FETCH_ASSOC);
     }
 
     public static function exist()

@@ -102,21 +102,15 @@ Flight::route('/admin/category/show/@id/', function($id){App\Modules\Category::s
 
 Flight::route('/admin/category/drop/', ['App\Controllers\CategoryController', 'drop']);
 
-Flight::route('/admin/category_desc/@cat/', function($cat){
-    App\Modules\CatDesc::$category = (int)$cat;
-    App\Modules\CatDesc::listing();
-});
-
-Flight::route('/admin/category_desc/create/@cat/', function($cat){
-    App\Modules\CatDesc::$category = (int)$cat;
-    App\Modules\CatDesc::create();
-});
-
 Flight::route('/admin/objects/', ['App\Controllers\RealtyController', 'privateListing']);
 
 Flight::route('/admin/realty/create/', ['App\Controllers\RealtyController', 'create']);
 
 Flight::route('/admin/object/mod/', ['App\Controllers\RealtyController', 'modify']);
+
+Flight::route('/admin/object/images/', ['App\Controllers\RealtyController', 'photos']);
+
+Flight::route('/admin/object/load_photo/', ['App\Controllers\RealtyController', 'loadPhoto']);
 
 Flight::route('/admin/advantages/', ['App\Controllers\AdvantageController', 'listing']);
 

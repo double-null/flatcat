@@ -20,11 +20,8 @@ class Image
         $type = (static::$type == 'jpeg') ? 'jpg' : static::$type;
         $name = static::generateName().'.'.$type;
         $filename = static::$path.$name;
-        if (move_uploaded_file(static::$data['tmp_name'], $filename)) {
-            return $name;
-        } else {
-            return false;
-        }
+        $moved = move_uploaded_file(static::$data['tmp_name'], $filename);
+        return ($moved) ? $name : false;
     }
 
     public static function generateName()
@@ -41,5 +38,11 @@ class Image
             static::$errors['type'] = 'Загружаемый файл не изображение';
         }
         return !static::$errors;
+    }
+
+    public static function drop($img_name)
+    {
+        $fn = $_SERVER['DOCUMENT_ROOT'].'/'.static::$path.$img_name;
+        if (file_exists($fn)) { unlink($fn); }
     }
 }

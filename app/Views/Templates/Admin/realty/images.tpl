@@ -1,13 +1,15 @@
 {extends file="template.tpl"}
 
-{block name="html_title"} Админ панель &raquo; Список обьектов{/block}
+{block name="html_title"} Админ панель &raquo; Список фотографий обьекта{/block}
 
 {block name="content"}
 
     <div class="title-block">
         <h3 class="title">
-            Список обьектов
-            <span data-type="bar" class="sparkline bar"></span>
+            Список фотографий обьекта
+            <a href="/admin/object/load_photo/?object={$object}" class="btn btn-primary btn-sm rounded-s">
+                Загрузить фотографию
+            </a>
         </h3>
     </div>
 
@@ -20,9 +22,6 @@
                             <li class="item item-list-header">
                                 <div class="item-row">
                                     <div class="item-col item-col-header">
-                                        <div><span>ID</span></div>
-                                    </div>
-                                    <div class="item-col item-col-header">
                                         <div><span>Название</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
@@ -31,12 +30,15 @@
                                     <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
                                 </div>
                             </li>
-                            {foreach $objects as $object}
+                            {foreach $images as $image}
                                 <li class="item">
                                     <div class="item-row">
-                                        <div class="item-col item-col-sales"><div>{$object.id}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$object.name}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$object.price}</div></div>
+                                        <div class="item-col item-col-sales">
+                                            <div>{$image}</div>
+                                        </div>
+                                        <div class="item-col item-col-sales">
+                                            <div><img src="/images/objects/mini/{$image}"></div>
+                                        </div>
                                         <div class="item-col fixed item-col-actions-dropdown">
                                             <div class="item-actions-dropdown">
                                                 <a class="item-actions-toggle-btn">
@@ -50,18 +52,8 @@
                                                 <div class="item-actions-block">
                                                     <ul class="item-actions-list">
                                                         <li>
-                                                            <a title="Удалить" class="remove" href="#" data-id="{$object.id}" data-toggle="modal" data-target="#confirm-modal">
+                                                            <a title="Удалить" class="remove" href="#" data-id="{$image@iteration}" data-toggle="modal" data-target="#confirm-modal">
                                                                 <i class="fa fa-trash-o "></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Редактирование" href="/admin/object/mod/?id={$object.id}">
-                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Фотографии" href="/admin/object/images/?id={$object.id}">
-                                                                <i class="fa fa-picture-o" aria-hidden="true"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -83,7 +75,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title"><i class="fa fa-warning"></i> Alert</h4>
+                    <h4 class="modal-title"><i class="fa fa-warning"></i> Внимание</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -110,8 +102,8 @@
         $('#confirm-button').click(function () {
             var drop = $(this).data('drop');
             $.post({
-                url: '/admin/user/drop/',
-                data: {id:drop},
+                url: window.location.href,
+                data: {drop:drop},
                 success: function(data){
                     if (data.status == 1) location.reload();
                 },

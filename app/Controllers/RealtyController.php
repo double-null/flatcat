@@ -8,6 +8,8 @@ use App\Models\Filter;
 use App\Models\FilterVariants;
 use App\Models\Realty;
 use App\Models\Block;
+use App\Models\RealtyImage;
+use App\Models\User;
 use Flight;
 
 class RealtyController
@@ -82,6 +84,49 @@ class RealtyController
         Flight::view()->display('realty/modify.tpl');
     }
 
+    public static function photos()
+    {
+        $object = (int)$_GET['id'];
+        $images = Realty::getImagesForObject($object);
+        if (!empty($_POST['drop'])) {
+            $key = (int)$_POST['drop'] - 1;
+            $drop_image = $images[$key];
+            unset($images[$key]);
+            Realty::updImagesForObject($object, $images);
+            RealtyImage::drop($drop_image);
+            RealtyImage::removeThumbnail($drop_image);
+            Flight::json(['status' => 1]);
+            die;
+        }
+        Flight::view()->assign('object', $object);
+        Flight::view()->assign('images', $images);
+        Flight::view()->display('realty/images.tpl');
+    }
+
+    public static function loadPhoto()
+    {
+        if (!empty($_FILES)) {
+            $out = [];
+            $object = (int)$_GET['object'];
+            foreach ($_FILES as $photo) {
+                RealtyImage::$data = $photo;
+                if (RealtyImage::validate()) {
+                    $new_img_name = RealtyImage::save();
+                    RealtyImage::resize($new_img_name);
+                    $out[] = $new_img_name;
+                }
+            }
+            if (count($out) > 0) {
+                $images = Realty::getImagesForObject($object);
+                $object_images = array_merge($images, $out);
+                Realty::updImagesForObject($object, $object_images);
+            }
+            Flight::redirect('/admin/object/images/?id='.$object);
+
+        }
+        Flight::view()->display('realty/load_photo.tpl');
+    }
+
     public static function search()
     {
         $params = [];
@@ -97,9 +142,32 @@ class RealtyController
 
     public static function show($objectID, $categoryID)
     {
+        $a = [
+            'object_code' => 'Код обьекта',
+            'created_date' => 'Добавлен',
+            'preview_order' => 'Заказать просмотр',
+            'object_params' => 'Характеристика объекта',
+            'object_desc' => 'Описание обьекта',
+            'photo' => 'Фотографии',
+            'map' => 'На карте',
+            'panorama' => 'Панорама',
+            'form_title' => 'Забронировать онлайн',
+            'your_name' => 'Ваше имя',
+            'your_phone' => 'Телефон',
+            'preview_date' => 'Дата просмотра',
+            'confirm_data' => 'Даю согласие на обработку указанных персональных данных.',
+            'form_btn' => 'Отправить',
+        ];
+        //Flight::json($a);
         $object = Realty::getOneByID($objectID);
+        $agent = User::getOneWithDesc($object['agent']);
         Flight::view()->assign('object', $object);
+        Flight::view()->assign('agent', $agent);
         Flight::view()->assign('categoryID', $categoryID);
+        Flight::view()->assign('inscriptions', Block::getOneByParams([
+            'name' => 'show_object',
+            'lang' => Flight::get('langID'),
+        ]));
         Flight::view()->display('realty/show.tpl');
     }
 }

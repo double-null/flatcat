@@ -9,15 +9,6 @@ class Realty extends Model
 {
     public static $table = 'realty';
 
-    public static function getOneByID($id)
-    {
-        return Flight::db()->get(self::$table,
-            ['[><]user_profiles(u)' => ['agent' => 'user']],
-            '*',
-            ['realty.id' => $id]
-        );
-    }
-
     public static function getAllByTypes($types, $limit = 0, $filters = null)
     {
         $a = self::constructLimitation($filters);
@@ -48,6 +39,22 @@ class Realty extends Model
     public static function getAllByParams($params)
     {
         return Flight::db()->select(self::$table, '*', $params);
+    }
+
+    public static function getImagesForObject($object)
+    {
+        return Flight::db()->get(self::$table,
+            ['photos[JSON]'],
+            ['id' => $object]
+        )['photos'];
+    }
+
+    public static function updImagesForObject($object, $images)
+    {
+        Flight::db()->update(self::$table,
+            ['photos' => json_encode($images, JSON_PRETTY_PRINT)],
+            ['id' => $object]
+        );
     }
 
     public static function constructLimitation($filters)
