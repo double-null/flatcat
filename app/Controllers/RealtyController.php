@@ -21,7 +21,7 @@ class RealtyController
             Realty::insert();
             Flight::redirect('/admin/objects/');
         }
-        Flight::view()->display('realty/modify.tpl');
+        Flight::view()->display('realty/create.tpl');
     }
 
     public static function listing($id)
