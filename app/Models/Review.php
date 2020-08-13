@@ -9,7 +9,7 @@ class Review extends Model
 {
     public static $table = 'reviews';
 
-    public static function getAll()
+    public static function getAllForPublic()
     {
         return Flight::db()->select(self::$table,
             [

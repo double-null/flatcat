@@ -68,8 +68,14 @@ class ReviewController
 
     public static function listing()
     {
-        Flight::view()->assign('categoryName', Category::getOneByMark(7));
         Flight::view()->assign('reviews', Review::getAll());
+        Flight::view()->display('review/listing.tpl');
+    }
+
+    public static function publicListing()
+    {
+        Flight::view()->assign('categoryName', Category::getOneByMark(7));
+        Flight::view()->assign('reviews', Review::getAllForPublic());
         Flight::view()->display('review/listing.tpl');
     }
 }

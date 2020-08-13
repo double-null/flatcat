@@ -48,7 +48,7 @@ Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
 Flight::route('/agent/@id/', function ($id){App\Controllers\UserController::show($id);});
 
-Flight::route('/reviews/', ['App\Controllers\ReviewController', 'listing']);
+Flight::route('/reviews/', ['App\Controllers\ReviewController', 'publicListing']);
 
 Flight::route('/product_counter/', ['App\Controllers\ProductController', 'countingProducts']);
 
