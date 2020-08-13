@@ -26,7 +26,6 @@ class RealtyController
 
     public static function listing($id)
     {
-        $filters = Filter::getAll();
         $variants = FilterVariants::getAllByFilters([1,2,5,10,11]);
         $categoryName = Category::getOneByMark($id, Flight::get('langID'));
         $limitations = [];
@@ -142,30 +141,19 @@ class RealtyController
 
     public static function show($objectID, $categoryID)
     {
-        $a = [
-            'object_code' => 'Код обьекта',
-            'created_date' => 'Добавлен',
-            'preview_order' => 'Заказать просмотр',
-            'object_params' => 'Характеристика объекта',
-            'object_desc' => 'Описание обьекта',
-            'photo' => 'Фотографии',
-            'map' => 'На карте',
-            'panorama' => 'Панорама',
-            'form_title' => 'Забронировать онлайн',
-            'your_name' => 'Ваше имя',
-            'your_phone' => 'Телефон',
-            'preview_date' => 'Дата просмотра',
-            'confirm_data' => 'Даю согласие на обработку указанных персональных данных.',
-            'form_btn' => 'Отправить',
-        ];
-        //Flight::json($a);
         $object = Realty::getOneByID($objectID);
         $agent = User::getOneWithDesc($object['agent']);
+        $categoryName = Category::getOneByMark((int)$categoryID);
         Flight::view()->assign('object', $object);
         Flight::view()->assign('agent', $agent);
         Flight::view()->assign('categoryID', $categoryID);
+        Flight::view()->assign('categoryName', $categoryName);
         Flight::view()->assign('inscriptions', Block::getOneByParams([
             'name' => 'show_object',
+            'lang' => Flight::get('langID'),
+        ]));
+        Flight::view()->assign('parameters', Block::getOneByParams([
+            'name' => 'realty_parameters',
             'lang' => Flight::get('langID'),
         ]));
         Flight::view()->display('realty/show.tpl');

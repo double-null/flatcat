@@ -125,7 +125,7 @@
                     <div class="object-info row">
                         <div class="obj-title col-12"><a href="/object/{$categoryID}-{$object.id}/">{$object.name}</a></div>
                         <div class="obj-short-desc col-12">
-                            {if ($object.type == 1)}
+                            {if ($object.type == 1 && !empty($object.sub_type))}
                                 {$sVariants.sub_types_1[$object.sub_type-1]},
                                 {if !empty($object.max_floor) && !empty($object.floor)}
                                     , {$object.floor}/{$object.max_floor} эт

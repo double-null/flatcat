@@ -2,7 +2,7 @@
 
 {block name="breadcrumbs"}
     <li><a href="/">{$common.main_page}</a></li>
-    <li><a href="/category/{$categoryID}/">{$categoryID}</a></li>
+    <li><a href="/category/{$categoryID}/">{$categoryName}</a></li>
     <li>{$object.name}</li>
 {/block}
 
@@ -52,115 +52,115 @@
                     </div>
                     {if $object.rooms != null}
                         <div class="row">
-                            <div class="col-6">Комнат</div>
+                            <div class="col-6">{$parameters.rooms}</div>
                             <div class="col-6">{$object.rooms}</div>
                         </div>
                     {/if}
                     {if $object.floor != null}
                         <div class="row">
-                            <div class="col-6">Этаж</div>
+                            <div class="col-6">{$parameters.floor}</div>
                             <div class="col-6">{$object.floor}</div>
                         </div>
                     {/if}
                     {if $object.max_floor != null}
                         <div class="row">
-                            <div class="col-6">Этажей</div>
+                            <div class="col-6">{$parameters.area_total}</div>
                             <div class="col-6">{$object.max_floor}</div>
                         </div>
                     {/if}
                     {if $object.area_total != null}
                         <div class="row">
-                            <div class="col-6">Общая площадь</div>
-                            <div class="col-6">{$object.area_total} м²</div>
+                            <div class="col-6">{$parameters.area_total}</div>
+                            <div class="col-6">{$object.area_total}</div>
                         </div>
                     {/if}
                     {if $object.area_live != null}
                         <div class="row">
-                            <div class="col-6">Жилая площадь</div>
-                            <div class="col-6">{$object.area_live} м²</div>
+                            <div class="col-6">{$parameters.area_live}</div>
+                            <div class="col-6">{$object.area_live}</div>
                         </div>
                     {/if}
                     {if $object.area_kitchen != null}
                         <div class="row">
-                            <div class="col-6">Площадь кухни</div>
-                            <div class="col-6">{$object.area_kitchen} м²</div>
+                            <div class="col-6">{$parameters.area_kitchen}</div>
+                            <div class="col-6">{$object.area_kitchen}</div>
                         </div>
                     {/if}
-                    {if $object.area_kitchen != null}
+                    {if $object.material != null}
                         <div class="row">
-                            <div class="col-6">Материал</div>
+                            <div class="col-6">{$parameters.material}</div>
                             <div class="col-6">{$object.material}</div>
                         </div>
                     {/if}
                     {if $object.heating != null}
                         <div class="row">
-                            <div class="col-6">Отопление</div>
-                            <div class="col-6">{$object.material}</div>
+                            <div class="col-6">{$parameters.heating}</div>
+                            <div class="col-6">{$object.heating}</div>
                         </div>
                     {/if}
                     {if $object.sewerage != null}
                         <div class="row">
-                            <div class="col-6">Канализация</div>
+                            <div class="col-6">{$parameters.sewerage}</div>
                             <div class="col-6">{$object.sewerage}</div>
                         </div>
                     {/if}
                     {if $object.gas != null}
                         <div class="row">
-                            <div class="col-6">Газ</div>
+                            <div class="col-6">{$parameters.gas}</div>
                             <div class="col-6">{$object.gas}</div>
                         </div>
                     {/if}
                     {if $object.water != null}
                         <div class="row">
-                            <div class="col-6">Вода</div>
+                            <div class="col-6">{$parameters.water}</div>
                             <div class="col-6">{$object.water}</div>
                         </div>
                     {/if}
                     {if $object.distance_metro != null}
                         <div class="row">
-                            <div class="col-6">Минут до метро</div>
+                            <div class="col-6">{$parameters.distance_metro}</div>
                             <div class="col-6">{$object.distance_metro}</div>
                         </div>
                     {/if}
                     {if $object.distance_sea != null}
                         <div class="row">
-                            <div class="col-6">Минут до моря</div>
+                            <div class="col-6">{$parameters.distance_sea}</div>
                             <div class="col-6">{$object.distance_sea}</div>
                         </div>
                     {/if}
                     {if $object.children != null}
                         <div class="row">
-                            <div class="col-6">Можно с детьми</div>
+                            <div class="col-6">{$parameters.children}</div>
                             <div class="col-6">{$object.children}</div>
                         </div>
                     {/if}
                     {if $object.animals != null}
                         <div class="row">
-                            <div class="col-6">Можно с животными</div>
+                            <div class="col-6">{$parameters.animals}</div>
                             <div class="col-6">{$object.animals}</div>
                         </div>
                     {/if}
                     {if $object.new_building != null}
                         <div class="row">
-                            <div class="col-6">Новостройка</div>
+                            <div class="col-6">{$parameters.new_building}</div>
                             <div class="col-6">{$object.new_building}</div>
                         </div>
                     {/if}
                     {if $object.land_size != null}
                         <div class="row">
-                            <div class="col-6">Площадь участка</div>
+                            <div class="col-6">{$parameters.land_size}</div>
                             <div class="col-6">{$object.land_size}</div>
                         </div>
                     {/if}
                     {if $object.land_unit_price != null}
                         <div class="row">
-                            <div class="col-6">Цена за сотку</div>
+                            <div class="col-6">{$parameters.land_unit_price}</div>
                             <div class="col-6">{$object.land_unit_price}</div>
                         </div>
                     {/if}
                     {if $object.price != null}
                         <div class="row">
-                            <div class="col-6">Цена</div>
+                            <div class="col-6">{$parameters.price}</div>
                             <div class="col-6">{$object.price}</div>
                         </div>
                     {/if}
