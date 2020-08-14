@@ -87,7 +87,11 @@ textarea {
     color: white;
 }
 
+.header-menu ul li:hover{background-color: white;}
+
 .header-menu ul li a{color: white;}
+
+.header-menu ul li:hover a{color: #506266;}
 
 #filters-block{background-color: #F1F4F5;}
 
@@ -179,6 +183,10 @@ footer{
 .green-btn{
     background: #6abf2f none repeat scroll 0 0;
     color: #fff;
+}
+
+.green-btn:hover{
+    background-color: #2E8D00;
 }
 
 .white-btn, .gray-btn:hover{
@@ -581,4 +589,21 @@ select {
 .feedback-form input {
     border: 0;
     padding: 5px;
+}
+
+.callback-holder .callback-icon{
+    transform: scale(.85);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    from {
+        transform: scale(.85);
+    }
+    50% {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(.85);
+    }
 }
