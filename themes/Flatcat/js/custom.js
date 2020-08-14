@@ -84,4 +84,13 @@ $( document ).ready(function() {
         $(this).next().css('display', 'flex');
     });
 
+    $('#realty_type').change(function(){
+        let type = $(this).val();
+        $('#realty_sub_type').empty();
+        $.post('/realty_sub_types/', {type:type}).done(function(data){
+            $.each(data, function(key, value){
+                $("#realty_sub_type").append($(new Option(value, key+1)));
+            });
+        }, 'json');
+    });
 });

@@ -14,17 +14,17 @@
                         <div class="col-6">
                             <div class="select">
                                 <select name="deal">
-                                    {foreach $variants[11] as $variant}
-                                        <option value="{$variant.id}">{$variant.value}</option>
+                                    {foreach $variants['deal'] as $variant}
+                                        <option value="{$variant@iteration}">{$variant}</option>
                                     {/foreach}
                                 </select>
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="select">
-                                <select name="type">
-                                    {foreach $variants[10] as $variant}
-                                        <option value="{$variant.id}">{$variant.value}</option>
+                                <select id="realty_type" name="type">
+                                    {foreach $variants['types'] as $variant}
+                                        <option value="{$variant@iteration}">{$variant}</option>
                                     {/foreach}
                                 </select>
                             </div>
@@ -33,16 +33,17 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="select">
-                                <select name="sub-type">
-                                    <option></option>
-                                    <option>Выбрать все</option>
+                                <select id="realty_sub_type" name="sub-type">
+                                    {foreach $variants['sub_types_1'] as $variant}
+                                        <option value="{$variant@iteration}">{$variant}</option>
+                                    {/foreach}
                                 </select>
                             </div>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-6"><input type="text" name="min_price" placeholder="Цена от"></div>
-                        <div class="col-6"><input type="text" name="max_price" placeholder="Цена до"></div>
+                        <div class="col-6"><input type="text" name="min_price" placeholder="{$inscriptions.min_price}"></div>
+                        <div class="col-6"><input type="text" name="max_price" placeholder="{$inscriptions.max_price}"></div>
                     </div>
                     <div class="row">
                         <div class="col-12">

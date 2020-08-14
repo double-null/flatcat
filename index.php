@@ -12,8 +12,6 @@ Flight::register('view', 'Smarty', array(), function($smarty){
 
 Flight::register('db', 'Medoo\Medoo', [database()]);
 
-App\Modules\Application::start();
-
 App\Controllers\PageController::start();
 
 Flight::route('/', ['App\Controllers\PageController', 'main']);
@@ -42,19 +40,13 @@ Flight::route('/rent/', ['App\Controllers\PageController', 'rent']);
 
 Flight::route('/feedback_send/', ['App\Controllers\FeedbackController', 'send']);
 
-Flight::route('/test/', function (){App\Controllers\APIController::updateProduct(1);});
+Flight::route('/realty_sub_types/', ['App\Controllers\PageController', 'getSubTypes']);
 
 Flight::route('/agents/', ['App\Controllers\UserController', 'openListing']);
 
 Flight::route('/agent/@id/', function ($id){App\Controllers\UserController::show($id);});
 
 Flight::route('/reviews/', ['App\Controllers\ReviewController', 'publicListing']);
-
-Flight::route('/product_counter/', ['App\Controllers\ProductController', 'countingProducts']);
-
-Flight::route('/category/@name(/@page)/', function ($name, $page) {
-    \App\Controllers\ProductController::listingForCategory($name, $page);
-});
 
 Flight::route('/object/@category-@object/', function ($category, $object) {
         App\Controllers\RealtyController::show($object, $category);
@@ -98,8 +90,6 @@ Flight::route('/admin/category/create/', ['App\Controllers\CategoryController', 
 
 Flight::route('/admin/categories/', ['App\Controllers\CategoryController', 'listing']);
 
-Flight::route('/admin/category/show/@id/', function($id){App\Modules\Category::show($id);});
-
 Flight::route('/admin/category/drop/', ['App\Controllers\CategoryController', 'drop']);
 
 Flight::route('/admin/objects/', ['App\Controllers\RealtyController', 'privateListing']);
@@ -115,18 +105,6 @@ Flight::route('/admin/object/load_photo/', ['App\Controllers\RealtyController', 
 Flight::route('/admin/advantages/', ['App\Controllers\AdvantageController', 'listing']);
 
 Flight::route('/admin/advantage/create/', ['App\Controllers\AdvantageController', 'create']);
-
-Flight::route('/admin/parameters/', ['App\Modules\Parameter', 'listing']);
-
-Flight::route('/admin/parameter/drop/', ['App\Controllers\ParameterController', 'drop']);
-
-Flight::route('/admin/parameter/create/@id/',
-    function ($id) {App\Controllers\ParameterController::create($id);}
-);
-
-Flight::route('/admin/parameter/modify/@id/',
-    function ($id) {App\Controllers\ParameterController::modify($id);}
-);
 
 Flight::route('/admin/reviews/', ['App\Controllers\ReviewController', 'listing']);
 

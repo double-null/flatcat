@@ -18,9 +18,13 @@ class PageController
             'name' => 'main_page',
             'lang' => $langID,
         ]));
+        $variants = Block::getOneByParams([
+            'name' => 'variants',
+            'lang' => $langID,
+        ]);
         Flight::view()->assign('advantages', Advantage::getAllByLang($langID));
         Flight::view()->assign('reviews', Review::getAllForPage(6));
-        Flight::view()->assign('variants', FilterVariants::getAllByFilters([10,11]));
+        Flight::view()->assign('variants', $variants);
         Flight::view()->display('pages/main.tpl');
     }
 
@@ -41,6 +45,20 @@ class PageController
         Flight::view()->assign('inscriptions', Block::getOneByParams(['name' => 'for_seller']));
         Flight::view()->assign('advantages', Advantage::getAll());
         Flight::view()->display('pages/for_seller.tpl');
+    }
+
+    public static function getSubTypes()
+    {
+        $variants = Block::getOneByParams([
+            'name' => 'variants',
+            'lang' => Flight::get('langID'),
+        ]);
+        switch ((int)$_POST['type']) {
+            case 1: $out = $variants['sub_types_1']; break;
+            case 8: $out = $variants['sub_types_2']; break;
+            default: $out = [];
+        }
+        Flight::json($out);
     }
 
     public static function start()
