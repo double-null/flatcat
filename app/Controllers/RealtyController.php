@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Core\Url;
 use App\Models\Category;
-use App\Models\Filter;
 use App\Models\FilterVariants;
 use App\Models\Realty;
 use App\Models\Block;
@@ -128,14 +127,43 @@ class RealtyController
 
     public static function search()
     {
+        $a = [
+            'title' => 'Результаты поиска',
+        ];
+
         $params = [];
         foreach ($_GET as $param => $value) {
             if (!empty($value)) {
                 $params[$param] = trim($value);
             }
         }
-        $objects = Realty::getAllByParams($params);
+
+        $inscriptions = Block::getOneByParams([
+            'name' => 'realty_list',
+            'lang' => Flight::get('langID'),
+        ]);
+
+        Flight::view()->assign('sVariants', Block::getOneByParams([
+            'name' => 'variants',
+            'lang' => Flight::get('langID'),
+        ]));
+        Flight::view()->assign('filters', Block::getOneByParams([
+            'name' => 'filters',
+            'lang' => Flight::get('langID'),
+        ]));
+
+        $types = (int)$_GET['type'];
+        $page = $_GET['page'] ?? 1;
+        $limit = [($page - 1) * 10, 10];
+        $input_filters = array_diff($_GET, ['']);
+        $totalObjects = Realty::countAllByTypes($types, $input_filters);
+        $objects = Realty::getAllByTypes($types, $limit, $input_filters);
+
+        Flight::view()->assign('categoryID', 1);
+        Flight::view()->assign('currentUrl', Url::generate($input_filters));
         Flight::view()->assign('objects', $objects);
+        Flight::view()->assign('totalProducts', $totalObjects);
+        Flight::view()->assign('inscriptions', $inscriptions);
         Flight::view()->display('realty/listing.tpl');
     }
 

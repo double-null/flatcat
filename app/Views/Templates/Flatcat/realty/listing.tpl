@@ -96,64 +96,65 @@
 {block name="content"}
     <div class="container">
         <div class="row">
-            {foreach $objects as $object}
-                <div class="col-md-4 object-item">
-                    <div style="width: 100%; position: relative;">
-                        <a class="object-link" href="/object/{$categoryID}-{$object.id}/">
-                            {if !empty($object.photos|json_decode)}
-                                {foreach $object.photos|json_decode as $photo}
-                                    {if $photo@first}
-                                        <div class="object-photos">
-                                            <img class="img-fluid" src="/images/objects/mini/{$photo}">
-                                        </div>
-                                        <span class="obj-hover-img">
-                                    {/if}
+            {if !empty(($objects))}
+                {foreach $objects as $object}
+                    <div class="col-md-4 object-item">
+                        <div style="width: 100%; position: relative;">
+                            <a class="object-link" href="/object/{$categoryID}-{$object.id}/">
+                                {if !empty($object.photos|json_decode)}
+                                    {foreach $object.photos|json_decode as $photo}
+                                        {if $photo@first}
+                                            <div class="object-photos">
+                                                <img class="img-fluid" src="/images/objects/mini/{$photo}">
+                                            </div>
+                                            <span class="obj-hover-img">
+                                        {/if}
 
-                                    {if $photo@iteration <= 5}<span class="obj-hover-img-5" data-photo="{$photo}"></span>{/if}
+                                        {if $photo@iteration <= 5}<span class="obj-hover-img-5" data-photo="{$photo}"></span>{/if}
 
-                                    {if $photo@last}
-                                        </span>
-                                    {/if}
-                                {/foreach}
-                            {else}
-                                <div class="object-photos">
-                                    <img class="img-fluid" src="/images/default/no-photo.jpg">
-                                </div>
-                            {/if}
-                        </a>
-                    </div>
-                    <div class="object-info row">
-                        <div class="obj-title col-12"><a href="/object/{$categoryID}-{$object.id}/">{$object.name}</a></div>
-                        <div class="obj-short-desc col-12">
-                            {if ($object.type == 1 && !empty($object.sub_type))}
-                                {$sVariants.sub_types_1[$object.sub_type-1]},
-                                {if !empty($object.max_floor) && !empty($object.floor)}
-                                    , {$object.floor}/{$object.max_floor} эт
+                                        {if $photo@last}</span>{/if}
+
+                                    {/foreach}
+                                {else}
+                                    <div class="object-photos">
+                                        <img class="img-fluid" src="/images/default/no-photo.jpg">
+                                    </div>
                                 {/if}
-                                {$sVariants.material[$object.material-1]}
-                            {/if}
-                            {if ($object.type|in_array:[3,4,5,6])}
-                                {foreach $variants[10] as $variant}
-                                    {if $object.type == $variant.id}{$variant.value}{/if}
-                                {/foreach}
-                                {if !empty($object.area_total)}{$object.area_total}{/if}
-                                {if !empty($object.material)}{$sVariants.material[$object.material-1]}{/if}
-                                {if !empty($object.land_size)}{$object.land_size}{/if}
-                            {/if}
-                            {if ($object.type == 7)}
-                                {foreach $variants[10] as $variant}
-                                    {if $object.type == $variant.id}{$variant.value}{/if}
-                                {/foreach}
-                                {$object.land_size}
-                            {/if}
+                            </a>
                         </div>
-                        <div class="obj-price col-6">
-                            {$object.price|number_format:2:" ":","}{$object.money_type}
+                        <div class="object-info row">
+                            <div class="obj-title col-12"><a href="/object/{$categoryID}-{$object.id}/">{$object.name}</a></div>
+                            <div class="obj-short-desc col-12">
+                                {if ($object.type == 1 && !empty($object.sub_type))}
+                                    {$sVariants.sub_types_1[$object.sub_type-1]},
+                                    {if !empty($object.max_floor) && !empty($object.floor)}
+                                        , {$object.floor}/{$object.max_floor} эт
+                                    {/if}
+                                    {$sVariants.material[$object.material-1]}
+                                {/if}
+                                {if ($object.type|in_array:[3,4,5,6])}
+                                    {foreach $variants[10] as $variant}
+                                        {if $object.type == $variant.id}{$variant.value}{/if}
+                                    {/foreach}
+                                    {if !empty($object.area_total)}{$object.area_total}{/if}
+                                    {if !empty($object.material)}{$sVariants.material[$object.material-1]}{/if}
+                                    {if !empty($object.land_size)}{$object.land_size}{/if}
+                                {/if}
+                                {if ($object.type == 7)}
+                                    {foreach $variants[10] as $variant}
+                                        {if $object.type == $variant.id}{$variant.value}{/if}
+                                    {/foreach}
+                                    {$object.land_size}
+                                {/if}
+                            </div>
+                            <div class="obj-price col-6">
+                                {$object.price|number_format:2:" ":","}{$object.money_type}
+                            </div>
+                            <div class="obj-created col-6">{$object.created|date_format:"d.m.Y"}</div>
                         </div>
-                        <div class="obj-created col-6">{$object.created|date_format:"d.m.Y"}</div>
                     </div>
-                </div>
-            {/foreach}
+                {/foreach}
+            {/if}
         </div>
         <div class="row">
             <div class="pagination">
