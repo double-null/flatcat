@@ -1,5 +1,7 @@
 {extends file="template.tpl"}
 
+{block name="html_title"}{$common.main_page}{/block}
+
 {block name="content"}
     <div class="container">
         <div class="row">

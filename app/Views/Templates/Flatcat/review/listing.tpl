@@ -1,5 +1,7 @@
 {extends file="template.tpl"}
 
+{block name="html_title"}{$categoryName}{/block}
+
 {block name="breadcrumbs"}
     <li><a href="/">{$common.main_page}</a></li>
     <li>{$categoryName}</li>

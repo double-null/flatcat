@@ -1,6 +1,6 @@
 {extends file="template.tpl"}
 
-{block name="html_title"}{/block}
+{block name="html_title"}{$categoryName}{/block}
 
 {block name="filters"}
     <div id="filters-block" class="row">
