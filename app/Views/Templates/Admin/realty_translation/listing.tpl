@@ -1,13 +1,15 @@
 {extends file="template.tpl"}
 
-{block name="html_title"} Админ панель &raquo; Список обьектов{/block}
+{block name="html_title"} Админ панель &raquo; Список переводов обьекта{/block}
 
 {block name="content"}
 
     <div class="title-block">
         <h3 class="title">
-            Список обьектов
-            <span data-type="bar" class="sparkline bar"></span>
+            Список переводов обьекта
+            <a href="/admin/realty_translation/create/?object={$object}" class="btn btn-primary btn-sm rounded-s">
+                Добавить перевод
+            </a>
         </h3>
     </div>
 
@@ -26,17 +28,21 @@
                                         <div><span>Название</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>Цена</span></div>
+                                        <div><span>Описание</span></div>
+                                    </div>
+                                    <div class="item-col item-col-header">
+                                        <div><span>Язык</span></div>
                                     </div>
                                     <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
                                 </div>
                             </li>
-                            {foreach $objects as $object}
+                            {foreach $translations as $translation}
                                 <li class="item">
                                     <div class="item-row">
-                                        <div class="item-col item-col-sales"><div>{$object.id}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$object.name}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$object.price}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$translation.id}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$translation.name}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$translation.description}</div></div>
+                                        <div class="item-col item-col-sales"><div>{$translation.lang}</div></div>
                                         <div class="item-col fixed item-col-actions-dropdown">
                                             <div class="item-actions-dropdown">
                                                 <a class="item-actions-toggle-btn">
@@ -50,23 +56,8 @@
                                                 <div class="item-actions-block">
                                                     <ul class="item-actions-list">
                                                         <li>
-                                                            <a title="Удалить" class="remove" href="#" data-id="{$object.id}" data-toggle="modal" data-target="#confirm-modal">
-                                                                <i class="fa fa-trash-o "></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Редактирование" href="/admin/object/mod/?id={$object.id}">
-                                                                <i class="fa fa-pencil" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Фотографии" href="/admin/object/images/?id={$object.id}">
-                                                                <i class="fa fa-picture-o" aria-hidden="true"></i>
-                                                            </a>
-                                                        </li>
-                                                        <li>
-                                                            <a title="Переводы" href="/admin/object/translations/?id={$object.id}">
-                                                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                                            <a title="Удалить" class="remove" href="#" data-id="{$translation.id}" data-toggle="modal" data-target="#confirm-modal">
+                                                                <i class="fa fa-trash-o"></i>
                                                             </a>
                                                         </li>
                                                     </ul>
@@ -115,7 +106,7 @@
         $('#confirm-button').click(function () {
             var drop = $(this).data('drop');
             $.post({
-                url: '/admin/user/drop/',
+                url: '/admin/realty_translation/drop/',
                 data: {id:drop},
                 success: function(data){
                     if (data.status == 1) location.reload();

@@ -102,6 +102,12 @@ Flight::route('/admin/object/images/', ['App\Controllers\RealtyController', 'pho
 
 Flight::route('/admin/object/load_photo/', ['App\Controllers\RealtyController', 'loadPhoto']);
 
+Flight::route('/admin/object/translations/', ['App\Controllers\RealtyTranslationController', 'listing']);
+
+Flight::route('/admin/realty_translation/create/', ['App\Controllers\RealtyTranslationController', 'create']);
+
+Flight::route('/admin/realty_translation/drop/', ['App\Controllers\RealtyTranslationController', 'drop']);
+
 Flight::route('/admin/advantages/', ['App\Controllers\AdvantageController', 'listing']);
 
 Flight::route('/admin/advantage/create/', ['App\Controllers\AdvantageController', 'create']);
