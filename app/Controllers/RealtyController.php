@@ -35,6 +35,7 @@ class RealtyController
             case 1: $types = [1,2]; break;
             case 2: $types = [8]; break;
             case 3: $types = [3, 4, 5, 6, 7]; break;
+            case 4: $types = [9]; break;
         }
         $page = $_GET['page'] ?? 1;
         $limit = [($page - 1) * 10, 10];
@@ -62,6 +63,8 @@ class RealtyController
         Flight::view()->assign('objects', $objects);
         Flight::view()->display('realty/listing.tpl');
     }
+
+    
 
     public static function privateListing()
     {

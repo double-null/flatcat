@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Core\Model;
 use Flight;
+use PDO;
 
 class Realty extends Model
 {
@@ -11,29 +12,27 @@ class Realty extends Model
 
     public static function getAllByTypes($types, $limit = 0, $filters = null)
     {
-        $a = self::constructLimitation($filters);
-        if (count($a) > 0) {
-            $where = [
-                'AND' => array_merge($a, ['type' => $types]),
-                'LIMIT' => $limit,
-            ];
-        } else {
-            $where = ['type' => $types, 'LIMIT' => $limit];
-        }
-        return Flight::db()->select(self::$table, '*', $where);
+        $types = implode(',', $types);
+        $lang = Flight::get('langID');
+        $conditions = self::constructLimitation($filters);
+        $sql = "SELECT * FROM realty AS r 
+                LEFT JOIN realty_translations AS rt 
+                  ON r.id = rt.object AND rt.lang = $lang
+                WHERE r.type IN ($types)  $conditions 
+                  LIMIT " . $limit[1] . " OFFSET " . $limit[0];
+        return Flight::db()->query($sql)->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public static function countAllByTypes($types, $filters)
     {
-        $a = self::constructLimitation($filters);
-        if (count($a) > 0) {
-            $where = [
-                'AND' => array_merge($a, ['type' => $types]),
-            ];
-        } else {
-            $where = ['type' => $types];
-        }
-        return Flight::db()->count(self::$table, $where);
+        $types = implode(',', $types);
+        $lang = Flight::get('langID');
+        $conditions = self::constructLimitation($filters);
+        $sql = "SELECT COUNT(*) FROM realty AS r 
+                LEFT JOIN realty_translations AS rt 
+                  ON r.id = rt.object AND rt.lang = $lang
+                WHERE r.type IN ($types) $conditions";
+        return Flight::db()->query($sql)->fetchColumn();
     }
 
     public static function getAllByParams($params)
@@ -59,19 +58,49 @@ class Realty extends Model
 
     public static function constructLimitation($filters)
     {
-        $a = [];
-        if (!empty($filters['rooms'])) {$a['rooms'] = $filters['rooms'];}
-        if (!empty($filters['min_floor_d'])) {$a['floor[>=]'] = $filters['min_floor_d'];}
-        if (!empty($filters['max_floor_d'])) {$a['floor[<=]'] = $filters['max_floor_d'];}
-        if (!empty($filters['max_floor'])) {$a['max_floor[>=]'] = $filters['max_floor'];}
-        if (!empty($filters['material'])) {$a['material'] = $filters['material'];}
-        if (!empty($filters['min_area'])) {$a['area_total[>=]'] = $filters['min_area'];}
-        if (!empty($filters['max_area'])) {$a['area_total[<=]'] = $filters['max_area'];}
-        if (!empty($filters['new_build'])) {$a['new_building'] = $filters['new_build'];}
-        if (!empty($filters['reduced_price'])) {$a['reduced_price'] = $filters['reduced_price'];}
-        if (!empty($filters['superprice'])) {$a['superprice'] = $filters['superprice'];}
-        if (!empty($filters['min_price'])) {$a['price[>=]'] = $filters['min_price'];}
-        if (!empty($filters['max_price'])) {$a['price[<=]'] = $filters['max_price'];}
-        return $a;
+        $conditions = ' ';
+        if (!empty($filters['sub_type'])) {
+            $sub_types = implode(',', $filters['sub_type']);
+            $conditions = "AND r.sub_type IN ($sub_types) ";
+        }
+        if (!empty($filters['material'])) {
+            $material = implode(',', $filters['material']);
+            $conditions = "AND r.material IN ($material) ";
+        }
+        if (!empty($filters['min_floor_d'])) {
+            $conditions = "AND r.floor >= ".(int)$filters['min_floor_d'].' ';
+        }
+        if (!empty($filters['max_floor_d'])) {
+            $conditions = "AND r.floor <= ".(int)$filters['max_floor_d'].' ';
+        }
+        if (!empty($filters['max_floor'])) {
+            $conditions = "AND r.max_floor >= ".(int)$filters['max_floor'].' ';
+        }
+        if (!empty($filters['heating'])) {
+            $heating = implode(',', $filters['heating']);
+            $conditions = "AND r.sub_type IN ($heating) ";
+        }
+        if (!empty($filters['min_area'])) {
+            $conditions = "AND r.floor >= ".(int)$filters['min_area'].' ';
+        }
+        if (!empty($filters['max_area'])) {
+            $conditions = "AND r.floor <= ".(int)$filters['max_area'].' ';
+        }
+        if (!empty($filters['new_build'])) {
+            $conditions = "AND r.new_build = 1 ";
+        }
+        if (!empty($filters['reduced_price'])) {
+            $conditions = "AND r.reduced_price = 1 ";
+        }
+        if (!empty($filters['superprice'])) {
+            $conditions = "AND r.superprice = 1 ";
+        }
+        if (!empty($filters['max_floor_d'])) {
+            $conditions = "AND r.floor <= ".(int)$filters['max_floor_d'].' ';
+        }
+        if (!empty($filters['max_floor'])) {
+            $conditions = "AND r.max_floor >= ".(int)$filters['max_floor'].' ';
+        }
+        return $conditions;
     }
 }

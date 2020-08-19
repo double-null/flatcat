@@ -14,7 +14,7 @@
             {/if}
             {if $categoryID|in_array:[1]}
                 <div class="filters-item">
-                    <select multiple="multiple" placeholder="{$filters.rooms}" class="SlectBox" name="sub_type">
+                    <select multiple="multiple" placeholder="{$filters.rooms}" class="SlectBox" name="sub_type[]">
                         {foreach $sVariants.sub_types_1 as $variant}
                             <option value="{$variant@iteration}">{$variant}</option>
                         {/foreach}

@@ -5,7 +5,6 @@ namespace App\Controllers;
 use App\Models\Advantage;
 use App\Models\Block;
 use App\Models\Category;
-use App\Models\FilterVariants;
 use App\Models\Review;
 use Flight;
 
