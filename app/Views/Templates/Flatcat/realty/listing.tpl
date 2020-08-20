@@ -144,7 +144,9 @@
                                 {/if}
                             </div>
                             <div class="obj-price col-6">
-                                {$object.price|number_format:2:" ":","}{$object.money_type}
+                                {$object.price|number_format:2:" ":","}
+                                {if ($object.money_type == 1)}${/if}
+                                {if ($object.money_type == 2)}GEL{/if}
                             </div>
                             <div class="obj-created col-6">{$object.created|date_format:"d.m.Y"}</div>
                         </div>

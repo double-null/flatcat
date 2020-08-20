@@ -29,7 +29,7 @@
                             {if !empty($agent.photo)}
                                 <img width="100%" src="{$user.photo}">
                             {else}
-                                <img width="100%" src="/themes/Flatcat/images/unnamed.jpg">
+                                <img data-lightbox="image" data-title="My caption" width="100%" src="/themes/Flatcat/images/unnamed.jpg">
                             {/if}
                         </div>
                         <div class="col-md-8">
@@ -187,7 +187,7 @@
                         <label for="tab1" class="tab-title">{$inscriptions.photo}</label>
                         <section class="tab-content">
                             <div class="product-images">
-                                <div class="fotorama" data-nav="thumbs" data-height="400">
+                                <div class="fotorama" data-nav="thumbs" data-height="400" data-allowfullscreen="true">
                                     {foreach $object.photos|json_decode as $photo}
                                         <img class="img-fluid" src="/images/objects/original/{$photo}">
                                     {/foreach}
