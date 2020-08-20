@@ -101,6 +101,9 @@ class Realty extends Model
         if (!empty($filters['max_floor'])) {
             $conditions = "AND r.max_floor >= ".(int)$filters['max_floor'].' ';
         }
+        if (!empty($filters['suburban'])) {
+            $conditions = "AND r.suburban = 1 ";
+        }
         return $conditions;
     }
 }

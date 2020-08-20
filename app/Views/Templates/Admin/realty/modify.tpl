@@ -50,19 +50,6 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Название: </label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control boxed" name="Realty[name]" value="{$object.name}">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Описание: </label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control boxed" name="Realty[description]"
-                                      cols="30" rows="10">{$object.description}</textarea>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-sm-2 form-control-label text-xs-right"> Количество комнат: </label>
                         <div class="col-sm-10"><input type="text" class="form-control boxed"
                               name="Realty[rooms]" value="{$object.rooms}"></div>
@@ -182,6 +169,15 @@
                         </div>
                     </div>
                     <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right"> Загородная: </label>
+                        <div class="col-sm-10">
+                            <label>
+                                <input class="checkbox" type="checkbox" name="Realty[suburban]" {if $object.suburban == 1}checked{/if}>
+                                <span>Да</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
                         <label class="col-sm-2 form-control-label text-xs-right"> Размер земельного участка (соток): </label>
                         <div class="col-sm-10"><input type="text" class="form-control boxed" name="Realty[land_size]" value="{$object.land_size}"></div>
                     </div>
@@ -230,7 +226,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="submit" class="btn btn-primary right">Добавить</button>
+                        <button type="submit" class="btn btn-primary right">Редактировать</button>
                     </div>
                 </form>
             </section>

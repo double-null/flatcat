@@ -133,17 +133,13 @@
                                     {$sVariants.material[$object.material-1]}
                                 {/if}
                                 {if ($object.type|in_array:[3,4,5,6])}
-                                    {foreach $variants[10] as $variant}
-                                        {if $object.type == $variant.id}{$variant.value}{/if}
-                                    {/foreach}
+                                    {if !empty($object.area_total)}{$sVariants.types[$object.type-1]}{/if}
                                     {if !empty($object.area_total)}{$object.area_total}{/if}
                                     {if !empty($object.material)}{$sVariants.material[$object.material-1]}{/if}
                                     {if !empty($object.land_size)}{$object.land_size}{/if}
                                 {/if}
                                 {if ($object.type == 7)}
-                                    {foreach $variants[10] as $variant}
-                                        {if $object.type == $variant.id}{$variant.value}{/if}
-                                    {/foreach}
+                                    {if !empty($object.area_total)}{$sVariants.types[$object.type-1]}{/if}
                                     {$object.land_size}
                                 {/if}
                             </div>

@@ -39,6 +39,7 @@
                                 <option value="6">Часть дома</option>
                                 <option value="7">Участок</option>
                                 <option value="8">Коммерческая</option>
+                                <option value="9">Гараж / Стоянка</option>
                             </select>
                         </div>
                     </div>
@@ -47,19 +48,6 @@
                         <div class="col-sm-10">
                             <select id="realty_sub_type" class="c-select form-control boxed" name="Realty[sub_type]">
                             </select>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Название: </label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control boxed" name="Realty[name]">
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-2 form-control-label text-xs-right"> Описание: </label>
-                        <div class="col-sm-10">
-                            <textarea class="form-control boxed" name="Realty[description]"
-                                      cols="30" rows="10"></textarea>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -175,6 +163,15 @@
                         <div class="col-sm-10">
                             <label>
                                 <input class="checkbox" type="checkbox" name="Realty[new_building]">
+                                <span>Да</span>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-sm-2 form-control-label text-xs-right"> Загородная: </label>
+                        <div class="col-sm-10">
+                            <label>
+                                <input class="checkbox" type="checkbox" name="Realty[suburban]">
                                 <span>Да</span>
                             </label>
                         </div>

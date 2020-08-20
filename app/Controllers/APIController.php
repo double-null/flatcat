@@ -8,6 +8,7 @@ use App\Models\IntrumEquals;
 use App\Models\Parameter;
 
 use App\Models\Realty;
+use App\Models\RealtyTranslation;
 use App\Models\User;
 use App\Models\UserDesc;
 use Flight;
@@ -147,7 +148,7 @@ class APIController
                 $params['deal'] = $product['stock_type'];
                 $params['type'] = $category;
                 $params['agent'] = $product['author'];
-                $params['name'] = $product['name'];
+                $object_name = $product['name'];
                 $params['created'] = strtotime($product['date_add']);
                 foreach ($product['fields'] as $field) {
                     switch ($field['id']) {
@@ -167,12 +168,12 @@ class APIController
                         case 528: $params['price'] = $field['value']; break;
                         case 810: $params['price'] = $field['value']; break;
                         case 470: $params['price'] = $field['value']; break;
-                        case 624: $params['description'] = $field['value']; break;
-                        case 811: $params['money_type'] = $field['value']; break;
-                        case 492: $params['money_type'] = $field['value']; break;
-                        case 471: $params['money_type'] = $field['value']; break;
-                        case 563: $params['money_type'] = $field['value']; break;
-                        case 529: $params['money_type'] = $field['value']; break;
+                        case 624: $description = $field['value']; break;
+                        case 811: $params['money_type'] = ($field['value'] == '$') ? 1 : 2; break;
+                        case 492: $params['money_type'] = ($field['value'] == '$') ? 1 : 2; break;
+                        case 471: $params['money_type'] = ($field['value'] == '$') ? 1 : 2; break;
+                        case 563: $params['money_type'] = ($field['value'] == '$') ? 1 : 2; break;
+                        case 529: $params['money_type'] = ($field['value'] == '$') ? 1 : 2; break;
                         case 546: $params['unit_price'] = $field['value']; break;
                         case 855: $params['unit_price'] = $field['value']; break;
                         case 856: $params['unit_price'] = $field['value']; break;
@@ -210,6 +211,15 @@ class APIController
                 $params['photos'] = json_encode($params['photos']);
                 Realty::$data = $params;
                 $object_id = Realty::insert();
+
+                RealtyTranslation::$data = [
+                    'object' => $object_id,
+                    'name' => $object_name,
+                    'description' => $description,
+                    'lang' => 1,
+                ];
+
+                RealtyTranslation::insert();
 
                 IntrumEquals::$data = [
                     'type' => 4,
