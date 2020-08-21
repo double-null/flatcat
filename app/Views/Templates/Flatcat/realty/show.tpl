@@ -1,16 +1,18 @@
 {extends file="template.tpl"}
 
+{block name="html_title"}{if !empty($object.name)}{$object.name}{/if}{/block}
+
 {block name="breadcrumbs"}
     <li><a href="/">{$common.main_page}</a></li>
     <li><a href="/category/{$categoryID}/">{$categoryName}</a></li>
-    <li>{$object.name}</li>
+    <li>{if !empty($object.name)}{$object.name}{/if}</li>
 {/block}
 
 {block name="content"}
     <div class="container">
         <div class="row">
             <div class="col-md-8">
-                <h2 class="object-name">{$object.name}</h2>
+                <h2 class="object-name">{if !empty($object.name)}{$object.name}{/if}</h2>
                 <div class="object-short-desc"></div>
                 <div class="object-info">
                     {$inscriptions.object_code}: {$object.id}

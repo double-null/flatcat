@@ -151,7 +151,6 @@ footer{
     margin-top: 75px;
     padding: 30px 0;
     position: absolute;
-    z-index: 20;
 }
 
 #city {
@@ -328,7 +327,6 @@ footer{
     position: relative; /* Относительное позиционирование */
     background: #506266; /* Цвет фона */
     top: 1px; /* Сдвигаем вниз */
-    z-index: 1; /* Отображаем поверх содержимого */
 }
 .tab :checked ~ .tab-content {
     display: block; /* Показываем активную вкладку */
@@ -496,7 +494,6 @@ select {
     position: fixed;
     top: 40%;
     transition: all 1s linear 0s;
-    z-index: 9999;
 }
 
 .callback-body, .callback-holder, .viber-holder{display: flex; flex-flow: wrap;}
