@@ -145,7 +145,6 @@ class RealtyController
         $a = [
             'title' => 'Результаты поиска',
         ];
-
         $params = [];
         foreach ($_GET as $param => $value) {
             if (!empty($value)) {

@@ -12,7 +12,7 @@ class Realty extends Model
 
     public static function getAllByTypes($types, $limit = 0, $filters = null)
     {
-        $types = implode(',', $types);
+        if(is_array($types)) { $types = implode(',', $types);}
         $lang = Flight::get('langID');
         $conditions = self::constructLimitation($filters);
         $sql = "SELECT * FROM realty AS r 
@@ -25,7 +25,7 @@ class Realty extends Model
 
     public static function countAllByTypes($types, $filters)
     {
-        $types = implode(',', $types);
+        if(is_array($types)) { $types = implode(',', $types);}
         $lang = Flight::get('langID');
         $conditions = self::constructLimitation($filters);
         $sql = "SELECT COUNT(*) FROM realty AS r 
