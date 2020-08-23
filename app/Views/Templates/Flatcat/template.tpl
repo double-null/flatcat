@@ -22,12 +22,12 @@
         <header class="main-header">
             <div class="container">
                 <div class="row header-general">
-                    <div class="col-md-2">
+                    <div id="logo-box" class="col-md-2">
                         <a class="header-sub-block" href="/">
-                            <img alt="" src="/themes/Flatcat/images/logo-site.svg">
+                            <img class="img-fluid" src="/themes/Flatcat/images/logo.jpg">
                         </a>
                     </div>
-                    <div class="col-md-3" class="short-contact-info">
+                    <div id="short-contact-info" class="col-md-3">
                         <div class="phone-info">{$common.phone_number}</div>
                         <div class="work-time">{$common.work_time}</div>
                     </div>
@@ -38,7 +38,7 @@
                         <a class="white-btn" href="/contacts/">{$common.contacts_btn}</a>
                         <a class="green-btn popup-open" data-id="1">{$common.leave_request}</a>
                     </div>
-                    <div class="col-md-1">
+                    <div id="lang-changer-box" class="col-md-1 col-6">
                         <div id="lang-changer">
                             <a  href="#">
                                 <img src="/themes/Flatcat/images/langs/{$lang}.png">
