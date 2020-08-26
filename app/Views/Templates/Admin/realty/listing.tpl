@@ -23,9 +23,6 @@
                                         <div><span>ID</span></div>
                                     </div>
                                     <div class="item-col item-col-header">
-                                        <div><span>Название</span></div>
-                                    </div>
-                                    <div class="item-col item-col-header">
                                         <div><span>Цена</span></div>
                                     </div>
                                     <div class="item-col item-col-header fixed item-col-actions-dropdown"></div>
@@ -35,7 +32,6 @@
                                 <li class="item">
                                     <div class="item-row">
                                         <div class="item-col item-col-sales"><div>{$object.id}</div></div>
-                                        <div class="item-col item-col-sales"><div>{$object.name}</div></div>
                                         <div class="item-col item-col-sales"><div>{$object.price}</div></div>
                                         <div class="item-col fixed item-col-actions-dropdown">
                                             <div class="item-actions-dropdown">

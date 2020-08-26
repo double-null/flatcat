@@ -619,4 +619,5 @@ select {
     .phone-info, .work-time{text-align: center;}
     .header-menu ul{flex-direction: column; padding: 5px;}
     #city{margin-right: -80px;}
+    .owl-carousel{overflow: hidden;}
 }
